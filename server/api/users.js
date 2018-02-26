@@ -13,3 +13,12 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+
+
+
+
+// GET	'/posts'	index action	index page to display all posts
+// GET	'/posts/:id'	show action	displays one blog post based on ID in the url
+// PATCH (Sinatra POST)	'/posts/:id/edit'	edit action	edits one blog post based on ID in the url
+// DELETE (Sinatra POST)	'/posts/:id/delete'	delete action	deletes one blog post based on ID in the url
+// POST	'/posts'
