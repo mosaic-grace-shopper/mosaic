@@ -10,7 +10,7 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Category, Product} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
@@ -30,9 +30,30 @@ async function seed () {
     User.create({email: 'emily@emily.com', password: '123'})
   ])
 
+  const categories = await Promise.all([
+    Category.create({id: 1, name: 'photography'}),
+    Category.create({id: 2, name: 'sculpture'}),
+    Category.create({id: 3, name: 'painting'}),
+  ])
+
+  const products = await Promise.all([
+    Product.create({artist: 'Bob', title: 'Painting in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3}),
+    Product.create({artist: 'Sam', title: 'Prince and the Swan', description: 'A photo', price: 1500, quantity: 8, categoryId: 1}),
+    Product.create({artist: 'Wanda', title: 'The fish with her name', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2}),
+    Product.create({artist: 'Janet', title: 'Painting in Red', description: 'A painting', price: 250, quantity: 10, categoryId: 3}),
+    Product.create({artist: 'Hito', title: 'Landscape of Stuff', description: 'A photo', price: 50, quantity: 40, categoryId: 1}),
+    Product.create({artist: 'Mike', title: 'Humongous Teddy Bear', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2}),
+    Product.create({artist: 'Borna', title: 'T-shirt Canvas', description: 'A painting', price: 30000, quantity: 2, categoryId: 3}),
+    Product.create({artist: 'Jasmine', title: 'Five Leaves', description: 'Acrylic Cup', price: 4300, quantity: 1, categoryId: 2}),
+    Product.create({artist: 'Juliana', title: 'Self Portrait', description: 'A painting', price: 500, quantity: 4, categoryId: 1}),
+    Product.create({artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1}),
+  ])
+
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${products.length} products`)
   console.log(`seeded successfully`)
 }
 
