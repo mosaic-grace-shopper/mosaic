@@ -12,12 +12,12 @@ const Category = require('./category')
 Product.belongsTo(Category);
 
 
-Category.hasMany(Product,{
-    foreignKey: {
-      allowNull: false
-    },
-    onDelete: 'cascade',
-    hooks : true
+Category.hasMany(Product, {
+  foreignKey: {
+    allowNull: false
+  },
+  onDelete: 'cascade',
+  hooks: true
 });
 
 /**
