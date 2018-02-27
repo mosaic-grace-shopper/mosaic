@@ -10,7 +10,15 @@ const Category = require('./category')
  */
 
 Product.belongsTo(Category);
-Category.hasMany(Product);
+
+
+Category.hasMany(Product,{
+    foreignKey: {
+      allowNull: false
+    },
+    onDelete: 'cascade',
+    hooks : true
+});
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
