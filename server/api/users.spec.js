@@ -29,5 +29,35 @@ describe('User routes', () => {
           expect(res.body[0].email).to.be.equal(codysEmail)
         })
     })
+
+    it('GET /api/users/1', () => {
+      return request(app)
+        .get('/api/users/1')
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.email).to.be.equal(codysEmail)
+        })
+    })
+
+    it('PUT /api/users/make-admin/1', () => {
+      return request(app)
+        .put('/api/users/make-admin/1')
+        .expect(200)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.body.isAdmin).to.be.equal(true)
+        })
+    })
+
+    it('DELETE /api/users/1', () => {
+      return request(app)
+        .delete('/api/users/1')
+        .expect(202)
+        .then(res => {
+          expect(res.body).to.be.an('object')
+          expect(res.status).to.be.equal(202)
+        })
+    })
   }) // end describe('/api/users')
 }) // end describe('User routes')
