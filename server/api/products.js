@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Product } = require('../db/models')
+const { Product, Review } = require('../db/models')
 
 router.get('/', (req, res, next) => {
     Product.findAll()
@@ -11,6 +11,16 @@ router.get('/:id', (req, res, next) => {
     Product.findOne(req.params.id)
         .then(product => res.json(product))
         .catch(next)
+})
+
+router.get('/reviews/:id', (req, res, next) => {
+    Review.findAll({
+        where: {
+            productId: req.params.id
+        }
+    })
+    .then(reviews => res.json(reviews))
+    .catch(next)
 })
 
 router.post('/', (req, res, next) => {
