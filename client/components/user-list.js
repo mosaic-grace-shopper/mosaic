@@ -1,59 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../store/user';
+import { allUsersThunk } from '../store/users';
 import { UserItem } from './user-item';
-// add this to redux 
 
 class UserList extends Component {
     componentDidMount() {
-		this.props.fetchUsers();
+		this.props.getAllUsers();
 	}
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          name: '',
-          email: '',
-          phone: ''
-        }
-    }
 
         render() {
-            console.log("userlist", this.props)
+            console.log("userlist", this.props.users)
             return (
                 <div>
+                     {this.props.users.length > 0  && this.props.users.map(user => 
+                     {user.email} )
+                // <UserItem user={user} key={user.id} />)
+            }
                 </div>
             )
     }
 
 }
 
-// export const UserList = (props) => {
-//     console.log("userlist", props)
-//     // const { users } = props;
-//     return (
-//         <div>
 
-//             {/* {users.map(user => 
-//                 <UserItem user={user} key={user.id} />)
-//             } */}
-
-//             {/* {users.map(user => 
-//                 {user.id}
-//             )} */}
-//         </div>
-//     )
-// }
+const mapStateToProps = function(state){
+   return {
+       users: state.users
+   }
+}
 
 
-const mapStateToProps = ({ users }) => ({ users })
+const mapDispatch = dispatch => {
+    return {
+        getAllUsers() {
+            dispatch(allUsersThunk())
+        }
+    }
+  };
 
-// const mapDispatch = dispatch => ({
-//     fetchInitialData: () => {
-//       dispatch(fetchUsers());
-//     }
-//   });
-
-const mapDispatch = { fetchUsers }
 
 export default connect(mapStateToProps, mapDispatch)(UserList);

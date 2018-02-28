@@ -1,11 +1,11 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
-import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, UserList } from './components'
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {withRouter, Route, Switch} from 'react-router-dom';
+import PropTypes from 'prop-types';
+import {Login, Signup, UserHome, UserList } from './components';
 // import { UserList } from './components/user-list'
-import {me} from './store'
-import { fetchUsers } from './store/user'
+import {me} from './store';
+import { allUsersThunk } from './store/users';
 
 /**
  * COMPONENT
@@ -54,7 +54,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
-      dispatch(fetchUsers())
+      dispatch(allUsersThunk())
     }
   }
 }
