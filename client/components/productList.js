@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 // import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {allProducts} from '../store'
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {allProducts} from '../store';
+import ProductItem from './productItem';
 
 
  class ProductList extends Component {
@@ -11,11 +13,19 @@ import {allProducts} from '../store'
   }
 
   render () {
-    // console.log(this.props)
+    const theProducts = this.props.products;
+
     return (
-      <div>
+      <div className="productList">
         <h1>Products go in here</h1>
-        <h3>{this.props.products.length > 0 && this.props.products[0].title}</h3>
+        <div className="aProduct">
+          {theProducts.length < 1 ?
+          <div>No products found</div> : theProducts.map(product => (
+            <Link to={`products/${product.id}`} key={product.id} className="productCard">
+              <ProductItem theProduct={product} />
+            </Link>
+          ))}
+        </div>
       </div>
     );
   }
@@ -25,7 +35,6 @@ import {allProducts} from '../store'
  * CONTAINER
  */
 const mapState = (state) => {
-  console.log(state);
   return {
     products: state.products
   }
