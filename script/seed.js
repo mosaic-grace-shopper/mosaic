@@ -10,7 +10,7 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db')
-const {User, Category, Product, Review} = require('../server/db/models')
+const {User, Category, Product, Review ,OrderHeader,OrderLine, FullOrder} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
@@ -48,6 +48,40 @@ async function seed () {
     Product.create({id: 9, artist: 'Juliana', title: 'Self Portrait', description: 'A painting', price: 500, quantity: 4, categoryId: 1}),
     Product.create({id: 10, artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1}),
   ])
+
+
+
+  const orderline = await Promise.all([
+    OrderLine.create({id: 1, quantity: 2 , productId : 1}), 
+    OrderLine.create({id: 2, quantity: 1, productId : 2}), 
+    OrderLine.create({id: 3, quantity: 4, productId : 3}), 
+    OrderLine.create({id: 4, quantity: 2, productId : 6}), 
+    OrderLine.create({id: 5, quantity: 1, productId : 7}), 
+    OrderLine.create({id: 6, quantity: 5, productId : 10}), 
+    OrderLine.create({id: 7, quantity: 2, productId : 4}), 
+    OrderLine.create({id: 8, quantity: 7, productId : 5}), 
+
+  ])
+
+  const orderheader = await Promise.all([
+    OrderHeader.create({id: 1, status: 'Created', total : 6500}), 
+    OrderHeader.create({id: 2, status: 'Cancelled', total : 10000}), 
+    OrderHeader.create({id: 3, status: 'Completed', total : 32500}), 
+    OrderHeader.create({id: 4, status: 'Processing', total : 850}), 
+  ])
+
+  const fullorder = await Promise.all([
+    FullOrder.create({orderheaderId: 1, orderlineId : 1}), 
+    FullOrder.create({ orderheaderId: 1, orderlineId : 2}), 
+    FullOrder.create({orderheaderId: 1, orderlineId : 3}), 
+    FullOrder.create({orderheaderId: 2, orderlineId : 4}), 
+    FullOrder.create({ orderheaderId: 3, orderlineId : 5}), 
+    FullOrder.create({orderheaderId: 3, orderlineId : 6}), 
+    FullOrder.create({orderheaderId: 4, orderlineId : 7}), 
+    FullOrder.create({ orderheaderId: 4, orderlineId : 8}), 
+  ])
+
+
 
   const reviews = await Promise.all([
     Review.create({id: 1, title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1}),

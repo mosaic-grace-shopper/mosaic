@@ -1,7 +1,11 @@
 const User = require('./user')
 const Product = require('./product')
 const Category = require('./category')
+const OrderLine = require('./orderline')
+const OrderHeader = require('./orderheader')
 const Review = require('./review')
+const FullOrder = require('./fullorder')
+
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -12,11 +16,11 @@ const Review = require('./review')
 
 Review.belongsTo(User)
 User.hasMany(Review)
-
 Review.belongsTo(Product)
 Product.hasMany(Review)
-
 Product.belongsTo(Category);
+
+
 
 
 Category.hasMany(Product, {
@@ -26,6 +30,20 @@ Category.hasMany(Product, {
   onDelete: 'cascade',
   hooks: true
 });
+
+
+OrderLine.belongsTo(Product);
+Product.hasMany(OrderLine, {
+  onDelete: 'cascade',
+  hooks: true,
+})
+
+OrderHeader.belongsToMany(OrderLine , {through: FullOrder})
+// OrderLine.belongsTo(OrderHeader, {
+//   onDelete: 'cascade',
+//   hooks: true,
+// })
+
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -37,5 +55,8 @@ module.exports = {
   User,
   Product,
   Category,
-  Review
+  Review,
+  OrderHeader,
+  OrderLine,
+  FullOrder
 }
