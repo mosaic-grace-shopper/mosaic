@@ -53,7 +53,7 @@ async function seed () {
     Review.create({id: 1, title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1}),
     Review.create({id: 2, title: 'Awesome', text: 'This photo is so artsy!', stars: 4, userId: 2, productId: 2}),
     Review.create({id: 3, title: 'Huggable', text: 'I want to take a nap on this bear.', stars: 5, userId: 3, productId: 6}),
-  ])
+   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
