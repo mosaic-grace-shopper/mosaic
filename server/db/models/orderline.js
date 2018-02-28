@@ -3,7 +3,7 @@ const db = require('../db');
 const Product = require('./product')
 
 const OrderLine = db.define('orderline', {
-
+// spacing -- KHEJ
     quantity: {
         type: Sequelize.INTEGER,
         defaultValue: 1,
@@ -13,7 +13,7 @@ const OrderLine = db.define('orderline', {
     },
 
     linePrice: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.FLOAT, // I would go decimal (see orderline) -- KHEJ
         validate: {
             min: 0
         }
@@ -32,7 +32,7 @@ OrderLine.beforeCreate(orderLine => {
         .then(product => {
             orderLine.linePrice = product.price
             orderLine.save()
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err)) // no. Don't handle errors here. If you do rethrow the error. Handle them in the route and send a RESPONSE :D -- KHEJ
 })
 
 

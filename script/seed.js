@@ -12,6 +12,8 @@
 const db = require('../server/db')
 const { User, Category, Product, Review, OrderHeader, OrderLine, FullOrder } = require('../server/db/models')
 
+// still using await +1 :D -- KHEJ
+
 async function seed() {
   await db.sync({ force: true })
   console.log('db synced!')

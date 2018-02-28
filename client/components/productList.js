@@ -15,6 +15,7 @@ import ProductItem from './productItem';
   render () {
     const theProducts = this.props.products;
 
+    // if (!theProducts.length) return <div>None found</div> potentially out here -- KHEJ
     return (
       <div className="productList">
         <h1>Products go in here</h1>
@@ -34,7 +35,7 @@ import ProductItem from './productItem';
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = (state) => { // consider destructuring for smaller amounts of code -- KHEJ
   return {
     products: state.products
   }
@@ -42,7 +43,7 @@ const mapState = (state) => {
 
 const mapDispatch = dispatch => {
   return {
-  getAllProducts() {
+    getAllProducts() {
       dispatch(allProducts())
     }
   }

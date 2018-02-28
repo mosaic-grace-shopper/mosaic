@@ -1,10 +1,11 @@
+// naming go camel case for the file -- KHEJ
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 
 function SingleProduct(props){
     const product = props.singleProduct
-    if (!product) return <div />
+    if (!product) return <div /> // write some sort of 'hi there is no product'
     return (
         <div>
         <h2> Artist: {product.artist}</h2>
@@ -17,6 +18,8 @@ function SingleProduct(props){
         </div>
     )
 }
+
+// either have getAllProducts in componentDidMount here or move up a level to the parent of both singleProduct and productList -- KHEJ
 
 const mapState = function(state, ownProps){
     return {

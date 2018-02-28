@@ -31,6 +31,7 @@ Category.hasMany(Product, {
   hooks: true
 });
 
+// order line is the join table between the many to many relationship of Products and OrderHeader (order) -- KHEJ
 
 OrderLine.belongsTo(Product);
 Product.hasMany(OrderLine, {
@@ -38,7 +39,12 @@ Product.hasMany(OrderLine, {
   hooks: true,
 })
 
-OrderHeader.belongsToMany(OrderLine , {through: FullOrder})
+// Order.belongsToMany(Products, {through: OrderLine}) -- KHEJ
+
+// Order has many order line
+// orderLine belongs to Order
+// so remove belongs to many here -- KHEJ
+OrderHeader.belongsToMany(OrderLine , {through: FullOrder}) // delete me -- KHEJ
 // OrderLine.belongsTo(OrderHeader, {
 //   onDelete: 'cascade',
 //   hooks: true,
@@ -60,3 +66,15 @@ module.exports = {
   OrderLine,
   FullOrder
 }
+
+
+// unauthenticated
+// req.session.cart = {
+//   productId: quantity
+// }
+// authenticated users would benefit from persistent cart -- don't feel the need to do it now -- KHEJ
+
+
+
+
+

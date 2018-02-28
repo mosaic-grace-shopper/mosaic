@@ -1,6 +1,8 @@
 import axios from "axios";
 import history from "../history";
 
+// consider renaming this auth -- KHEJ
+
 /**
  * ACTION TYPES
  */

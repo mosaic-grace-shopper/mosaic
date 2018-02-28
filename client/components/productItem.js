@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function ProductItem (props) {
+export default function ProductItem (props) { // consider destructuring -- KHEJ
   const theProduct = props.theProduct;
 
   return (

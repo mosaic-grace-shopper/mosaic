@@ -5,7 +5,7 @@ const db = require('../db')
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
-    unique: true,
+    unique: true, // this can cause problems with how we have set up Google OAuth -- KHEJ
     allowNull: false
   },
   password: {

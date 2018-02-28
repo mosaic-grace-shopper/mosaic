@@ -23,8 +23,8 @@ export const allUsersThunk = () => dispatch => {
       .then(res => dispatch(getUsers(res.data)))
       .catch(err => console.log(err));
   };
-
-  export const deleteUserThunk = (id) => dispatch => {
+// spacing/indentation -- KHEJ
+  export const deleteUserThunk = (id) => dispatch => { // just one argument no parens based on other files -- KHEJ
     axios
     .delete(`api/users/${id}`)
     .then(() => dispatch(deleteUser(id)))
@@ -38,7 +38,7 @@ export const allUsersThunk = () => dispatch => {
   export default function reducer (state = currentUsers, action) {
     switch (action.type) {
       case GET_USERS:
-        return [...currentUsers, ...action.users];
+        return [...currentUsers, ...action.users]; // just action.users -- KHEJ
       case DELETE_USER:
         return state.filter(user => user.id !== action.id);
       default:
