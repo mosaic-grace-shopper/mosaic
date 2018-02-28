@@ -11,11 +11,11 @@ import {allProducts} from '../store'
   }
 
   render () {
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
         <h1>Products go in here</h1>
-        <h3>{this.props.products && this.props.products[0].title}</h3>
+        <h3>{this.props.products.length > 0 && this.props.products[0].title}</h3>
       </div>
     );
   }
