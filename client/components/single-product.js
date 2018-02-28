@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 
 function SingleProduct(props){
-    console.log(props.singleProduct, "single PRODUCTTTT")
     const product = props.singleProduct
     if (!product) return <div />
     return (
