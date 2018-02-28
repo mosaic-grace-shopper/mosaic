@@ -1,6 +1,9 @@
 const User = require('./user')
 const Product = require('./product')
 const Category = require('./category')
+const OrderLine = require('./orderline')
+const OrderHeader = require('./orderheader')
+
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -12,13 +15,27 @@ const Category = require('./category')
 Product.belongsTo(Category);
 
 
-Category.hasMany(Product,{
-    foreignKey: {
-      allowNull: false
-    },
-    onDelete: 'cascade',
-    hooks : true
+Category.hasMany(Product, {
+  foreignKey: {
+    allowNull: false
+  },
+  onDelete: 'cascade',
+  hooks: true
 });
+
+
+OrderLine.belongsTo(Product);
+Product.hasMany(OrderLine, {
+  onDelete: 'cascade',
+  hooks: true,
+})
+
+OrderHeader.belongsToMany(OrderLine , {through: 'fullorder'})
+// OrderLine.belongsTo(OrderHeader, {
+//   onDelete: 'cascade',
+//   hooks: true,
+// })
+
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
