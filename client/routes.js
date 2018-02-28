@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter, Route, Switch} from 'react-router-dom';
-import PropTypes from 'prop-types';
-import {Login, Signup, UserHome, UserList } from './components';
-// import { UserList } from './components/user-list'
-import {me} from './store';
+
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import {withRouter, Route, Switch} from 'react-router-dom'
+import PropTypes from 'prop-types'
+import {Login, Signup, UserHome, UserList, ProductList, SingleProduct} from './components'
+import {me, allProducts} from './store'
 import { allUsersThunk } from './store/users';
 
 /**
@@ -23,6 +23,8 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/products/:id" component={SingleProduct} />
+        <Route path="/products" component={ProductList} />
         <Route path="/users" component={UserList} />
         {
           isLoggedIn &&
@@ -46,7 +48,7 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
@@ -55,6 +57,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me())
       dispatch(allUsersThunk())
+      dispatch(allProducts())
     }
   }
 }
@@ -68,5 +71,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 }
