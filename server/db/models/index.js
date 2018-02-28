@@ -4,6 +4,8 @@ const Category = require('./category')
 const OrderLine = require('./orderline')
 const OrderHeader = require('./orderheader')
 const Review = require('./review')
+const FullOrder = require('./fullorder')
+
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -15,11 +17,11 @@ const Review = require('./review')
 
 Review.belongsTo(User)
 User.hasMany(Review)
-
 Review.belongsTo(Product)
 Product.hasMany(Review)
-
 Product.belongsTo(Category);
+
+
 
 
 Category.hasMany(Product, {
@@ -37,7 +39,7 @@ Product.hasMany(OrderLine, {
   hooks: true,
 })
 
-OrderHeader.belongsToMany(OrderLine , {through: 'fullorder'})
+OrderHeader.belongsToMany(OrderLine , {through: FullOrder})
 // OrderLine.belongsTo(OrderHeader, {
 //   onDelete: 'cascade',
 //   hooks: true,
@@ -54,5 +56,8 @@ module.exports = {
   User,
   Product,
   Category,
-  Review
+  Review,
+  OrderHeader,
+  OrderLine,
+  FullOrder
 }

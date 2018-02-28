@@ -14,7 +14,6 @@ const OrderHeader = db.define('orderheader', {
             min : 0
         }
     }
-
 })
 
 module.exports = OrderHeader;

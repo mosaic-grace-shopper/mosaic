@@ -14,7 +14,6 @@ const OrderLine = db.define('orderline', {
 
     linePrice : {
         type : Sequelize.FLOAT,
-        allowNull : false,
         validate :{
             min : 0
         }
@@ -25,18 +24,16 @@ const OrderLine = db.define('orderline', {
             return this.quantity * this.price
         }
     }
-},
-{
-  hooks: {
-        afterCreate: function(orderLine) {
-            orderLine.getProduct()
-            .then(product => {
-                orderLine.linePrice = product.price
-            })
-        }
-      }
-}) 
+})
+ 
 
+OrderLine.beforeCreate(orderLine => {
+    orderLine.getProduct()
+    .then(product => {
+        orderLine.linePrice = product.price
+        orderLine.save()
+    }).catch(err => console.log(err))
+})
 
 
 
