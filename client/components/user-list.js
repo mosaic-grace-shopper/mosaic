@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { allUsersThunk } from '../store/users';
-import { UserItem } from './user-item';
 
-class UserList extends Component {
-    componentDidMount() {
-		this.props.getAllUsers();
-	}
+const UserList = (props) => {
 
-        render() {
-            console.log("userlist", this.props.users)
-            return (
-                <div>
-                     {this.props.users.length > 0  && this.props.users.map(user => 
-                     {user.email} )
-                // <UserItem user={user} key={user.id} />)
-            }
-                </div>
-            )
-    }
-
+    return (
+        <div>
+            <ul>
+            {props.users.map(user => 
+                <li key={user.id}>{user.email} </li>
+            )}
+            </ul>
+        </div>
+    )
 }
 
 
@@ -28,7 +21,6 @@ const mapStateToProps = function(state){
        users: state.users
    }
 }
-
 
 const mapDispatch = dispatch => {
     return {
