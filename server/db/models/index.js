@@ -3,7 +3,7 @@ const Product = require('./product')
 const Category = require('./category')
 const OrderLine = require('./orderline')
 const OrderHeader = require('./orderheader')
-
+const Review = require('./review')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -11,6 +11,13 @@ const OrderHeader = require('./orderheader')
  *
  *    BlogPost.belongsTo(User)
  */
+
+
+Review.belongsTo(User)
+User.hasMany(Review)
+
+Review.belongsTo(Product)
+Product.hasMany(Review)
 
 Product.belongsTo(Category);
 
@@ -46,5 +53,6 @@ OrderHeader.belongsToMany(OrderLine , {through: 'fullorder'})
 module.exports = {
   User,
   Product,
-  Category
+  Category,
+  Review
 }

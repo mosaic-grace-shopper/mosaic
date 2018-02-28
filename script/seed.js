@@ -10,7 +10,7 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Category, Product, Review} = require('../server/db/models')
 
 async function seed () {
   await db.sync({force: true})
@@ -30,9 +30,37 @@ async function seed () {
     User.create({email: 'emily@emily.com', password: '123'})
   ])
 
+  const categories = await Promise.all([
+    Category.create({id: 1, name: 'photography'}),
+    Category.create({id: 2, name: 'sculpture'}),
+    Category.create({id: 3, name: 'painting'}),
+  ])
+
+  const products = await Promise.all([
+    Product.create({id: 1, artist: 'Bob', title: 'Painting in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3}),
+    Product.create({id: 2, artist: 'Sam', title: 'Prince and the Swan', description: 'A photo', price: 1500, quantity: 8, categoryId: 1}),
+    Product.create({id: 3, artist: 'Wanda', title: 'The fish with her name', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2}),
+    Product.create({id: 4, artist: 'Janet', title: 'Painting in Red', description: 'A painting', price: 250, quantity: 10, categoryId: 3}),
+    Product.create({id: 5, artist: 'Hito', title: 'Landscape of Stuff', description: 'A photo', price: 50, quantity: 40, categoryId: 1}),
+    Product.create({id: 6, artist: 'Mike', title: 'Humongous Teddy Bear', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2}),
+    Product.create({id: 7, artist: 'Borna', title: 'T-shirt Canvas', description: 'A painting', price: 30000, quantity: 2, categoryId: 3}),
+    Product.create({id: 8, artist: 'Jasmine', title: 'Five Leaves', description: 'Acrylic Cup', price: 4300, quantity: 1, categoryId: 2}),
+    Product.create({id: 9, artist: 'Juliana', title: 'Self Portrait', description: 'A painting', price: 500, quantity: 4, categoryId: 1}),
+    Product.create({id: 10, artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1}),
+  ])
+
+  const reviews = await Promise.all([
+    Review.create({id: 1, title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1}),
+    Review.create({id: 2, title: 'Awesome', text: 'This photo is so artsy!', stars: 4, userId: 2, productId: 2}),
+    Review.create({id: 3, title: 'Huggable', text: 'I want to take a nap on this bear.', stars: 5, userId: 3, productId: 6}),
+   ])
+
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
   // and store the result that the promise resolves to in a variable! This is nice!
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${categories.length} categories`)
+  console.log(`seeded ${products.length} products`)
+  console.log(`seeded ${reviews.length} products`)
   console.log(`seeded successfully`)
 }
 
