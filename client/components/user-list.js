@@ -1,6 +1,6 @@
-import React from "react";
-import { connect } from "react-redux";
-import { allUsersThunk } from "../store/users";
+import React from 'react';
+import { connect } from 'react-redux';
+import { allUsersThunk } from '../store/users';
 
 const UserList = props => {
   return (
