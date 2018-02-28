@@ -14,7 +14,6 @@ const FullOrder = require('./fullorder')
  *    BlogPost.belongsTo(User)
  */
 
-
 Review.belongsTo(User)
 User.hasMany(Review)
 Review.belongsTo(Product)
