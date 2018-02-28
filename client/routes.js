@@ -1,10 +1,11 @@
+
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {Login, Signup, UserHome, ProductList, SingleProduct} from './components'
+import {Login, Signup, UserHome, UserList, ProductList, SingleProduct} from './components'
 import {me, allProducts} from './store'
-
+import { allUsersThunk } from './store/users';
 
 /**
  * COMPONENT
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route path="/products" component={ProductList} />
+        <Route path="/users" component={UserList} />
         {
           isLoggedIn &&
             <Switch>
@@ -31,6 +33,7 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
             </Switch>
         }
+
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
@@ -53,6 +56,7 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
+      dispatch(allUsersThunk())
       dispatch(allProducts())
     }
   }
