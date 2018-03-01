@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 
-function SingleProduct(props){
+function SingleProduct( props ){
     const product = props.singleProduct
     if (!product) return <div />
     return (

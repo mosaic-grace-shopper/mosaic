@@ -35,10 +35,10 @@ export const allUsersThunk = () => dispatch => {
  * REDUCER
  */
 
-  export default function reducer (state = currentUsers, action) {
+  export default function (state = currentUsers, action) {
     switch (action.type) {
       case GET_USERS:
-        return [...currentUsers, ...action.users];
+        return action.users;
       case DELETE_USER:
         return state.filter(user => user.id !== action.id);
       default:

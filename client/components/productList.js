@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {allProducts} from '../store';
@@ -15,12 +14,12 @@ import ProductItem from './productItem';
   render () {
     const theProducts = this.props.products;
 
+    if (!theProducts.length) return  <div>No products found</div> 
     return (
       <div className="productList">
         <h1>Products go in here</h1>
         <div className="aProduct">
-          {theProducts.length < 1 ?
-          <div>No products found</div> : theProducts.map(product => (
+         {theProducts.map(product => (
             <Link to={`products/${product.id}`} key={product.id} className="productCard">
               <ProductItem theProduct={product} />
             </Link>
@@ -34,18 +33,13 @@ import ProductItem from './productItem';
 /**
  * CONTAINER
  */
-const mapState = (state) => {
-  return {
-    products: state.products
-  }
-}
 
-const mapDispatch = dispatch => {
-  return {
-  getAllProducts() {
+const mapState = ({products}) => ({products})
+
+const mapDispatch = dispatch => ({
+  getAllProducts: () => {
       dispatch(allProducts())
-    }
   }
-}
+})
 
 export default connect(mapState, mapDispatch)(ProductList);
