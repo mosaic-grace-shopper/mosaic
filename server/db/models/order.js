@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
 
-const OrderHeader = db.define('orderheader', {
+const Order = db.define('order', {
     status: {
         type: Sequelize.ENUM('Created', 'Processing', 'Cancelled', 'Completed'),
         defaultValue: 'Created'
@@ -16,4 +16,4 @@ const OrderHeader = db.define('orderheader', {
     }
 })
 
-module.exports = OrderHeader;
+module.exports = Order;
