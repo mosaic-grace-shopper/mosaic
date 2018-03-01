@@ -1,7 +1,6 @@
 import React from 'react';
 
-export default function ProductItem (props) {
-  const theProduct = props.theProduct;
+export default function ProductItem( { theProduct } ) {
 
   return (
     <div className="productItem">
@@ -11,3 +10,4 @@ export default function ProductItem (props) {
     </div>
   )
 }
+

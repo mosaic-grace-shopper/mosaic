@@ -31,7 +31,7 @@ export const allProducts = () =>
 export default function (state = currentProducts, action) {
   switch (action.type) {
     case GET_PRODUCTS:
-      return [...currentProducts, ...action.products]
+      return action.products
     default:
       return state
   }

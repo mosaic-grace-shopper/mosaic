@@ -12,13 +12,13 @@ class UserList extends Component {
 
   render () {
     const theUsers = this.props.users;
-    console.log("this.props.users", this.props.users)
+    
+    if (!theUsers.length) return  <div>No users found</div> 
     return (
       <div className="userList">
       <h1>users go in here</h1>
       <div className="aUser">
-        {theUsers.length < 1 ?
-        <div>No users found</div> : theUsers.map(user => (
+        { theUsers.map(user => (
           <Link to={`users/${user.id}`} key={user.id} className="userCard">
             <UserItem user={user} />
           </Link>
@@ -30,18 +30,12 @@ class UserList extends Component {
   }
 };
 
-const mapStateToProps = function(state) {
-  return {
-    users: state.users
-  };
-};
+const mapStateToProps = ({users}) => ({users})
 
-const mapDispatch = dispatch => {
-  return {
-    getAllUsers() {
+const mapDispatch = dispatch => ({
+    getAllUsers: () => {
       dispatch(allUsersThunk());
     }
-  };
-};
+});
 
 export default connect(mapStateToProps, mapDispatch)(UserList);
