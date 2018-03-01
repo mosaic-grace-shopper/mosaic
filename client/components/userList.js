@@ -11,14 +11,17 @@ class UserList extends Component {
   }
 
   render () {
-    const theUsers = this.props.users;
+    const {currentUser, users} = this.props;
     
-    if (!theUsers.length) return  <div>No users found</div> 
+    if (!currentUser.isAdmin) return <div> Hey, only admins can see users! :)</div>
+    if (!users.length) return  <div>We have no users! We need to up our marketing. Or seed our database:)</div> 
+    
+    console.log("this.props", this.props)
     return (
       <div className="userList">
       <h1>users go in here</h1>
       <div className="aUser">
-        { theUsers.map(user => (
+        { users.map(user => (
           <Link to={`users/${user.id}`} key={user.id} className="userCard">
             <UserItem user={user} />
           </Link>
@@ -30,7 +33,12 @@ class UserList extends Component {
   }
 };
 
-const mapStateToProps = ({users}) => ({users})
+const mapStateToProps = function(state) {
+  return {
+    users: state.users,
+    currentUser: state.user
+  }
+}
 
 const mapDispatch = dispatch => ({
     getAllUsers: () => {
