@@ -13,6 +13,7 @@ function SingleProduct( props ){
             <h4>{product.description}</h4>
             <h4>${product.price}</h4>
             <h4><em>{product.quantity} available</em></h4>
+            <button>Buy this Item</button>
             <button><Link to="/products">Back to Products</Link></button>
         </div>
     )
