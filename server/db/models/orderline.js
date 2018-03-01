@@ -21,18 +21,18 @@ const OrderLine = db.define('orderline', {
     lineTotal: {
         type: Sequelize.VIRTUAL,
         get() {
-            return this.quantity * this.price
+            return this.quantity * this.linePrice
         }
     }
 })
 
 
-OrderLine.beforeCreate(orderLine => {
-    orderLine.getProduct()
+OrderLine.beforeCreate((orderLineInstance) => {
+    orderLineInstance.getProduct()
         .then(product => {
-            orderLine.linePrice = product.price
-            orderLine.save()
-        }).catch(err => console.log(err))
+            orderLineInstance.linePrice = product.price
+            orderLineInstance.save()
+        })
 })
 
 

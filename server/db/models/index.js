@@ -2,9 +2,8 @@ const User = require('./user')
 const Product = require('./product')
 const Category = require('./category')
 const OrderLine = require('./orderline')
-const OrderHeader = require('./orderheader')
+const Order = require('./order')
 const Review = require('./review')
-const FullOrder = require('./fullorder')
 
 
 /**
@@ -18,31 +17,25 @@ Review.belongsTo(User)
 User.hasMany(Review)
 Review.belongsTo(Product)
 Product.hasMany(Review)
-Product.belongsTo(Category);
-
-
-
+Product.belongsTo(Category)
 
 Category.hasMany(Product, {
   foreignKey: {
     allowNull: false
   },
-  onDelete: 'cascade',
-  hooks: true
-});
-
-
-OrderLine.belongsTo(Product);
-Product.hasMany(OrderLine, {
-  onDelete: 'cascade',
-  hooks: true,
+  onDelete: 'cascade'
 })
 
-OrderHeader.belongsToMany(OrderLine , {through: FullOrder})
-// OrderLine.belongsTo(OrderHeader, {
-//   onDelete: 'cascade',
-//   hooks: true,
-// })
+Order.hasMany(OrderLine)
+OrderLine.belongsTo(Order, {
+  onDelete: 'cascade'
+})
+
+Product.hasMany(OrderLine, {
+  onDelete: 'cascade'
+})
+OrderLine.belongsTo(Product)
+
 
 
 /**
@@ -56,7 +49,6 @@ module.exports = {
   Product,
   Category,
   Review,
-  OrderHeader,
-  OrderLine,
-  FullOrder
+  Order,
+  OrderLine
 }
