@@ -6,6 +6,9 @@ const Category = db.define('category', {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
+    validate : {
+      notEmpty :  true
+    }
   },
   imgUrl: {
     type: Sequelize.STRING,
