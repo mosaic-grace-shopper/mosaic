@@ -40,6 +40,7 @@ describe('User routes', () => {
         })
     })
 
+    
     it('PUT /api/users/make-admin/1', () => {
       return request(app)
         .put('/api/users/make-admin/1')
