@@ -33,7 +33,6 @@ import ProductItem from './productItem';
 /**
  * CONTAINER
  */
-
 const mapState = ({products}) => ({products})
 
 const mapDispatch = dispatch => ({
