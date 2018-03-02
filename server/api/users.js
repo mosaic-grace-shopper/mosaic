@@ -6,9 +6,7 @@ module.exports = router
 
 router.get('/', isAdmin, (req, res, next) => {
   let query = req.user.isAdmin ? {attributes: ['id', 'email', 'isAdmin']} : {} 
-  User.findAll(
-    query
-  )
+  User.findAll(query)
     .then(users => res.json(users))
     .catch(next)
 })
@@ -30,9 +28,19 @@ router.put('/delete-admin/:id', (req, res, next) => {
 })
 
 
-router.delete('/:id', isLoggedIn, isAdmin, (req, res, next) => {
-  let deleteQuery = req.user.isAdmin ? {} : {where: { id: req.params.id } }
-  User.destroy(deleteQuery)
+router.get('/:id', (req, res, next) => {
+  User.findById(req.params.id)
+    .then(user => res.json(user))
+    .catch(next)
+})
+
+
+router.delete('/:id', isAdmin, (req, res, next) => {
+  let query = req.user.isAdmin ? {where: { id: req.params.id } } : {} 
+  User.destroy(query)
     .then(() => res.sendStatus(202))
     .catch(next)
 })
+
+
+

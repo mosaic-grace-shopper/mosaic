@@ -26,9 +26,9 @@ export const allUsersThunk = () => dispatch => {
 
   export const deleteUserThunk = (id) => dispatch => {
     axios
-    .delete(`api/users/${id}`)
+    .delete(`/api/users/${id}`)
     .then(() => dispatch(deleteUser(id)))
-    .catch(err => console.err(`Removing user: ${id} unsuccessful.`))
+    .catch(err => console.error(`Removing user: ${id} unsuccessful.`))
   }
 
   /**
