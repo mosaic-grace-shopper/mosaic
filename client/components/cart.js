@@ -16,20 +16,25 @@ class Cart extends Component {
         console.log('PROPS.CART: ', this.props.cart)
         console.log('PROPS.PRODUCTS:', this.props.products)
         console.log('CART PRODUCT IDs: ', cartItems);
+        const total = 0
         return (
             <div>
-                <h1>My Cart</h1>
-                {
-                    products.filter(product => cartItems.includes(String(product.id))).map(cartItem =>
-                        <ul key={cartItem.id}>
-                        <li key={cartItem.id}><h3><em>{cartItem.title}</em> by {cartItem.artist}</h3>
-                            <h4>Quantity: {cartItem.quantity}</h4>
-                            <h4>Price: ${cartItem.price}</h4>
-                        </li>
-                        </ul>
-                    )
+                <div>
+                    <h1>My Cart</h1>
+                    {
+                        products.filter(product => cartItems.includes(String(product.id))).map(cartItem => (
+                            <ul key={cartItem.id}>
+                                <li key={cartItem.id}><h3><em>{cartItem.title}</em> by {cartItem.artist}</h3>
+                                    <h4>Quantity: {cartItem.quantity}</h4>
+                                    <h4>Price: ${cartItem.price}</h4>
+                                </li>
+                            </ul>
 
-                }
+                        )
+                        )
+                    }
+                </div>
+                <Link to="/products"><button>Back to Products</button></Link>
             </div>
         )
     }
