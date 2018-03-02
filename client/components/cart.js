@@ -16,7 +16,7 @@ class Cart extends Component {
         console.log('PROPS.CART: ', this.props.cart)
         console.log('PROPS.PRODUCTS:', this.props.products)
         console.log('CART PRODUCT IDs: ', cartItems);
-        const total = 0
+
         return (
             <div>
                 <div>
@@ -29,10 +29,10 @@ class Cart extends Component {
                                     <h4>Price: ${cartItem.price}</h4>
                                 </li>
                             </ul>
-
                         )
-                        )
-                    }
+                    )
+                }
+                <h1>Total: </h1>
                 </div>
                 <Link to="/products"><button>Back to Products</button></Link>
             </div>
