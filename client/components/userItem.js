@@ -32,6 +32,5 @@ const mapDispatch = dispatch => ({
   }
 });
 
-// const mapDispatch = { deleteUserThunk } 
 
 export default connect(null, mapDispatch)(UserItem);
