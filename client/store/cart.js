@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history';
 
 /**
  * ACTION TYPES
@@ -14,8 +15,8 @@ const currentCart = {};
 /**
  * ACTION CREATORS
  */
-const getCart = cart => ({type: GET_CART, cart});
-const updateCart = cartItems => ({type: UPDATE_CART, cartItems});
+const getCart = cart => ({ type: GET_CART, cart });
+const updateCart = cartItems => ({ type: UPDATE_CART, cartItems });
 
 /**
  * THUNK CREATORS
@@ -23,16 +24,18 @@ const updateCart = cartItems => ({type: UPDATE_CART, cartItems});
 export const getCartThunk = () =>
   dispatch =>
     axios.get('/api/cart')
-    .then(res =>
-      dispatch(getCart(res.data || currentCart)))
-    .catch(err => console.log(err));
+      .then(res =>
+        dispatch(getCart(res.data || currentCart)))
+      .catch(err => console.log(err));
 
 export const updateCartThunk = (cartItems) =>
   dispatch =>
     axios.put('/api/cart', cartItems)
-    .then(res =>
-      dispatch(updateCart(res.data)))
-    .catch(err => console.log(err));
+      .then(res => {
+        dispatch(updateCart(res.data))
+        history.push('/cart')
+      })
+      .catch(err => console.log(err));
 
 /**
  * REDUCER
