@@ -9,11 +9,18 @@ class Cart extends Component {
         this.props.handleFetchCart()
     }
     render() {
-        console.log(this.props.cartItems, "PROPS.CARTITEMS")
+        const cart = this.props.cart
+        const products = this.props.products
+        const cartItems = Object.getOwnPropertyNames(cart)
+        if (!cart) return <div>There are no items in your cart.</div>
+        console.log(this.props.cart, "PROPS.CART")
+        console.log(this.props.products, "PROPS.PRODUCTS")
+        console.log("CART PRODUCT IDs: ", Object.getOwnPropertyNames(cart));
         return (
             <div>
                 <h1>My Cart</h1>
-                {/*cartItems.map(cart => <h1 key={cart}>{cart}</h1>)*/}
+              {console.log("HELLO: ", products.find(product => product.id === +cartItems[1]))}
+              
             </div>
         )
     }
@@ -21,7 +28,8 @@ class Cart extends Component {
 
 const mapState = function (state) {
     return {
-        cartItems: state.cartItems
+        cart: state.cart,
+        products: state.products
     }
 }
 
@@ -34,3 +42,5 @@ const mapDispatch = function (dispatch) {
 }
 
 export default connect(mapState, mapDispatch)(Cart)
+
+// <h1>{products.find(product => product.id === 1).title}</h1>
