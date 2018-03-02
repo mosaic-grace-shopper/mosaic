@@ -47,8 +47,9 @@ const mapDispatch = function(dispatch, ownProps) {
         handleSubmit(evt) {
             evt.preventDefault();
             const newId = ownProps.match.params.id;
+            console.log(ownProps.match.params.id);
             const orderLine = {
-                newId: +evt.target.quantity.value
+                [newId]: +evt.target.quantity.value
             }
             dispatch(updateCartThunk(orderLine))
         }
