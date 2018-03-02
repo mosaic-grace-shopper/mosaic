@@ -8,7 +8,7 @@ class UserItem extends Component {
   }
 
   handleRemove = (user) => {
-    this.props.removeUser(user.id);
+    this.props.removeTheUser(user.id);
   }
 
   render() {
@@ -27,9 +27,11 @@ class UserItem extends Component {
 }
 
 const mapDispatch = dispatch => ({
-  removeUser: (userID) => {
+  removeTheUser: (userID) => {
     dispatch(deleteUserThunk(userID));
   }
 });
+
+// const mapDispatch = { deleteUserThunk } 
 
 export default connect(null, mapDispatch)(UserItem);

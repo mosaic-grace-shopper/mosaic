@@ -9,7 +9,6 @@ import { allUsersThunk, deleteUserThunk } from '../store/users';
 class UserList extends Component {
     constructor (props){
       super(props);
-      this.removeUser = this.removeUser.bind(this);
     }
 
   componentDidMount () {
@@ -37,12 +36,6 @@ class UserList extends Component {
 
   }
 
-
-  removeUser(event){
-      const { user } = this.props;
-      deleteUserThunk(user.id);
-  }
-
 };
 
 const mapStateToProps = function(state) {
@@ -55,7 +48,6 @@ const mapStateToProps = function(state) {
 const mapDispatch = dispatch => ({
     getAllUsers: () => {
       dispatch(allUsersThunk())
-      dispatch(deleteUserThunk())
     }
 });
 
