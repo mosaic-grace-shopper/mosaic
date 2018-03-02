@@ -11,8 +11,6 @@ router.get('/', isAdmin, (req, res, next) => {
     .catch(next)
 })
 
-
-
 router.get('/:id', (req, res, next) => {
   User.findById(req.params.id)
     .then(user => res.json(user))
