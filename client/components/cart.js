@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { getCartThunk } from '../store'
+import { getCartThunk, updateCartThunk } from '../store'
 
 
 class Cart extends Component {
@@ -25,7 +25,10 @@ class Cart extends Component {
                         products.filter(product => cartItems.includes(String(product.id))).map(cartItem => (
                             <ul key={cartItem.id}>
                                 <li key={cartItem.id}><h3><em>{cartItem.title}</em> by {cartItem.artist}</h3>
-                                    <h4>Quantity: {cartItem.quantity}</h4>
+                                    <h4>
+                                        Quantity: {cartItem.quantity}
+                                        <form onSubmit={this.props.handleSubmit}><input type="number" name="quantity" step="1" defaultValue={cartItem.quantity} min="0"  /><button>update quantity</button> </form>
+                                    </h4>
                                     <h4>Price: ${cartItem.price}</h4>
                                 </li>
                             </ul>
@@ -47,10 +50,19 @@ const mapState = function (state) {
     }
 }
 
-const mapDispatch = function (dispatch) {
+const mapDispatch = function (dispatch, ownProps) {
     return {
         handleFetchCart() {
             dispatch(getCartThunk())
+        },
+        handleSubmit(evt) {
+            evt.preventDefault();
+            const newId = ownProps.match.params.id;
+            console.log(ownProps.match.params.id);
+            const orderLine = {
+                [newId]: +evt.target.quantity.value
+            }
+            dispatch(updateCartThunk(orderLine))
         }
     }
 }
