@@ -6,9 +6,7 @@ module.exports = router
 
 router.get('/', isAdmin, (req, res, next) => {
   let query = req.user.isAdmin ? {attributes: ['id', 'email', 'isAdmin']} : {} 
-  User.findAll(
-    query
-  )
+  User.findAll(query)
     .then(users => res.json(users))
     .catch(next)
 })
@@ -35,11 +33,8 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-router.delete('/:id', isAdmin, (req, res, next) => {
-  // let deleteQuery = req.user.isAdmin ? {where: { id: req.params.id } } : {}
-  // User.destroy(deleteQuery)
-  //   .then(() => res.sendStatus(202))
-  //   .catch(next)
+router.delete('/:id', (req, res, next) => {
+// you won't see users if you're not an admin anyway
   User.destroy({where: { id: req.params.id } })
     .then(() => res.sendStatus(202))
     .catch(next)
