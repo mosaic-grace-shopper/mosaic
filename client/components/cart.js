@@ -13,14 +13,23 @@ class Cart extends Component {
         const products = this.props.products
         const cartItems = Object.getOwnPropertyNames(cart)
         if (!cart) return <div>There are no items in your cart.</div>
-        console.log(this.props.cart, "PROPS.CART")
-        console.log(this.props.products, "PROPS.PRODUCTS")
-        console.log("CART PRODUCT IDs: ", Object.getOwnPropertyNames(cart));
+        console.log('PROPS.CART: ', this.props.cart)
+        console.log('PROPS.PRODUCTS:', this.props.products)
+        console.log('CART PRODUCT IDs: ', cartItems);
         return (
             <div>
                 <h1>My Cart</h1>
-              {console.log("HELLO: ", products.find(product => product.id === +cartItems[1]))}
-              
+                {
+                    products.filter(product => cartItems.includes(String(product.id))).map(cartItem =>
+                        <ul key={cartItem.id}>
+                        <li key={cartItem.id}><h3><em>{cartItem.title}</em> by {cartItem.artist}</h3>
+                            <h4>Quantity: {cartItem.quantity}</h4>
+                            <h4>Price: ${cartItem.price}</h4>
+                        </li>
+                        </ul>
+                    )
+
+                }
             </div>
         )
     }
@@ -42,5 +51,3 @@ const mapDispatch = function (dispatch) {
 }
 
 export default connect(mapState, mapDispatch)(Cart)
-
-// <h1>{products.find(product => product.id === 1).title}</h1>
