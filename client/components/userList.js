@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import UserItem from './userItem';
-import { allUsersThunk } from '../store/users';
+import { allUsersThunk, deleteUserThunk } from '../store/users';
+
+
 
 class UserList extends Component {
+    constructor (props){
+      super(props);
+    }
 
   componentDidMount () {
     this.props.getAllUsers()
@@ -16,7 +21,6 @@ class UserList extends Component {
     if (!currentUser.isAdmin) return <div> Hey, only admins can see users! :)</div>
     if (!users.length) return  <div>We have no users! We need to up our marketing. Or seed our database:)</div> 
     
-    console.log("this.props", this.props)
     return (
       <div className="userList">
       <h1>users go in here</h1>
@@ -31,6 +35,7 @@ class UserList extends Component {
     );
 
   }
+
 };
 
 const mapStateToProps = function(state) {
@@ -42,7 +47,7 @@ const mapStateToProps = function(state) {
 
 const mapDispatch = dispatch => ({
     getAllUsers: () => {
-      dispatch(allUsersThunk());
+      dispatch(allUsersThunk())
     }
 });
 
