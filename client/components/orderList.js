@@ -17,8 +17,19 @@ import {allOrdersThunk} from '../store';
         <h1>Orders Goes in here</h1>
         <div className="aProduct">
          {theOrders.map(order => (
+            <div>
             <Link to={`orders/${order.id}`} key={order.id} className="orderCard">
+             <ul className="caption">
+                  <div>{ order.id } &nbsp; &nbsp; &nbsp;
+                  <span>{ order.status } &nbsp; &nbsp; &nbsp; </span>
+                  </div>
+              </ul>
             </Link>
+              <button> ViewDetail </button>
+              <button> Delete </button>
+              &nbsp; &nbsp; &nbsp;
+              <button> Edit </button>
+          </div>
           ))}
         </div>
       </div>
