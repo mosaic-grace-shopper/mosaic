@@ -50,10 +50,10 @@ async function seed() {
   ])
 
   const orders = await Promise.all([
-    Order.create({ id: 1, status: 'Created', total: 6500 }),
-    Order.create({ id: 2, status: 'Cancelled', total: 10000 }),
-    Order.create({ id: 3, status: 'Completed', total: 32500 }),
-    Order.create({ id: 4, status: 'Processing', total: 850 }),
+    Order.create({ id: 1, confirmationEmail: 'annabel@annabel.com', recipientName: 'Annabel Lau', shippingAddress: '5 Hanover Square, Floor 25, New York, NY 10004', status: 'Created', total: 6500 }),
+    Order.create({ id: 2, confirmationEmail: 'roxie@roxie.com', recipientName: 'Roxie Turner', shippingAddress: '6 Hanover Square, Floor 25, New York, NY 10004', status: 'Cancelled', total: 10000 }),
+    Order.create({ id: 3, confirmationEmail: 'johanna@johanna.com', recipientName: 'Johanna Fulghum', shippingAddress: '7 Hanover Square, Floor 25, New York, NY 10004', status: 'Completed', total: 32500 }),
+    Order.create({ id: 4, confirmationEmail: 'dhara@dhara.com', recipientName: 'Dhara Naik', shippingAddress: '8 Hanover Square, Floor 25, New York, NY 10004', status: 'Processing', total: 850 }),
   ])
 
   const orderLines = await Promise.all([
