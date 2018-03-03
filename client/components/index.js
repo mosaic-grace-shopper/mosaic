@@ -11,3 +11,5 @@ export {Login, Signup} from './auth-form'
 export {default as ProductList} from './productList'
 export {default as SingleProduct} from './singleProduct'
 export {default as Cart} from './cart'
+export {default as Checkout} from './checkout'
+
