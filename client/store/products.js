@@ -1,23 +1,25 @@
 import axios from 'axios';
 
 /**
+ * INITIAL STATE
+ */
+const currentProducts = [];
+
+
+/**
  * ACTION TYPES
  */
 const GET_PRODUCTS = 'GET_PRODUCTS';
 const EDIT_PRODUCT = 'EDIT_PRODUCT';
 const ADD_PRODUCT = 'ADD_PRODUCT';
 
-/**
- * INITIAL STATE
- */
-const currentProducts = [];
 
 /**
  * ACTION CREATORS
  */
-const getProducts = products => ({type: GET_PRODUCTS, products});
-const editProduct = product => ({type: EDIT_PRODUCT, product });
-const addProduct = product => ({type: ADD_PRODUCT, product});
+export const getProducts = products => ({type: GET_PRODUCTS, products});
+export const editProduct = product => ({type: EDIT_PRODUCT, product });
+export const addProduct = product => ({type: ADD_PRODUCT, product});
 
 /**
  * THUNK CREATORS
@@ -37,11 +39,15 @@ export const updateProductThunk = (product, id) => {
   .catch(err => console.log(err))
 }
 
-export const addProductThunk = (product) => {
-  dispatch => 
-  axios.post('/api/products', product)
-  .then(res => 
-  dispatch(addProduct(res.data)))
+export const addProductThunk = (newProduct) => {
+  console.log("Thunk product", newProduct)
+  dispatch => axios.post('/api/products', newProduct)
+  .then(res => {
+    res.data
+  })
+  .then(product => {
+    dispatch(addProduct(product))
+  })
   .catch(err => console.log(err))
 }
 
@@ -56,11 +62,11 @@ export default function (state = currentProducts, action) {
     case GET_PRODUCTS:
       return action.products
     case EDIT_PRODUCT:
-      return currentProducts.map(product => (
+      return state.map(product => (
         action.product.id  === product.id ? action.product : product
       ))
     case ADD_PRODUCT:
-      return [action.product, ...currentProducts]
+      return [...state, action.product]
     default:
       return state
   }

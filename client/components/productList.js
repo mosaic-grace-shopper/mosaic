@@ -30,7 +30,7 @@ import ProductItem from './productItem';
 
 
         </div>
-          <form onSubmit = { this.props.handleClick } >
+          <form onSubmit={ this.props.handleClick } >
         <div>
             <label htmlFor="artist">
               <small>Product Artist</small>
@@ -108,10 +108,10 @@ import ProductItem from './productItem';
               onChange={this.handleChange}
               value={this.props.categoryId}
               name="categoryId"
-              type="text"
+              type="number"
             />
           </div>
-        <button>
+        <button type="submit">
           Add a Product
         </button>
           </form>
@@ -138,8 +138,10 @@ const mapDispatch = dispatch => ({
       price: +event.target.price.value,
       quantity: +event.target.quantity.value,
       imgUrl: event.target.imgUrl.value,
-      categoryId: event.target.categoryId.value
+      categoryId: +event.target.categoryId.value
     }
+    console.log("newProduct", newProduct)
+    console.log("addProductThunk", addProductThunk)
     dispatch(addProductThunk(newProduct))
   }
 })
