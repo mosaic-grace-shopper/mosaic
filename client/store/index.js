@@ -5,8 +5,11 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import users from './users'
 import products from './products'
+import orders from './orders'
+import cart from './cart'
+import shipmentDetails from './shipmentDetails'
 
-const reducer = combineReducers({user, users, products})
+const reducer = combineReducers({user, users, products, cart, orders, shipmentDetails})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware,
   createLogger({collapsed: true})
@@ -17,3 +20,7 @@ export default store
 export * from './user'
 export * from './users'
 export * from './products'
+export * from './cart'
+export * from './orders'
+export * from './shipmentDetails'
+

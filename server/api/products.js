@@ -19,8 +19,8 @@ router.get('/reviews/:id', (req, res, next) => {
             productId: req.params.id
         }
     })
-    .then(reviews => res.json(reviews))
-    .catch(next)
+        .then(reviews => res.json(reviews))
+        .catch(next)
 })
 
 router.post('/', (req, res, next) => {
