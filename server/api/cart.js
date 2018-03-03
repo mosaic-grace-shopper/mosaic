@@ -22,7 +22,7 @@ router.put('/', (req, res, next) => {
         for (let i = 0; i < reqKey.length; i++) {
             if (req.session.cart.hasOwnProperty(reqKey[i])) {
                 console.log('updating quantity');
-                req.session.cart[reqKey[i]] += req.body[reqKey[i]]
+                req.session.cart[reqKey[i]] = req.body[reqKey[i]]
             }
             else {
                 console.log('adding key value pair');

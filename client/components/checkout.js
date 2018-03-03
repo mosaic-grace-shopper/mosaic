@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import {addNewShipmentDetailsThunk} from '../store'
 
 function Checkout(props) {
+    console.log(props.cart, "CARTTTT")
     return (
         <div>
             <h1>Checkout</h1>
@@ -49,6 +50,12 @@ function Checkout(props) {
     )
 }
 
+const mapState = function(state){
+    return {
+        cart: state.cart
+    }
+}
+
 const mapDispatch = function(dispatch){
     return {
         handleSubmit(evt){
@@ -63,4 +70,4 @@ const mapDispatch = function(dispatch){
     }
 }
 
-export default connect(null, mapDispatch)(Checkout)
+export default connect(mapState, mapDispatch)(Checkout)
