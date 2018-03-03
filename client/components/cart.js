@@ -37,14 +37,17 @@ class Cart extends Component {
                                             <button>update quantity</button>
                                         </form>
                                     </h4>
-                                    <h4>Price: ${filteredProduct.price}</h4>
+                                    <h4>Unit Price: ${filteredProduct.price} </h4>
+                                    <h4>Price: $
+                                    {filteredProduct.price * cart[filteredProduct.id]}
+                                    </h4>
                                 </li>
                             </ul>
                         )
-                    )
-                }
-                <h1>Total: </h1>
-                <button onClick={this.props.handleClick}>Empty your cart</button>
+                        )
+                    }
+                    <h1>Total: </h1>
+                    <button onClick={this.props.handleClick}>Empty your cart</button>
                 </div>
                 <Link to="/products"><button>Back to Products</button></Link>
             </div>
