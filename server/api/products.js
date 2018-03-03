@@ -25,7 +25,8 @@ router.get('/reviews/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     Product.create(req.body)
-        .then(newProduct => res.status(201).json(newProduct))
+        .then(newProduct => res.json(newProduct))
+        .catch(next)
 })
 
 router.put('/:id', (req, res, next) => {

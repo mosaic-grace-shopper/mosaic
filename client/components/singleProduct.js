@@ -4,6 +4,7 @@ import { withRouter, Link } from "react-router-dom";
 import { updateCartThunk } from "../store/cart";
 import  EditProductForm   from "./editProduct";
 
+
 // probably needs to be a stateful component?
 class SingleProduct extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class SingleProduct extends Component {
           <Link to="/products">Back to Products</Link>
         </button>
          {isAdmin && <EditProductForm product={product}/>}
+        
       </div>
     );
   }

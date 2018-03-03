@@ -50,12 +50,14 @@ export const addProductThunk = (product) => {
  * REDUCER
  */
 export default function (state = currentProducts, action) {
+  console.log("Action", action)
+  console.log("state", state)
   switch (action.type) {
     case GET_PRODUCTS:
       return action.products
     case EDIT_PRODUCT:
       return currentProducts.map(product => (
-        product.id === action.product.id ? action.product : product
+        action.product.id  === product.id ? action.product : product
       ))
     case ADD_PRODUCT:
       return [action.product, ...currentProducts]
