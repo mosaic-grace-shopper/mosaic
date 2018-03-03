@@ -41,6 +41,3 @@ router.delete('/:id', isAdmin, (req, res, next) => {
     .then(() => res.sendStatus(202))
     .catch(next)
 })
-
-
-

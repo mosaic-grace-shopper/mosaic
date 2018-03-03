@@ -10,7 +10,7 @@
  * Now that you've got the main idea, check it out in practice below!
  */
 const db = require('../server/db')
-const { User, Category, Product, Review, Order, OrderLine } = require('../server/db/models')
+const { User, Category, Product, Review, Order, OrderLine, ShipmentDetails } = require('../server/db/models')
 
 async function seed() {
   await db.sync({ force: true })
@@ -50,10 +50,17 @@ async function seed() {
   ])
 
   const orders = await Promise.all([
-    Order.create({ id: 1, confirmationEmail: 'annabel@annabel.com', recipientName: 'Annabel Lau', shippingAddress: '5 Hanover Square, Floor 25, New York, NY 10004', status: 'Created', total: 6500 }),
-    Order.create({ id: 2, confirmationEmail: 'roxie@roxie.com', recipientName: 'Roxie Turner', shippingAddress: '6 Hanover Square, Floor 25, New York, NY 10004', status: 'Cancelled', total: 10000 }),
-    Order.create({ id: 3, confirmationEmail: 'johanna@johanna.com', recipientName: 'Johanna Fulghum', shippingAddress: '7 Hanover Square, Floor 25, New York, NY 10004', status: 'Completed', total: 32500 }),
-    Order.create({ id: 4, confirmationEmail: 'dhara@dhara.com', recipientName: 'Dhara Naik', shippingAddress: '8 Hanover Square, Floor 25, New York, NY 10004', status: 'Processing', total: 850 }),
+    Order.create({ id: 1, status: 'Created', total: 6500 }),
+    Order.create({ id: 2, status: 'Cancelled', total: 10000 }),
+    Order.create({ id: 3, status: 'Completed', total: 32500 }),
+    Order.create({ id: 4, status: 'Processing', total: 850 }),
+  ])
+
+  const shipmentDetails = await Promise.all([
+    ShipmentDetails.create({ id: 1, confirmationEmail: 'annabel@annabel.com', recipientName: 'Annabel Lau', shippingAddress: '5 Hanover Square, Floor 25, New York, NY 10004' }),
+    ShipmentDetails.create({ id: 2, confirmationEmail: 'roxie@roxie.com', recipientName: 'Roxie Turner', shippingAddress: '6 Hanover Square, Floor 25, New York, NY 10004' }),
+    ShipmentDetails.create({ id: 3, confirmationEmail: 'johanna@johanna.com', recipientName: 'Johanna Fulghum', shippingAddress: '7 Hanover Square, Floor 25, New York, NY 10004' }),
+    ShipmentDetails.create({ id: 4, confirmationEmail: 'dhara@dhara.com', recipientName: 'Dhara Naik', shippingAddress: '8 Hanover Square, Floor 25, New York, NY 10004' }),
   ])
 
   const orderLines = await Promise.all([
@@ -67,7 +74,6 @@ async function seed() {
     OrderLine.create({ id: 8, quantity: 7, productId: 5, orderId: 4 }),
 
   ])
-
 
   const reviews = await Promise.all([
     Review.create({ id: 1, title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1 }),
@@ -83,6 +89,7 @@ async function seed() {
   console.log(`seeded ${reviews.length} reviews`)
   console.log(`seeded ${orderLines.length} orderLines`)
   console.log(`seeded ${orders.length} orderHeaders`)
+  console.log(`seeded ${shipmentDetails.length} shipmentDetails`)
 
   console.log(`seeded successfully`)
 }

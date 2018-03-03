@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
+import {addNewShipmentDetailsThunk} from '../store'
 
-export default function Checkout(props) {
+function Checkout(props) {
     return (
         <div>
             <h1>Checkout</h1>
-            <form>
+            <form onSubmit={props.handleSubmit}>
                 <div>
                     <label htmlFor="recipientName">
                         <small>Recipient Name</small>
@@ -20,7 +21,7 @@ export default function Checkout(props) {
                 </div>
                 <br />
                 <div>
-                    <label htmlFor="recipientName">
+                    <label htmlFor="shippingAddress">
                         <small>Shipping Address</small>
                     </label>
                     <input
@@ -42,9 +43,24 @@ export default function Checkout(props) {
                     />
 
                 </div>
-                <button>Submit Order</button>
+                <button type="submit">Submit Order</button>
             </form>
         </div>
     )
 }
 
+const mapDispatch = function(dispatch){
+    return {
+        handleSubmit(evt){
+            evt.preventDefault()
+            const newShipment = {
+                recipientName: evt.target.recipientName.value,
+                shippingAddress: evt.target.shippingAddress.value,
+                confirmationEmail: evt.target.confirmationEmail.value
+            }
+            dispatch(addNewShipmentDetailsThunk(newShipment))
+        }
+    }
+}
+
+export default connect(null, mapDispatch)(Checkout)
