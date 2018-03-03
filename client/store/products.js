@@ -25,28 +25,24 @@ export const addProduct = product => ({type: ADD_PRODUCT, product});
  * THUNK CREATORS
  */
 export const allProducts = () =>
-  dispatch =>
+  dispatch => 
     axios.get('/api/products')
     .then(res =>
       dispatch(getProducts(res.data || currentProducts)))
     .catch(err => console.log(err));
 
-export const updateProductThunk = (product, id) => {
-  dispatch => 
+export const updateProductThunk = (product, id) => 
+  dispatch => { 
   axios.put(`/api/product/${id}`, product)
   .then(res => 
   dispatch(editProduct(res.data)))
   .catch(err => console.log(err))
 }
 
-export const addProductThunk = (newProduct) => {
-  console.log("Thunk product", newProduct)
-  dispatch => axios.post('/api/products', newProduct)
+export const addProductThunk = (newProduct) => dispatch => { 
+  axios.post('/api/products', newProduct)
   .then(res => {
-    res.data
-  })
-  .then(product => {
-    dispatch(addProduct(product))
+    dispatch(addProduct(res.data))
   })
   .catch(err => console.log(err))
 }
