@@ -7,6 +7,12 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
+router.post('/', (req, res, next) => {
+    Product.create(req.body)
+        .then(newProduct => res.json(newProduct))
+        .catch(next)
+})
+
 router.get('/:id', (req, res, next) => {
     Product.findOne(req.params.id)
         .then(product => res.json(product))
@@ -23,11 +29,7 @@ router.get('/reviews/:id', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/', (req, res, next) => {
-    Product.create(req.body)
-        .then(newProduct => res.json(newProduct))
-        .catch(next)
-})
+
 
 router.put('/:id', (req, res, next) => {
     Product.update(req.body, {

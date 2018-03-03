@@ -100,6 +100,17 @@ import ProductItem from './productItem';
               type="text"
             />
           </div>
+          <div>
+            <label htmlFor="title">
+              <small>Product Category</small>
+            </label>
+            <input
+              onChange={this.handleChange}
+              value={this.props.categoryId}
+              name="categoryId"
+              type="text"
+            />
+          </div>
         <button>
           Add a Product
         </button>
@@ -119,13 +130,15 @@ const mapDispatch = dispatch => ({
       dispatch(allProducts())
   },
   handleClick: (event) => {
+    event.preventDefault()
     const newProduct = {
       artist: event.target.artist.value,
       title: event.target.title.value,
       description: event.target.description.value,
       price: +event.target.price.value,
       quantity: +event.target.quantity.value,
-      imgUrl: event.target.imgUrl.value
+      imgUrl: event.target.imgUrl.value,
+      categoryId: event.target.categoryId.value
     }
     dispatch(addProductThunk(newProduct))
   }
