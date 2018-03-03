@@ -4,7 +4,9 @@ const makeError = (status, message) => {
     return err;
 }
 const isAdmin = (req, res, next) => {
-    if (!req.user && !req.user.isAdmin) return next(makeError(403, 'Forbidden'))
+    let isAdmin = req.user ? req.user.isAdmin : false ;
+    console.log(isAdmin);
+    if (!isAdmin) return next(makeError(403, 'Forbidden'))
     next()
 }
 

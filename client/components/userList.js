@@ -16,11 +16,10 @@ class UserList extends Component {
   }
 
   render () {
-    const {currentUser, users} = this.props;
-    
+    const {currentUser, users } = this.props;
     if (!currentUser.isAdmin) return <div> Hey, only admins can see users! :)</div>
     if (!users.length) return  <div>We have no users! We need to up our marketing. Or seed our database:)</div> 
-    
+
     return (
       <div className="userList">
       <h1>users go in here</h1>
@@ -33,15 +32,13 @@ class UserList extends Component {
       </div>
     </div>
     );
-
   }
-
 };
 
 const mapStateToProps = function(state) {
   return {
     users: state.users,
-    currentUser: state.user
+    currentUser: state.user,
   }
 }
 
