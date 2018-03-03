@@ -31,9 +31,9 @@ async function seed() {
   ])
 
   const categories = await Promise.all([
-    Category.create({ id: 1, name: 'photography' }),
-    Category.create({ id: 2, name: 'sculpture' }),
-    Category.create({ id: 3, name: 'painting' }),
+    Category.create({ name: 'photography' }),
+    Category.create({ name: 'sculpture' }),
+    Category.create({ name: 'painting' }),
   ])
 
   const products = await Promise.all([

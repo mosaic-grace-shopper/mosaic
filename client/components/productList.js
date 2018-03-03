@@ -54,7 +54,7 @@ import ProductItem from './productItem';
             />
           </div>
           <div>
-            <label htmlFor="imageUrl">
+            <label htmlFor="imgUrl">
               <small>imageUrl</small>
             </label>
             <input
