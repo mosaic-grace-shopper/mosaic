@@ -24,17 +24,17 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route path="/products" component={ProductList} />
-        <Route path="/users" component={UserList} />
         <Route path="/cart" component={Cart} />
-        <Route path="/orders" component={OrderList} />
         {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
+              <Route path="/orders" component={OrderList} />
+              <Route path="/users" component={UserList} />
+
             </Switch>
         }
-
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
