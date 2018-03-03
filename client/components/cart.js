@@ -1,41 +1,50 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import { getCartThunk, updateCartThunk } from '../store'
+import { getCartThunk, updateCartThunk, deleteCartThunk } from '../store'
 
 
 class Cart extends Component {
     componentDidMount() {
         this.props.handleFetchCart()
     }
+
     render() {
         const cart = this.props.cart
         const products = this.props.products
         const cartItems = Object.getOwnPropertyNames(cart)
         if (!cart) return <div>There are no items in your cart.</div>
-        console.log('PROPS.CART: ', this.props.cart)
-        console.log('PROPS.PRODUCTS:', this.props.products)
-        console.log('CART PRODUCT IDs: ', cartItems);
+        // console.log('PROPS.CART: ', this.props.cart)
+        // console.log('PROPS.PRODUCTS:', this.props.products)
+        // console.log('CART PRODUCT IDs: ', cartItems);
 
+
+        //I think cartItem.quantity is not displaying correct amount...
+        //actually just displaying total product available if there is an item with that productID in the cart.
         return (
             <div>
                 <div>
                     <h1>My Cart</h1>
                     {
-                        products.filter(product => cartItems.includes(String(product.id))).map(cartItem => (
-                            <ul key={cartItem.id}>
-                                <li key={cartItem.id}><h3><em>{cartItem.title}</em> by {cartItem.artist}</h3>
+                        products.filter(product => cartItems.includes(String(product.id))).map(filteredProduct => (
+                            <ul key={filteredProduct.id}>
+                                <li key={filteredProduct.id}><h3><em>{filteredProduct.title}</em> by {filteredProduct.artist}</h3>
                                     <h4>
-                                        Quantity: {cartItem.quantity}
-                                        <form onSubmit={this.props.handleSubmit}><input type="number" name="quantity" step="1" defaultValue={cartItem.quantity} min="0"  /><button>update quantity</button> </form>
+                                        Quantity: {cart[filteredProduct.id]}
+                                        <form onSubmit={this.props.handleSubmit}>
+                                            <input type="hidden" name="id" value={filteredProduct.id} readOnly />
+                                            <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
+                                            <button>update quantity</button>
+                                        </form>
                                     </h4>
-                                    <h4>Price: ${cartItem.price}</h4>
+                                    <h4>Price: ${filteredProduct.price}</h4>
                                 </li>
                             </ul>
                         )
                     )
                 }
                 <h1>Total: </h1>
+                <button onClick={this.props.handleClick}>Empty your cart</button>
                 </div>
                 <Link to="/products"><button>Back to Products</button></Link>
             </div>
@@ -50,21 +59,25 @@ const mapState = function (state) {
     }
 }
 
-const mapDispatch = function (dispatch, ownProps) {
+const mapDispatch = function (dispatch) {
     return {
         handleFetchCart() {
             dispatch(getCartThunk())
         },
+
         handleSubmit(evt) {
             evt.preventDefault();
-            const newId = ownProps.match.params.id;
-            console.log(ownProps.match.params.id);
+            const newId = +evt.target.id.value;
             const orderLine = {
                 [newId]: +evt.target.quantity.value
             }
             dispatch(updateCartThunk(orderLine))
+        },
+        handleClick(evt) {
+            evt.preventDefault();
+            dispatch(deleteCartThunk())
         }
     }
 }
 
-export default connect(mapState, mapDispatch)(Cart)
+export default withRouter(connect(mapState, mapDispatch)(Cart))

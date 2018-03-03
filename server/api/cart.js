@@ -34,6 +34,7 @@ router.put('/', (req, res, next) => {
 })
 
 router.delete('/', (req, res, next) => {
+    console.log('emptying cart');
     req.session.cart = {};
     res.sendStatus(204);
 })
