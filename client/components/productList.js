@@ -20,7 +20,7 @@ import ProductItem from './productItem';
     if (!theProducts.length) return  <div>No products found</div> 
     return (
       <div className="productList">
-        <h1>Featured Artists</h1>
+        <h1>Featured Products</h1>
         <div className="aProduct">
          {theProducts.map(product => (
             <Link to={`products/${product.id}`} key={product.id} className="productCard">
@@ -31,6 +31,17 @@ import ProductItem from './productItem';
 
         </div>
           <form onSubmit={ this.props.handleClick } >
+          <div>
+          <label htmlFor="title">
+            <small>Product Title</small>
+          </label>
+          <input
+            onChange={this.handleChange}
+            value={this.props.title}
+            name="title"
+            type="text"
+          />
+        </div>
         <div>
             <label htmlFor="artist">
               <small>Product Artist</small>
@@ -84,19 +95,6 @@ import ProductItem from './productItem';
               onChange={this.handleChange}
               value={this.props.quantity}
               name="quantity"
-              type="text"
-            />
-          </div>
-
-
-          <div>
-            <label htmlFor="title">
-              <small>Product Title</small>
-            </label>
-            <input
-              onChange={this.handleChange}
-              value={this.props.title}
-              name="title"
               type="text"
             />
           </div>
