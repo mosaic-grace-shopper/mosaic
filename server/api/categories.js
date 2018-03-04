@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const { Category } = require('../db/models')
+const { isAdmin, isLoggedIn } = require('./utils')
+
 
 router.get('/', (req, res, next) => {
     Category.findAll({
@@ -32,18 +34,13 @@ router.put('/:id', (req, res, next) => {
         .catch(next)
 })
 
-router.delete(':/id', (req, res, next) => {
-    Category.destroy({
-        where: {
-            id: req.params.id
-        }
-    })
-        .then(rowDeleted => {
-            rowDeleted ? res.status(205).send()
-                : res.status(404).send();
-        })
-        .catch(next)
-})
+router.delete('/:id', isAdmin, (req, res, next) => {
+    let isAdmin = req.user !== undefined ? req.user.isAdmin : false;
+    let query = isAdmin ? { where: { id: req.params.id } } : {}
+    Category.destroy(query)
+      .then(() => res.sendStatus(202))
+      .catch(next)
+  })
 
 
 module.exports = router

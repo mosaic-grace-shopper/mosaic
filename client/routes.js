@@ -45,8 +45,9 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
               <Route path="/orders" component={OrderList} />
               <Route path="/categories" component={CategoryList} />
-              <Route path="/addCategory" component={AddCategory} />
+              
               <Route path="/users" component={UserList} />
+              <Route path="/addCategory" component={AddCategory} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}

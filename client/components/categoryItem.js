@@ -21,7 +21,8 @@ class CategoryItem extends Component {
 }
 
 const mapDispatch = dispatch => ({
-    handleDeleteCategory: (categoryId) => {
+    handleDeleteCategory : (categoryId) => {
+        console.log(categoryId)
         dispatch(deleteCategoryThunk(categoryId));
     }
 });
