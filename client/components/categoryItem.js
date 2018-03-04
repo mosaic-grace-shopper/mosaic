@@ -7,10 +7,10 @@ class CategoryItem extends Component {
         const { category } = this.props;
         return (
             <div className="userItem">
-                <h1> {this.props.category.id}
+                <h5> {this.props.category.id}
                     &nbsp;&nbsp;&nbsp;
                     {this.props.category.name}
-                </h1>
+                </h5>
                 <button onClick={() => this.props.handleDeleteCategory(category.id)}>
                     Delete
                 <span />

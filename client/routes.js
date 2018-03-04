@@ -35,8 +35,6 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route path="/products" component={ProductList} />
-        <Route path="/products/categories/:id" component={ProductList} />
-
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
 
@@ -47,8 +45,8 @@ class Routes extends Component {
               <Route path="/home" component={UserHome} />
               <Route path="/orders" component={OrderList} />
               <Route path="/categories" component={CategoryList} />
-              <Route path="/users" component={UserList} />
               <Route path="/addCategory" component={AddCategory} />
+              <Route path="/users" component={UserList} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
