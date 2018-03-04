@@ -12,9 +12,11 @@ import {
   SingleProduct,
   Cart,
   OrderList,
-  Checkout
+  Checkout,
+  CategoryList,
+  AddCategory
 } from './components'
-import {me, allProducts, getCartThunk} from './store'
+import {me, allProducts, getCartThunk , getCategoriesThunk} from './store'
 
 /**
  * COMPONENT
@@ -26,7 +28,6 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn, currentUser} = this.props
-
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
@@ -34,16 +35,20 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/products/:id" component={SingleProduct} />
         <Route path="/products" component={ProductList} />
+        <Route path="/products/categories/:id" component={ProductList} />
+
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
+
         {
           isLoggedIn &&
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/home" component={UserHome} />
               <Route path="/orders" component={OrderList} />
+              <Route path="/categories" component={CategoryList} />
               <Route path="/users" component={UserList} />
-
+              <Route path="/addCategory" component={AddCategory} />
             </Switch>
         }
         {/* Displays our Login component as a fallback */}
@@ -73,6 +78,7 @@ const mapDispatch = (dispatch) => {
       // dispatch(allUsersThunk()) //this will cause an error b/c you must be an admin to see this
       dispatch(allProducts())
       dispatch(getCartThunk())
+      dispatch(getCategoriesThunk())
     }
   }
 }

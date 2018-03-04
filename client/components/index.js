@@ -12,4 +12,6 @@ export {default as ProductList} from './productList'
 export {default as SingleProduct} from './singleProduct'
 export {default as Cart} from './cart'
 export {default as Checkout} from './checkout'
+export {default as CategoryList} from './categoryList'
+export {default as AddCategory} from './addCategory'
 

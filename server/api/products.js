@@ -1,8 +1,10 @@
 const router = require('express').Router()
-const { Product, Review } = require('../db/models')
+const { Product, Review , Category } = require('../db/models')
 
 router.get('/', (req, res, next) => {
-    Product.findAll()
+    Product.findAll({
+            include : [Category]
+        })
         .then(products => res.json(products))
         .catch(next)
 })
@@ -28,8 +30,6 @@ router.get('/reviews/:id', (req, res, next) => {
         .then(reviews => res.json(reviews))
         .catch(next)
 })
-
-
 
 router.put('/:id', (req, res, next) => {
     Product.update(req.body, {
