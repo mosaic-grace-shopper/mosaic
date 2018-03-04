@@ -140,8 +140,6 @@ const mapDispatch = dispatch => ({
       imgUrl: event.target.imgUrl.value,
       categoryId: +event.target.categoryId.value
     }
-    console.log("newProduct", newProduct)
-    console.log("addProductThunk", addProductThunk)
     dispatch(addProductThunk(newProduct))
   }
 })
