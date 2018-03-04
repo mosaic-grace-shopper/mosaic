@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { updateProductThunk } from "../store/products";
+import { updateProductThunk, deleteProductThunk } from "../store/products";
 import productItem from "./productItem";
 
 class EditProductForm extends Component {
@@ -21,14 +21,17 @@ class EditProductForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleRemove = (productId) => {
+    this.props.removeTheProduct(productId);
+  }
+
   render() {
-    const product = this.props.product;
+    const { product } = this.props;
     const productId  = this.props.product.id;
-    console.log("productId", productId )
 
     return (
       <div>
-        <form onSubmit={this.props.handleClick}>
+        <form className="form-group" onSubmit={this.props.handleClick}>
           <div>
             <label htmlFor="artist">
               <small>Product Artist</small>
@@ -97,6 +100,17 @@ class EditProductForm extends Component {
               type="text"
             />
           </div>
+          <div class="form-group">
+    <label for="exampleFormControlSelect2">Example multiple select</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
           <div>
             <label htmlFor="title">
               <small>Product Category</small>
@@ -110,6 +124,10 @@ class EditProductForm extends Component {
           </div>
           <button type="submit">Edit Product</button>
         </form>
+
+         <button onClick={() => this.handleRemove(productId)}>
+          Delete Product
+          </button>
       </div>
     );
   }
@@ -118,7 +136,6 @@ class EditProductForm extends Component {
 
 const mapDispatch = (dispatch, ownProps) => ({
   handleSubmit(event) {
-    console.log("ownProps", ownProps);
     event.preventDefault();
     const productId = ownProps.product.id
     const editedProduct = {
@@ -131,6 +148,9 @@ const mapDispatch = (dispatch, ownProps) => ({
       categoryId: +event.target.categoryId.value
     };
     dispatch(updateProductThunk(editedProduct, productId));
+  },
+  removeTheProduct: (productId) => {
+    dispatch(deleteProductThunk(productId));
   }
 });
 

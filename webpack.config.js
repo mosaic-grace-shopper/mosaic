@@ -11,7 +11,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.jsx?$\.css$/,
+        use: ['style-loader', 'css-loader'],
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader'
       }
@@ -22,3 +23,4 @@ module.exports = {
   // files. It's like `nodemon` for the front end!
   plugins: isDev ? [new LiveReloadPlugin({appendScriptTag: true})] : []
 }
+

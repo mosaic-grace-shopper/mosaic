@@ -12,14 +12,16 @@ class ProductItem extends Component {
     const { theProduct, currentUser } = this.props;
 
     return (
-      <div className="productItem">
-        <h3>
-          <b>{theProduct.title}</b> by {theProduct.artist}
-        </h3>
-        <h5>
-          ${theProduct.price} - <i>{theProduct.quantity} available</i>
-        </h5>
-        <img src={theProduct.imgUrl} />
+      <div className="col-md-4">
+        <div className="productItem">
+          <h3>
+            <b>{theProduct.title}</b> by {theProduct.artist}
+          </h3>
+          <h5>
+            ${theProduct.price} - <i>{theProduct.quantity} available</i>
+          </h5>
+          <img src={theProduct.imgUrl} />
+        </div>
       </div>
     );
   }
