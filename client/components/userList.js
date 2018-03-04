@@ -22,7 +22,7 @@ class UserList extends Component {
 
     return (
       <div className="userList">
-      <h1>users go in here</h1>
+      <h1>Manage Users</h1>
       <div className="aUser">
         { users.map(user => (
           <Link to={`users/${user.id}`} key={user.id} className="userCard">
@@ -33,7 +33,7 @@ class UserList extends Component {
     </div>
     );
   }
-};
+}
 
 const mapStateToProps = function(state) {
   return {
