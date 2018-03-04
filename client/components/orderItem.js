@@ -11,10 +11,10 @@ class OrderItem extends Component {
         const { order } = this.props;
         return (
             <div className="userItem">
-                <h1> {this.props.order.id}
+                <p> {this.props.order.id}
                     &nbsp;&nbsp;&nbsp;
          {this.props.order.status}
-                </h1>
+                </p>
                 <button onClick={() => this.props.handleDeleteOrder(order.id)}>
                     Delete
           <span />

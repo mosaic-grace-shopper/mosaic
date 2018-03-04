@@ -15,7 +15,7 @@ class UserItem extends Component {
     const { user } = this.props;
     return (
       <div className="userItem">
-        <h1> {this.props.user.email}</h1>
+        <p> {this.props.user.email}</p>
         <button onClick={() => this.handleRemove(user)}>
           Delete
           <span />

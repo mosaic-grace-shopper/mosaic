@@ -34,7 +34,7 @@ const Product = db.define('product', {
   imgUrl: {
    type: Sequelize.STRING,
    allowNull: false,
-   defaultValue: 'https://c2.staticflickr.com/8/7742/17504602910_92edbff02f_b.jpg',
+   defaultValue: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/600px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg',
    //maybe think about custom validation for images?
   }
 });

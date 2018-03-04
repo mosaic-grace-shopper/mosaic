@@ -16,7 +16,7 @@ class OrderList extends Component {
     if (!orders.length) return <div>No Orders found</div>
     return (
       <div className="orderList">
-        <h1>Orders Goes in here</h1>
+        <h1>Manage Orders</h1>
         <div className="aOrder">
           {orders.map(order => (
             <div key={order.id}>
