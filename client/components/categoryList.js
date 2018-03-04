@@ -19,16 +19,14 @@ export class CategoryList extends Component {
     return (
       <div>
         <div className="categoryList">
-          <h1>Categories Goes in here</h1>
+          <h1>Manage Categories</h1>
           <button>
             <Link to="/addCategory">Add New Category</Link>
           </button>
           <div className="aCategory">
             {categories.map(category => (
               <div key={category.id}>
-                <Link to={`categories/${category.id}`} className="orderCard">
                   <CategoryItem category={category} />
-                </Link>
               </div>
             ))}
           </div>
