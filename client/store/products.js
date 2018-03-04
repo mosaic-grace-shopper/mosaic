@@ -52,8 +52,6 @@ export const addProductThunk = (newProduct) => dispatch => {
  * REDUCER
  */
 export default function (state = currentProducts, action) {
-  console.log("Action", action)
-  console.log("state", state)
   switch (action.type) {
     case GET_PRODUCTS:
       return action.products
