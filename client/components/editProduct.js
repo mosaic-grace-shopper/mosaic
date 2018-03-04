@@ -16,15 +16,12 @@ class EditProductForm extends Component {
   }
 
   handleChange = event => {
-      console.log("before state", this.state.product)
     this.setState({ [event.target.name]: event.target.value });
-    console.log("after state", this.state.product)
   };
 
   render() {
     const product = this.props.product
     const productId = this.props.product.id;
-    console.log("this.state", this.state);
     return (
       <div>
         <form onSubmit={ () => this.props.handleSubmit(event, this.state, productId)}>
