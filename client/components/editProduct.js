@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateProductThunk } from "../store/products";
+import productItem from "./productItem";
 
 class EditProductForm extends Component {
   constructor(props) {
@@ -11,23 +12,23 @@ class EditProductForm extends Component {
       imgUrl: this.props.product.imgUrl,
       price: this.props.product.price,
       quantity: this.props.product.quantity,
-      title: this.props.product.title
+      title: this.props.product.title,
+      categoryId: this.props.product.categoryId
     };
   }
 
   handleChange = event => {
-      console.log("before state", this.state.product)
     this.setState({ [event.target.name]: event.target.value });
-    console.log("after state", this.state.product)
   };
 
   render() {
-    const product = this.props.product
-    const productId = this.props.product.id;
-    console.log("this.state", this.state);
+    const product = this.props.product;
+    const productId  = this.props.product.id;
+    console.log("productId", productId )
+
     return (
       <div>
-        <form onSubmit={ () => this.props.handleSubmit(event, this.state, productId)}>
+        <form onSubmit={this.props.handleClick}>
           <div>
             <label htmlFor="artist">
               <small>Product Artist</small>
@@ -38,8 +39,8 @@ class EditProductForm extends Component {
               name="artist"
               type="text"
             />
-            </div>
-            <div>
+          </div>
+          <div>
             <label htmlFor="description">
               <small>Description</small>
             </label>
@@ -51,7 +52,7 @@ class EditProductForm extends Component {
             />
           </div>
           <div>
-            <label htmlFor="imageUrl">
+            <label htmlFor="imgUrl">
               <small>imageUrl</small>
             </label>
             <input
@@ -85,7 +86,6 @@ class EditProductForm extends Component {
             />
           </div>
 
-
           <div>
             <label htmlFor="title">
               <small>Product Title</small>
@@ -97,11 +97,18 @@ class EditProductForm extends Component {
               type="text"
             />
           </div>
-          
-          
           <div>
-            <button type="submit">Edit Product</button>
+            <label htmlFor="title">
+              <small>Product Category</small>
+            </label>
+            <input
+              onChange={this.handleChange}
+              value={this.state.categoryId}
+              name="categoryId"
+              type="number"
+            />
           </div>
+          <button type="submit">Edit Product</button>
         </form>
       </div>
     );
@@ -109,10 +116,21 @@ class EditProductForm extends Component {
 }
 
 
-const mapDispatch = dispatch => ({
-  handleSubmit(event, product, productId) {
+const mapDispatch = (dispatch, ownProps) => ({
+  handleSubmit(event) {
+    console.log("ownProps", ownProps);
     event.preventDefault();
-    dispatch(updateProductThunk(product, productId));
+    const productId = ownProps.product.id
+    const editedProduct = {
+      artist: event.target.artist.value,
+      title: event.target.title.value,
+      description: event.target.description.value,
+      price: +event.target.price.value,
+      quantity: +event.target.quantity.value,
+      imgUrl: event.target.imgUrl.value,
+      categoryId: +event.target.categoryId.value
+    };
+    dispatch(updateProductThunk(editedProduct, productId));
   }
 });
 

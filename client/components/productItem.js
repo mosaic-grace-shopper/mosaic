@@ -26,7 +26,7 @@ class ProductItem extends Component {
 }
 
 const mapState = state => ({
-  currentUser: state.currentUser
+  currentUser: state.user
 });
 
 const mapDispatch = dispatch => ({

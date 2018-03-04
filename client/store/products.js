@@ -32,12 +32,12 @@ export const allProducts = () =>
     .catch(err => console.log(err));
 
 export const updateProductThunk = (product, id) => 
-  dispatch => { 
+  dispatch => 
   axios.put(`/api/product/${id}`, product)
   .then(res => 
   dispatch(editProduct(res.data)))
   .catch(err => console.log(err))
-}
+
 
 export const addProductThunk = (newProduct) => dispatch => { 
   axios.post('/api/products', newProduct)
@@ -52,8 +52,6 @@ export const addProductThunk = (newProduct) => dispatch => {
  * REDUCER
  */
 export default function (state = currentProducts, action) {
-  console.log("Action", action)
-  console.log("state", state)
   switch (action.type) {
     case GET_PRODUCTS:
       return action.products
