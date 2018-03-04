@@ -16,7 +16,7 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-    Product.findOne(req.params.id)
+    Product.findById(req.params.id)
         .then(product => res.json(product))
         .catch(next)
 })
