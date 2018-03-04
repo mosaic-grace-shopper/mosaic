@@ -31,22 +31,22 @@ async function seed() {
   ])
 
   const categories = await Promise.all([
-    Category.create({ id: 1, name: 'photography' }),
-    Category.create({ id: 2, name: 'sculpture' }),
-    Category.create({ id: 3, name: 'painting' }),
+    Category.create({ name: 'photography' }),
+    Category.create({ name: 'sculpture' }),
+    Category.create({ name: 'painting' }),
   ])
 
   const products = await Promise.all([
-    Product.create({ id: 1, artist: 'Bob', title: 'Painting in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3 }),
-    Product.create({ id: 2, artist: 'Sam', title: 'Prince and the Swan', description: 'A photo', price: 1500, quantity: 8, categoryId: 1 }),
-    Product.create({ id: 3, artist: 'Wanda', title: 'The fish with her name', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2 }),
-    Product.create({ id: 4, artist: 'Janet', title: 'Painting in Red', description: 'A painting', price: 250, quantity: 10, categoryId: 3 }),
-    Product.create({ id: 5, artist: 'Hito', title: 'Landscape of Stuff', description: 'A photo', price: 50, quantity: 40, categoryId: 1 }),
-    Product.create({ id: 6, artist: 'Mike', title: 'Humongous Teddy Bear', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2 }),
-    Product.create({ id: 7, artist: 'Borna', title: 'T-shirt Canvas', description: 'A painting', price: 30000, quantity: 2, categoryId: 3 }),
-    Product.create({ id: 8, artist: 'Jasmine', title: 'Five Leaves', description: 'Acrylic Cup', price: 4300, quantity: 1, categoryId: 2 }),
-    Product.create({ id: 9, artist: 'Juliana', title: 'Self Portrait', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
-    Product.create({ id: 10, artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
+    Product.create({ artist: 'Bob', title: 'Painting in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3 }),
+    Product.create({ artist: 'Sam', title: 'Prince and the Swan', description: 'A photo', price: 1500, quantity: 8, categoryId: 1 }),
+    Product.create({artist: 'Wanda', title: 'The fish with her name', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2 }),
+    Product.create({ artist: 'Janet', title: 'Painting in Red', description: 'A painting', price: 250, quantity: 10, categoryId: 3 }),
+    Product.create({ artist: 'Hito', title: 'Landscape of Stuff', description: 'A photo', price: 50, quantity: 40, categoryId: 1 }),
+    Product.create({  artist: 'Mike', title: 'Humongous Teddy Bear', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2 }),
+    Product.create({artist: 'Borna', title: 'T-shirt Canvas', description: 'A painting', price: 30000, quantity: 2, categoryId: 3 }),
+    Product.create({ artist: 'Jasmine', title: 'Five Leaves', description: 'Acrylic Cup', price: 4300, quantity: 1, categoryId: 2 }),
+    Product.create({  artist: 'Juliana', title: 'Self Portrait', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
+    Product.create({  artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
   ])
 
   const orders = await Promise.all([
