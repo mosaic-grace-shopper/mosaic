@@ -16,7 +16,7 @@ import ProductItem from './productItem';
 
   render () {
     const theProducts = this.props.products;
-
+    const categoryProduct = theProducts.filter(theProduct => theProduct.category.id === 2)
     if (!theProducts.length) return  <div>No products found</div> 
     return (
       <div className="productList">
@@ -27,7 +27,6 @@ import ProductItem from './productItem';
               <ProductItem theProduct={product} />
             </Link>
           ))}
-
 
         </div>
           <form onSubmit={ this.props.handleClick } >
@@ -121,7 +120,7 @@ import ProductItem from './productItem';
 /**
  * CONTAINER
  */
-const mapState = ({products}) => ({products})
+const mapState = ({products} , ownProps) => ({products})
 
 const mapDispatch = dispatch => ({
   getAllProducts: () => {
