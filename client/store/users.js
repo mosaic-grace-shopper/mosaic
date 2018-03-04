@@ -2,7 +2,9 @@ import axios from "axios";
 
 const GET_USERS = "GET_USERS";
 const DELETE_USER = "DELETE_USER";
+const EDIT_USER = "EDIT_USER";
 //delete user deletes user out of database, remove logs them out.
+
 
 
 const currentUsers = []
@@ -39,6 +41,10 @@ export const allUsersThunk = () => dispatch => {
     switch (action.type) {
       case GET_USERS:
         return action.users;
+      case EDIT_USER:
+        return state.map(user => (
+          action.user.id  === user.id ? action.user : product
+        ))
       case DELETE_USER:
         return state.filter(user => user.id !== action.id);
       default:
