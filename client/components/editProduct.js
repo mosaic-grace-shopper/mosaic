@@ -100,17 +100,6 @@ class EditProductForm extends Component {
               type="text"
             />
           </div>
-          <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-
           <div>
             <label htmlFor="title">
               <small>Product Category</small>
@@ -155,5 +144,3 @@ const mapDispatch = (dispatch, ownProps) => ({
 });
 
 export default connect(null, mapDispatch)(EditProductForm);
-
-// export default EditProductForm
