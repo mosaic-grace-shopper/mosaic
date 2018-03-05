@@ -2,7 +2,10 @@ import axios from "axios";
 
 const GET_USERS = "GET_USERS";
 const DELETE_USER = "DELETE_USER";
+const EDIT_USER = "EDIT_USER";
+
 //delete user deletes user out of database, remove logs them out.
+
 
 
 const currentUsers = []
@@ -11,7 +14,9 @@ const currentUsers = []
  */
 
 const getUsers = users => ({ type: GET_USERS, users });
-const deleteUser = id => ({ type: DELETE_USER, id}) 
+const deleteUser = id => ({ type: DELETE_USER, id});
+const editUser = user => ({type : EDIT_USER, user});
+
 
 /**
  * THUNK CREATORS
@@ -31,6 +36,16 @@ export const allUsersThunk = () => dispatch => {
     .catch(err => console.error(`Removing user: ${id} unsuccessful.`))
   }
 
+
+  export const editUserThunk = (user,id) => dispatch => {
+    return axios
+    .put(`/api/users/${id}`,user)
+    .then(res => {
+      dispatch(editUser(res.data))
+    })
+    .catch(err => console.error(`Updating User: ${id} unsuccessful.`))
+  }
+
   /**
  * REDUCER
  */
@@ -39,6 +54,10 @@ export const allUsersThunk = () => dispatch => {
     switch (action.type) {
       case GET_USERS:
         return action.users;
+      case EDIT_USER:
+        return state.map(user => (
+          action.user.id  === user.id ? action.user : user
+        ))
       case DELETE_USER:
         return state.filter(user => user.id !== action.id);
       default:
