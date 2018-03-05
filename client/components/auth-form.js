@@ -19,7 +19,8 @@ const AuthForm = (props) => {
   }
 
   const order = {
-    status: 'Created',
+    status: 'Saved',
+    //Deal with total in hook
     total: 10000000,
     orderlines: orderLineArray
   };
