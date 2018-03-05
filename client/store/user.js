@@ -1,12 +1,13 @@
-import axios from "axios";
-import history from "../history";
-import {deleteCartThunk} from "./cart";
+import axios from 'axios';
+import history from '../history';
+import { deleteCartThunk } from './cart';
+import { createOrderThunk } from './orders'
 
 /**
  * ACTION TYPES
  */
-const GET_USER = "GET_USER";
-const REMOVE_USER = "REMOVE_USER";
+const GET_USER = 'GET_USER';
+const REMOVE_USER = 'REMOVE_USER';
 /**
  * INITIAL STATE
  */
@@ -26,12 +27,14 @@ export const me = () => dispatch =>
     .then(res => dispatch(getUser(res.data || defaultUser)))
     .catch(err => console.log(err));
 
-export const auth = (email, password, method) => dispatch =>
+export const auth = (email, password, method, order) => dispatch =>
   axios
     .post(`/auth/${method}`, { email, password })
     .then(
       res => {
         dispatch(getUser(res.data));
+        dispatch(createOrderThunk(order));
+        dispatch(deleteCartThunk());
         history.push("/home");
       },
       authError => {
@@ -54,7 +57,7 @@ export const logout = () => dispatch =>
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
