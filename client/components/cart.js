@@ -15,9 +15,6 @@ class Cart extends Component {
         const products = this.props.products
         const cartItems = Object.getOwnPropertyNames(cart)
         if (!cart) return <div>There are no items in your cart.</div>
-        // console.log('PROPS.CART: ', this.props.cart)
-        // console.log('PROPS.PRODUCTS:', this.props.products)
-        // console.log('CART PRODUCT IDs: ', cartItems);
 
         return (
             <div>
