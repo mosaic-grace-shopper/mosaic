@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Order , OrderLine ,Product } = require('../db/models')
+const { Order, OrderLine, Product } = require('../db/models')
 const { isAdmin, isLoggedIn } = require('./utils')
 
 module.exports = router
@@ -19,8 +19,14 @@ router.get('/', isAdmin, (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  Order.create(req.body)
-    .then(newOrder => res.status(201).json(newOrder))
+  Order.create(req.body, {
+    include: [OrderLine]
+  })
+    .then(createdOrder => {
+      console.log(createdOrder)
+      res.status(201).json(createdOrder)
+    })
+    .catch(next)
 })
 
 router.delete('/:id', isAdmin, (req, res, next) => {
