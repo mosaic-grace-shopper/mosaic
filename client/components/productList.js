@@ -14,6 +14,8 @@ class ProductList extends Component {
 
   render() {
     const theProducts = this.props.products;
+    const theCategory = this.props.category;
+    console.log('IS IT THE CATEGORY? ', theCategory);
 
     const { currentUser } = this.props;
     const isAdmin = !!currentUser.isAdmin;
@@ -23,7 +25,7 @@ class ProductList extends Component {
       <div className="productList">
         <h1>Featured Artists</h1>
         <div className="row">
-          
+
             <div className="aProduct">
               {theProducts.map(product => (
                 <Link
@@ -34,7 +36,7 @@ class ProductList extends Component {
                   <ProductItem theProduct={product} />
                 </Link>
               ))}
-         
+
           </div>
         </div>
         {isAdmin && <NewProductForm />}

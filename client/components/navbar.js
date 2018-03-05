@@ -16,10 +16,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, categories}) => (
           <div className="dropdown">
               <Link to="/products">All Products</Link>
             <div className="dropdown-content">
-             { 
-               categories.map(category => 
-                  <Link key= {category.id} to={`/products`}>{category.name}</Link>)
-              }          
+             {
+               categories.map(category =>
+                  <Link key={category.id} to={'/products'} category={category.id}>{category.name}</Link>)
+              }
             </div>
           </div>
           <Link to="/cart">Cart</Link>
