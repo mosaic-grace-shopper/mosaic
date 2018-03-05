@@ -22,17 +22,12 @@ class EditProductForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // handleRemove = (productId) => {
-  //   this.props.removeTheProduct(productId);
-
-  // }
-
   render() {
     const product = this.props.product
     const productId = this.props.product.id;
     return (
       <div>
-        <form className="form-group" onSubmit={this.props.handleClick}>
+        <form className="form-group" onSubmit={this.props.handleSubmit}>
           <div>
             <label htmlFor="artist">
               <small>Product Artist</small>
@@ -129,6 +124,7 @@ const mapDispatch = (dispatch, ownProps) => ({
     event.preventDefault();
     const productId = ownProps.product.id
     const editedProduct = {
+      id: productId,
       artist: event.target.artist.value,
       title: event.target.title.value,
       description: event.target.description.value,
@@ -140,7 +136,7 @@ const mapDispatch = (dispatch, ownProps) => ({
     dispatch(updateProductThunk(editedProduct, productId));
   },
   removeTheProduct(productId){
- 
+
     dispatch(deleteProductThunk(productId, ownProps.history))
   }
 });

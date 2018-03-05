@@ -33,7 +33,9 @@ export const allProducts = () =>
     .catch(err => console.log(err));
 
 export const updateProductThunk = (product, id) => dispatch => {
-  axios.put(`/api/product/${id}`, product)
+  console.log("product)", product);
+  console.log("id)", id);
+  return axios.put(`/api/products/${id}`, product)
   .then(res => {
   dispatch(editProduct(res.data))
   })
