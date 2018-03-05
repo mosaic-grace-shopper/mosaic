@@ -20,7 +20,7 @@ class OrderList extends Component {
         <div className="aOrder">
           {orders.map(order => (
             <div key={order.id}>
-                <OrderItem order={order} products={products} />
+              <OrderItem order={order} products={products} />
             </div>
           ))}
         </div>

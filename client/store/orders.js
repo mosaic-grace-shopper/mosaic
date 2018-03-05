@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../history'
 
 /**
  * ACTION TYPES
@@ -6,6 +7,7 @@ import axios from 'axios';
 const GET_ORDERS = 'GET_ORDERS';
 const CREATE_ORDER = 'CREATE_ORDER';
 const DELETE_ORDER = 'DELETE_ORDER';
+const UPDATE_ORDER = 'UPDATE_ORDER'
 
 /**
  * INITIAL STATE
@@ -18,6 +20,7 @@ const currentOrders = [];
 export const getOrders = orders => ({ type: GET_ORDERS, orders });
 export const createOrder = order => ({ type: CREATE_ORDER, order });
 export const deleteOrder = id => ({ type: DELETE_ORDER, id });
+export const updateOrder = (order) => ({ type: UPDATE_ORDER, order })
 
 /**
  * THUNK CREATORS
@@ -29,11 +32,20 @@ export const allOrdersThunk = () => dispatch => {
 }
 
 export const createOrderThunk = order => dispatch => {
-  return axios.post('/api/orders', order)
+  axios.post('/api/orders', order)
     .then(res => {
       dispatch(createOrder(res.data))
     })
     .catch(err => console.log(err));
+}
+
+export const updateOrderThunk = (order) => dispatch => {
+  axios.put(`/api/orders/${order.id}`, order)
+    .then(res => {
+      dispatch(updateOrder(res.data))
+      history.push('/orders')
+    })
+    .catch(err => console.log(err))
 }
 
 export const deleteOrderThunk = id => dispatch => {
@@ -41,6 +53,7 @@ export const deleteOrderThunk = id => dispatch => {
     .then(() => dispatch(deleteOrder(id)))
     .catch(err => console.err(`Removing Order: ${id} unsuccessful.`));
 }
+
 
 /**
  * REDUCER
@@ -51,8 +64,13 @@ export default function (state = currentOrders, action) {
       return action.orders
     case CREATE_ORDER:
       return [...state, action.order]
+    case UPDATE_ORDER:
+      let index = state.findIndex(order => order.id === action.orderId)
+      let ordersCopy = state.slice(0)
+      ordersCopy[index] = action.order
+      console.log(ordersCopy, "HIIIII")
+      return ordersCopy
     case DELETE_ORDER:
-      console.log(action)
       return state.filter(order => order.id !== action.id);
     default:
       return state
