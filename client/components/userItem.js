@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { deleteUserThunk } from "../store/users";
+import { deleteUserThunk , editUserThunk } from "../store/users";
 import { connect } from "react-redux";
 
 class UserItem extends Component {
@@ -20,6 +20,7 @@ class UserItem extends Component {
           Delete
           <span />
         </button>
+        { user.isAdmin ? <button onClick={() => this.props.makeUserAdmin(user,true)} name="removeAdmin"> Remove Admin</button> : <button onClick={() => this.props.makeUserAdmin(user,false)} name="makeAdmin"> Make Admin</button> }
       </div>
     );
   }
@@ -29,6 +30,10 @@ class UserItem extends Component {
 const mapDispatch = dispatch => ({
   removeTheUser: (userID) => {
     dispatch(deleteUserThunk(userID));
+  },
+  makeUserAdmin : (user, isAdmin) => {
+    console.log("user ====", user , isAdmin)
+    //dispatch(editUserThunk(user,userID))
   }
 });
 
