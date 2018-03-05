@@ -8,12 +8,12 @@ function OrderItem(props) {
 
     return (
         <div className="list-group-item , btn-toolbar">
-            <ul><li>Order Id: {order.id}</li>
-                <li>Status: {order.status}</li>
-                <li>Total: ${order.total}</li>
-                <li>Email: {order.shipmentDetail.confirmationEmail}</li>
-                <li>Recipient Name: {order.shipmentDetail.recipientName}</li>
-                <li>Shipping Address: {order.shipmentDetail.shippingAddress}</li>
+            <ul><li><b>Order Id:</b> #{order.id}</li>
+                <li><b>Status:</b> {order.status}</li>
+                <li><b>Total:</b> ${order.total}</li>
+                <li><b>Email:</b> {order.shipmentDetail.confirmationEmail}</li>
+                <li><b>Recipient Name:</b> {order.shipmentDetail.recipientName}</li>
+                <li><b>Shipping Address:</b> {order.shipmentDetail.shippingAddress}</li>
             </ul>
             <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
                 Delete
