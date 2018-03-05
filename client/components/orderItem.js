@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
 import { deleteOrderThunk, updateOrderThunk } from '../store/orders'
 
 function OrderItem(props) {
@@ -60,4 +61,4 @@ const mapDispatch = dispatch => ({
     }
 });
 
-export default connect(null, mapDispatch)(OrderItem);
+export default withRouter(connect(null, mapDispatch)(OrderItem));
