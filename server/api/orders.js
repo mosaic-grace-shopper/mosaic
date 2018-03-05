@@ -12,7 +12,13 @@ router.get('/', isAdmin, (req, res, next) => {
       .catch(next)
   } else {
     res.json({ message: "Not Admin User" })
+    //will probably need to return orders with findByID for users orders here
   }
+})
+
+router.post('/', (req, res, next) => {
+  Order.create(req.body)
+    .then(newOrder => res.status(201).json(newOrder))
 })
 
 router.delete('/:id', isAdmin, (req, res, next) => {

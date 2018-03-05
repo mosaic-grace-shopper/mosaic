@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import {auth, createOrderThunk} from '../store'
 
 /**
  * COMPONENT
@@ -60,7 +60,14 @@ const mapDispatch = (dispatch) => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
+      const order = {
+        status: 'Created',
+        total: 10000000
+      };
       dispatch(auth(email, password, formName))
+      console.log('Ordering?');
+      dispatch(createOrderThunk(order))
+      //dispatch cart to order thunk here
     }
   }
 }
