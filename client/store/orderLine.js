@@ -22,13 +22,13 @@ export const deleteOrderLine = id => ({ type: DELETE_ORDER_LINE, id });
 /**
  * THUNK CREATORS
  */
-export const allOrdersThunk = () => dispatch => {
+export const allOrderLineThunk = () => dispatch => {
   axios.get('/api/orderLine')
     .then(res => dispatch(getOrderLines(res.data || currentOrderLines)))
     .catch(err => console.log(err));
 }
 
-export const createOrderThunk = orderLine =>
+export const createOrderLineThunk = orderLine =>
   dispatch => {
     axios.post('/api/orderLine', orderLine)
       .then(res => {
@@ -37,7 +37,7 @@ export const createOrderThunk = orderLine =>
       .catch(err => console.log(err));
   }
 
-export const deleteOrderThunk = id => dispatch => {
+export const deleteOrderLineThunk = id => dispatch => {
   axios.delete(`/api/orderLine/${id}`)
     .then(() => dispatch(deleteOrderLine(id)))
     .catch(err => console.err(`Removing Order: ${id} unsuccessful.`));
