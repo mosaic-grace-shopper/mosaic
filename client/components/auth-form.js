@@ -19,7 +19,9 @@ const AuthForm = (props) => {
   }
 
   const order = {
+
     status: 'Created',
+    //Deal with total
     total: 10000000,
     orderlines: orderLineArray
   };
