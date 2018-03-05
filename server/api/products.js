@@ -8,7 +8,7 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
     Product.create(req.body)
         .then(newProduct => res.json(newProduct))
         .catch(next)
@@ -30,7 +30,7 @@ router.get('/reviews/:id', (req, res, next) => {
         .catch(next)
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isAdmin, (req, res, next) => {
     Product.findById(req.params.id)
       .then(product => product.update(req.body))
       .then(updatedProduct => res.json(updatedProduct))
