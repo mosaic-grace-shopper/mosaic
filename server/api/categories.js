@@ -42,5 +42,4 @@ router.delete('/:id', isAdmin, (req, res, next) => {
       .catch(next)
   })
 
-
 module.exports = router

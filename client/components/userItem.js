@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { deleteUserThunk } from "../store/users";
+import { deleteUserThunk , editUserThunk } from "../store/users";
 import { connect } from "react-redux";
 
 class UserItem extends Component {
@@ -14,21 +14,30 @@ class UserItem extends Component {
   render() {
     const { user } = this.props;
     return (
-      <div className="userItem">
-        <p> {this.props.user.email}</p>
-        <button onClick={() => this.handleRemove(user)}>
+      <div>
+      <p> {this.props.user.email}</p>
+      <div>
+        <button className="btn btn-outline-danger btn-sm" onClick={() => this.handleRemove(user)}>
           Delete
-          <span />
         </button>
+        { user.isAdmin ? 
+        <button className="btn btn-outline-primary btn-sm" onClick={() => this.props.makeUserAdmin(user,false)} name="removeAdmin"> Remove Admin</button> 
+        : 
+        <button className="btn btn-outline-primary btn-sm" onClick={() => this.props.makeUserAdmin(user,true)} name="makeAdmin"> Make Admin</button> }
+      </div>
+      <br />
       </div>
     );
   }
-
 }
 
 const mapDispatch = dispatch => ({
   removeTheUser: (userID) => {
     dispatch(deleteUserThunk(userID));
+  },
+  makeUserAdmin : (user, isAdmin) => {
+    user.isAdmin = isAdmin
+    dispatch(editUserThunk(user,user.id))
   }
 });
 

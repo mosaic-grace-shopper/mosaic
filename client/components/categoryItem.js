@@ -7,8 +7,7 @@ class CategoryItem extends Component {
         const { category } = this.props;
         return (
             <div className="userItem">
-                <h5> {this.props.category.id}
-                    &nbsp;&nbsp;&nbsp;
+                <h5> 
                     {this.props.category.name}
                 </h5>
                 <button onClick={() => this.props.handleDeleteCategory(category.id)}>
@@ -22,7 +21,6 @@ class CategoryItem extends Component {
 
 const mapDispatch = dispatch => ({
     handleDeleteCategory : (categoryId) => {
-        console.log(categoryId)
         dispatch(deleteCategoryThunk(categoryId));
     }
 });
