@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
+import { Checkout } from './checkout'
 import { getCartThunk, updateCartThunk, deleteCartThunk } from '../store'
 
 
@@ -18,9 +19,6 @@ class Cart extends Component {
         // console.log('PROPS.PRODUCTS:', this.props.products)
         // console.log('CART PRODUCT IDs: ', cartItems);
 
-
-        //I think cartItem.quantity is not displaying correct amount...
-        //actually just displaying total product available if there is an item with that productID in the cart.
         return (
             <div>
                 <div>
@@ -37,14 +35,18 @@ class Cart extends Component {
                                             <button>update quantity</button>
                                         </form>
                                     </h4>
-                                    <h4>Price: ${filteredProduct.price}</h4>
+                                    <h4>Unit Price: ${filteredProduct.price} </h4>
+
+                                    <h4>Price: $
+                    {filteredProduct.price * cart[filteredProduct.id]}
+                                    </h4>
                                 </li>
                             </ul>
                         )
-                    )
-                }
-                <h1>Total: </h1>
-                <button onClick={this.props.handleClick}>Empty your cart</button>
+                        )
+                    }
+                    <h1>Total: </h1>
+                    <button onClick={this.props.handleClick}>Empty your cart</button>
                 </div>
                 <Link to="/products"><button>Back to Products</button></Link>
             </div>
@@ -55,7 +57,7 @@ class Cart extends Component {
 const mapState = function (state) {
     return {
         cart: state.cart,
-        products: state.products
+        products: state.products,
     }
 }
 

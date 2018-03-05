@@ -50,35 +50,35 @@ async function seed() {
   ])
 
   const orders = await Promise.all([
-    Order.create({ id: 1, status: 'Created', total: 6500 }),
-    Order.create({ id: 2, status: 'Cancelled', total: 10000 }),
-    Order.create({ id: 3, status: 'Completed', total: 32500 }),
-    Order.create({ id: 4, status: 'Processing', total: 850 }),
+    Order.create({ status: 'Created', total: 6500 }),
+    Order.create({ status: 'Cancelled', total: 10000 }),
+    Order.create({ status: 'Completed', total: 32500 }),
+    Order.create({ status: 'Processing', total: 850 }),
   ])
 
   const shipmentDetails = await Promise.all([
-    ShipmentDetails.create({ id: 1, confirmationEmail: 'annabel@annabel.com', recipientName: 'Annabel Lau', shippingAddress: '5 Hanover Square, Floor 25, New York, NY 10004' }),
-    ShipmentDetails.create({ id: 2, confirmationEmail: 'roxie@roxie.com', recipientName: 'Roxie Turner', shippingAddress: '6 Hanover Square, Floor 25, New York, NY 10004' }),
-    ShipmentDetails.create({ id: 3, confirmationEmail: 'johanna@johanna.com', recipientName: 'Johanna Fulghum', shippingAddress: '7 Hanover Square, Floor 25, New York, NY 10004' }),
-    ShipmentDetails.create({ id: 4, confirmationEmail: 'dhara@dhara.com', recipientName: 'Dhara Naik', shippingAddress: '8 Hanover Square, Floor 25, New York, NY 10004' }),
+    ShipmentDetails.create({ confirmationEmail: 'annabel@annabel.com', recipientName: 'Annabel Lau', shippingAddress: '5 Hanover Square, Floor 25, New York, NY 10004' }),
+    ShipmentDetails.create({ confirmationEmail: 'roxie@roxie.com', recipientName: 'Roxie Turner', shippingAddress: '6 Hanover Square, Floor 25, New York, NY 10004' }),
+    ShipmentDetails.create({ confirmationEmail: 'johanna@johanna.com', recipientName: 'Johanna Fulghum', shippingAddress: '7 Hanover Square, Floor 25, New York, NY 10004' }),
+    ShipmentDetails.create({ confirmationEmail: 'dhara@dhara.com', recipientName: 'Dhara Naik', shippingAddress: '8 Hanover Square, Floor 25, New York, NY 10004' }),
   ])
 
   const orderLines = await Promise.all([
-    OrderLine.create({ id: 1, quantity: 2, productId: 1, orderId: 1 }),
-    OrderLine.create({ id: 2, quantity: 1, productId: 2, orderId: 1}),
-    OrderLine.create({ id: 3, quantity: 4, productId: 3, orderId: 1 }),
-    OrderLine.create({ id: 4, quantity: 2, productId: 6, orderId: 2 }),
-    OrderLine.create({ id: 5, quantity: 1, productId: 7, orderId: 3 }),
-    OrderLine.create({ id: 6, quantity: 5, productId: 10, orderId: 3 }),
-    OrderLine.create({ id: 7, quantity: 2, productId: 4, orderId: 4 }),
-    OrderLine.create({ id: 8, quantity: 7, productId: 5, orderId: 4 }),
+    OrderLine.create({ quantity: 2, productId: 1, orderId: 1 }),
+    OrderLine.create({ quantity: 1, productId: 2, orderId: 1}),
+    OrderLine.create({ quantity: 4, productId: 3, orderId: 1 }),
+    OrderLine.create({ quantity: 2, productId: 6, orderId: 2 }),
+    OrderLine.create({ quantity: 1, productId: 7, orderId: 3 }),
+    OrderLine.create({ quantity: 5, productId: 10, orderId: 3 }),
+    OrderLine.create({ quantity: 2, productId: 4, orderId: 4 }),
+    OrderLine.create({ quantity: 7, productId: 5, orderId: 4 }),
 
   ])
 
   const reviews = await Promise.all([
-    Review.create({ id: 1, title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1 }),
-    Review.create({ id: 2, title: 'Awesome', text: 'This photo is so artsy!', stars: 4, userId: 2, productId: 2 }),
-    Review.create({ id: 3, title: 'Huggable', text: 'I want to take a nap on this bear.', stars: 5, userId: 3, productId: 6 }),
+    Review.create({ title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1 }),
+    Review.create({ title: 'Awesome', text: 'This photo is so artsy!', stars: 4, userId: 2, productId: 2 }),
+    Review.create({ title: 'Huggable', text: 'I want to take a nap on this bear.', stars: 5, userId: 3, productId: 6 }),
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator

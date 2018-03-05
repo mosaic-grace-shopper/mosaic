@@ -26,6 +26,7 @@ Category.hasMany(Product, {
   },
   onDelete: 'cascade'
 })
+Product.belongsTo(Category)
 
 Order.hasMany(OrderLine)
 OrderLine.belongsTo(Order, {
@@ -36,7 +37,6 @@ Product.hasMany(OrderLine, {
   onDelete: 'cascade'
 })
 OrderLine.belongsTo(Product)
-
 Order.belongsTo(ShipmentDetails)
 
 

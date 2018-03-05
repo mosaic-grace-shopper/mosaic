@@ -21,6 +21,7 @@ class SingleProduct extends Component {
   render() {
     const { currentUser } = this.props;
     const product = this.props.singleProduct;
+
     if (!product) return <div />;
     const isAdmin = !!currentUser.isAdmin
 

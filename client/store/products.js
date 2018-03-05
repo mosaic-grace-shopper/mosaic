@@ -20,7 +20,6 @@ const DELETE_PRODUCT = 'DELETE_PRODUCT';
 export const getProducts = products => ({type: GET_PRODUCTS, products});
 export const editProduct = product => ({type: EDIT_PRODUCT, product });
 export const addProduct = product => ({type: ADD_PRODUCT, product});
-
 export const deleteProduct = id => ({type: DELETE_PRODUCT, id});
 
 /**
@@ -46,6 +45,7 @@ export const addProductThunk = (newProduct) => dispatch => {
   axios.post('/api/products', newProduct)
   .then(res => {
     dispatch(addProduct(res.data))
+    history.push('/products')
   })
   .catch(err => console.log(err))
 }

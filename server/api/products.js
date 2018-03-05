@@ -1,9 +1,15 @@
 const router = require('express').Router()
+<<<<<<< HEAD
 const { Product, Review } = require('../db/models')
 const { isAdmin, isLoggedIn } = require('./utils')
+=======
+const { Product, Review , Category } = require('../db/models')
+>>>>>>> master
 
 router.get('/', (req, res, next) => {
-    Product.findAll()
+    Product.findAll({
+            include : [Category]
+        })
         .then(products => res.json(products))
         .catch(next)
 })
@@ -31,6 +37,7 @@ router.get('/reviews/:id', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
+<<<<<<< HEAD
     Product.findById(req.params.id)
       .then(product => product.update(req.body))
       .then(updatedProduct => res.json(updatedProduct))
@@ -49,6 +56,18 @@ router.put('/:id', (req, res, next) => {
 //     })
 //         .catch(next)
 // })
+=======
+    Product.update(req.body, {
+        where: {
+            id: req.params.id
+        },
+        returning: true
+    }).then(([num, updatedProduct]) => {
+        num ? res.json(updatedProduct[0]) : res.status(404).send()
+    })
+        .catch(next)
+})
+>>>>>>> master
 
 // router.delete(':/id', (req, res, next) => {
 //     Product.destroy({
