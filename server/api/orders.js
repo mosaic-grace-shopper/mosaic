@@ -2,7 +2,7 @@ const router = require('express').Router()
 
 const { Order, OrderLine, ShipmentDetails } = require('../db/models')
 
-const { isAdmin } = require('./utils')
+const { isAdmin, isLoggedIn } = require('./utils')
 
 module.exports = router
 
@@ -14,22 +14,24 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-// router.get('/', isAdmin, (req, res, next) => {
-//   if (isAdmin) {
-//     Order.findAll({
-//       include: [{ all: true }, {model: ShipmentDetails}]
-//       })
-//       .then(orders => res.json(orders))
-//       .catch(next)
-//   } else {
-//     res.json({ message: 'Not Admin User' })
-//     //will probably need to return orders with findByID for users orders here
-//   }
-// })
-
-
-router.get('/user', (req, res, next) => {
-  console.log("In User Order");
+router.get('/', isLoggedIn, (req, res, next) => {
+  if (isAdmin) {
+    Order.findAll({
+      include: [{ all: true }, {model: ShipmentDetails}]
+      })
+      .then(orders => res.json(orders))
+      .catch(next)
+  } else {
+    res.json({ message: 'Not Admin User' })
+    //will probably need to return orders with findByID for users orders here
+  }
+   if (isLoggedIn) {
+    Order.findAll({
+      where: {userId: req.user.id}
+    })
+      .then(orders => res.json(orders))
+      .catch(next)
+  } 
 })
 
 router.post('/', (req, res, next) => {

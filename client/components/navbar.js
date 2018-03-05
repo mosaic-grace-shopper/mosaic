@@ -23,7 +23,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories }) => (
             </div>
           </div>
           <Link to="/cart">Cart</Link>
-          {isAdmin ? <Link to="/orders"> Orders </Link> : <span /> }
+          {isAdmin ? <Link to="/orders"> Orders </Link> : <Link to="/orders"> My Orders</Link> }
           {isAdmin ? <Link to="/users"> Users </Link> : <span />}
           {isAdmin ? <Link to="/categories"> Categories </Link> : <span />}
        

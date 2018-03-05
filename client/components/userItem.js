@@ -37,7 +37,7 @@ const mapDispatch = dispatch => ({
   },
   makeUserAdmin : (user, isAdmin) => {
     user.isAdmin = isAdmin
-    dispatch(editUserThunk(user,user.id))
+    dispatch(editUserThunk(user, user.id))
   }
 });
 
