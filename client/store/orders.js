@@ -31,12 +31,17 @@ export const allOrdersThunk = () => dispatch => {
 }
 
 export const createOrderThunk = order => dispatch => {
+<<<<<<< HEAD
   axios.post('/api/orders', order)
+=======
+  return axios.post('/api/orders', order)
+>>>>>>> master
     .then(res => {
       dispatch(createOrder(res.data))
     })
     .catch(err => console.log(err));
 }
+<<<<<<< HEAD
 
 export const updateOrderThunk = (orderId, orderStatus) => dispatch => {
   axios.put(`/api/orders/${orderId}`, orderStatus)
@@ -45,13 +50,14 @@ export const updateOrderThunk = (orderId, orderStatus) => dispatch => {
     })
     .catch(err => console.log(err))
 }
+=======
+>>>>>>> master
 
 export const deleteOrderThunk = id => dispatch => {
   axios.delete(`/api/orders/${id}`)
     .then(() => dispatch(deleteOrder(id)))
     .catch(err => console.err(`Removing Order: ${id} unsuccessful.`));
 }
-
 
 /**
  * REDUCER
