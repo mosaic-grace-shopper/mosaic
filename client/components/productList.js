@@ -8,6 +8,7 @@ import NewProductForm from "./newProduct";
 //logic to add a product will go here
 
 class ProductList extends Component {
+  //maybe move to fetch initial data in routes --KHEJ
   componentDidMount() {
     this.props.getAllProducts();
   }
@@ -18,12 +19,13 @@ class ProductList extends Component {
     const { currentUser } = this.props;
     const isAdmin = !!currentUser.isAdmin;
 
+    //could as dynamic loading UI, loading GIF?? --KHEJ
     if (!theProducts.length) return <div>No products found</div>;
     return (
       <div className="productList">
         <h1>Featured Artists</h1>
         <div className="row">
-          
+
             <div className="aProduct">
               {theProducts.map(product => (
                 <Link
@@ -34,7 +36,7 @@ class ProductList extends Component {
                   <ProductItem theProduct={product} />
                 </Link>
               ))}
-         
+
           </div>
         </div>
         {isAdmin && <NewProductForm />}

@@ -82,6 +82,7 @@ const mapDispatch = (dispatch) => {
       };
 
       dispatch(auth(email, password, formName))
+      //this second dispatch would be handled inside auth thunk --KHEJ
       dispatch(createOrderThunk(order));
 
       //dispatch cart to order thunks here

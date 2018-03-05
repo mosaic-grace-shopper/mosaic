@@ -18,13 +18,14 @@ class UserList extends Component {
   render () {
     const {currentUser, users } = this.props;
     if (!currentUser.isAdmin) return <div> Hey, only admins can see users! :)</div>
-    if (!users.length) return  <div>We have no users! We need to up our marketing. Or seed our database:)</div> 
+    if (!users.length) return  <div>We have no users! We need to up our marketing. Or seed our database:)</div>
 
     return (
       <div className="userList">
       <h1>Manage Users</h1>
       <div className="aUser">
         { users.map(user => (
+          //
           <Link to={`users/${user.id}`} key={user.id} className="userCard">
             <UserItem user={user} />
           </Link>

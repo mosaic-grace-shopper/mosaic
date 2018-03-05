@@ -20,7 +20,7 @@ class NewProductForm extends Component {
     render() {
 
     return (
-
+          //naming, should be handleSubmit -- KHEJ
           <form onSubmit={ this.props.handleClick } >
           <div>
               <label htmlFor="artist">
@@ -78,8 +78,8 @@ class NewProductForm extends Component {
                 type="text"
               />
             </div>
-  
-  
+
+
             <div>
               <label htmlFor="title">
                 <small>Product Title</small>
@@ -110,9 +110,10 @@ class NewProductForm extends Component {
 }
 }
 
-  
+
 
 const mapDispatch = (dispatch) => ({
+  //naming, should be handleSubmit -- KHEJ
   handleClick: (event) => {
     event.preventDefault()
     const newProduct = {

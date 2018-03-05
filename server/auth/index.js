@@ -2,6 +2,7 @@ const router = require('express').Router()
 const User = require('../db/models/user')
 module.exports = router
 
+//instance method for migrating cart would be invoked here if user is signing up or logged in --KHEJ
 router.post('/login', (req, res, next) => {
   User.findOne({where: {email: req.body.email}})
     .then(user => {

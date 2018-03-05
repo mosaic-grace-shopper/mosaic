@@ -38,6 +38,8 @@ module.exports = User
 /**
  * instanceMethods
  */
+//Migrate cart instance method where every req.session is now on the database --KHEJ
+
 User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password()
 }

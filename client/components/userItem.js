@@ -13,6 +13,7 @@ class UserItem extends Component {
 
   render() {
     const { user } = this.props;
+    //possibly more robust checks for admin status --KHEJ
     return (
       <div>
       <p> {this.props.user.email}</p>
@@ -20,9 +21,9 @@ class UserItem extends Component {
         <button className="btn btn-outline-danger btn-sm" onClick={() => this.handleRemove(user)}>
           Delete
         </button>
-        { user.isAdmin ? 
-        <button className="btn btn-outline-primary btn-sm" onClick={() => this.props.makeUserAdmin(user,false)} name="removeAdmin"> Remove Admin</button> 
-        : 
+        { user.isAdmin ?
+        <button className="btn btn-outline-primary btn-sm" onClick={() => this.props.makeUserAdmin(user,false)} name="removeAdmin"> Remove Admin</button>
+        :
         <button className="btn btn-outline-primary btn-sm" onClick={() => this.props.makeUserAdmin(user,true)} name="makeAdmin"> Make Admin</button> }
       </div>
       <br />

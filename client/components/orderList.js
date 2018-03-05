@@ -7,6 +7,7 @@ import OrderItem from './orderItem'
 class OrderList extends Component {
 
   componentDidMount() {
+    //move to outer fetchInitialData maybe for implementing recs --KHEJ
     this.props.getAllOrders()
   }
 
@@ -19,6 +20,7 @@ class OrderList extends Component {
         <h1>Manage Orders</h1>
         <div className="aOrder">
           {orders.map(order => (
+            //get rid of DIV, unnecessary --KHEJ
             <div key={order.id}>
                 <OrderItem order={order} products={products} />
             </div>

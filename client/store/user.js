@@ -32,6 +32,7 @@ export const auth = (email, password, method) => dispatch =>
     .then(
       res => {
         dispatch(getUser(res.data));
+        //dispatch create order thunk here bc auth is async --KHEJ
         history.push("/home");
       },
       authError => {

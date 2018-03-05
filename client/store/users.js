@@ -7,7 +7,6 @@ const EDIT_USER = "EDIT_USER";
 //delete user deletes user out of database, remove logs them out.
 
 
-
 const currentUsers = []
 /**
  * ACTION CREATORS
@@ -21,7 +20,7 @@ const editUser = user => ({type : EDIT_USER, user});
 /**
  * THUNK CREATORS
  */
-
+//CONSISTENT thunk space -- KHEJ
 export const allUsersThunk = () => dispatch => {
     axios
       .get("/api/users")
@@ -38,6 +37,7 @@ export const allUsersThunk = () => dispatch => {
 
 
   export const editUserThunk = (user,id) => dispatch => {
+    //could just take a user and pull id off of that --KHEJ
     return axios
     .put(`/api/users/${id}`,user)
     .then(res => {

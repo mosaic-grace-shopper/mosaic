@@ -25,8 +25,9 @@ export const deleteProduct = id => ({type: DELETE_PRODUCT, id});
 /**
  * THUNK CREATORS
  */
+//consistent formatting with dispatch indentation and single pararmeter v. multiple --KHEJ
 export const allProducts = () =>
-  dispatch => 
+  dispatch =>
     axios.get('/api/products')
     .then(res =>
       dispatch(getProducts(res.data || currentProducts)))
@@ -35,13 +36,13 @@ export const allProducts = () =>
 export const updateProductThunk = (product, id) => dispatch => {
   axios.put(`/api/product/${id}`, product)
   .then(res => {
+    //indentation --KHEJ
   dispatch(editProduct(res.data))
   })
   .catch(err => console.log(err))
 }
 
-
-export const addProductThunk = (newProduct) => dispatch => { 
+export const addProductThunk = (newProduct) => dispatch => {
   axios.post('/api/products', newProduct)
   .then(res => {
     dispatch(addProduct(res.data))
@@ -55,7 +56,7 @@ export const deleteProductThunk = (id, history) => dispatch => {
     dispatch(deleteProduct(id))
     history.push('/products')
   })
- 
+  //consistent error handling, maybe throwing and showing to user eventually --KHEJ
   .catch(err=> console.error(`Removing product: ${id} unsuccessful.`))
 }
 

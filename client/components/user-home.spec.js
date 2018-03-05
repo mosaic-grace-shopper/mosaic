@@ -1,5 +1,5 @@
 /* global describe beforeEach it */
-
+//change to camelCase naming --KHEJ
 import { expect } from 'chai'
 import React from 'react'
 import enzyme, {shallow} from 'enzyme'

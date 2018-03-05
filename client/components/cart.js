@@ -24,14 +24,18 @@ class Cart extends Component {
                 <div>
                     <h1>My Cart</h1>
                     {
+                        //maybe prettier chaining indentation --KHEJ
                         products.filter(product => cartItems.includes(String(product.id))).map(filteredProduct => (
+                            //bring out ul outside of products.filter so we're not generating UL every time --KHEJ
                             <ul key={filteredProduct.id}>
                                 <li key={filteredProduct.id}><h3><em>{filteredProduct.title}</em> by {filteredProduct.artist}</h3>
                                     <h4>
                                         Quantity: {cart[filteredProduct.id]}
+                                        {/*(e) => this.props.handleSubmit(e, id) another way of passing ID on submit -- KHEJ*/}
                                         <form onSubmit={this.props.handleSubmit}>
                                             <input type="hidden" name="id" value={filteredProduct.id} readOnly />
                                             <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
+                                            {/*button type of submit -- KHEJ*/}
                                             <button>update quantity</button>
                                         </form>
                                     </h4>

@@ -18,6 +18,7 @@ export const UserHome = (props) => {
 /**
  * CONTAINER
  */
+//destructured state here as well --KHEJ
 export const mapState = (state) => {
   return {
     email: state.user.email
