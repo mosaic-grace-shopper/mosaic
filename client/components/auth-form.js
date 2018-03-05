@@ -7,11 +7,12 @@ import {auth, createOrderThunk, createOrderLineThunk} from '../store'
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+  const {name, displayName, handleSubmit, error, cart} = props
+  console.log(cart);
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <form onSubmit={() => handleSubmit(cart)} name={name}>
         <div>
           <label htmlFor="email"><small>Email</small></label>
           <input name="email" type="text" />
@@ -55,7 +56,7 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit (evt) {
+    handleSubmit (evt, cart) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value
@@ -67,21 +68,30 @@ const mapDispatch = (dispatch) => {
       //create objects that represent each key value pair as an order line
       //push orderlines to an array that becomes part of
 
+      console.log('Is this the cart? ', cart);
+      // for (product in cart) {
+        // console.log(cart, product);
+      // }
       // for key in cart
         // create object {
           // quantity: cart[key]
           // productId: key
+          // array.push(obj)
+        // }
+
+        //create order {
+          // status: 'Created',
+          // total: 10000000,
+          // orderlines: [orderLine1, orderLine2]
         // }
 
       const orderLine1 = {
         quantity: 1,
-        // orderId: 1,
         productId: 2
       }
 
       const orderLine2 = {
         quantity: 3,
-        // orderId: 1,
         productId: 4
       }
 
