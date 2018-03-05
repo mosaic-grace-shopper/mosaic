@@ -22,3 +22,4 @@ module.exports = {
   // files. It's like `nodemon` for the front end!
   plugins: isDev ? [new LiveReloadPlugin({appendScriptTag: true})] : []
 }
+
