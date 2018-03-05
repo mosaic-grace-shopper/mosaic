@@ -18,6 +18,10 @@ function OrderItem(props) {
             <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
                 Delete
                 </button>
+                <select name="orderStatus">
+                    <option>hi</option>
+                    <option>hello</option>
+                </select>
 
             {
                 order.orderlines.map(orderline => {

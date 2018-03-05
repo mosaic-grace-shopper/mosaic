@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Product, Review } = require('../db/models')
+const { Product, Review} = require('../db/models')
 const { isAdmin } = require('./utils')
 
 router.get('/', (req, res, next) => {
@@ -9,8 +9,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.post('/', isAdmin, (req, res, next) => {
-    let query = isAdmin ? {where: { id: req.params.id } } : {}
-    Product.create(query)
+    Product.create({ id: req.params.id } )
         .then(newProduct => res.json(newProduct))
         .catch(next)
 })
@@ -32,15 +31,14 @@ router.get('/reviews/:id', (req, res, next) => {
 })
 
 router.put('/:id', isAdmin, (req, res, next) => {
-    let query = isAdmin ? {where: { id: req.params.id } } : {}
-    Product.findById(query)
+    Product.findById({ id: req.params.id })
       .then(product => product.update(req.body))
       .then(updatedProduct => res.json(updatedProduct))
       .catch(next)
   })
 
   router.delete('/:id', isAdmin, (req, res, next) => {
-    let query = isAdmin ? {where: { id: req.params.id } } : {}
+    let query = isAdmin ? {where: { id: req.params.id } } : {} 
     Product.destroy(query)
       .then(() => res.sendStatus(202))
       .catch(next)
