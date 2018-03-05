@@ -20,17 +20,21 @@ export class CategoryList extends Component {
       <div>
         <div className="categoryList">
           <h1>Manage Categories</h1>
-          <button>
-            <Link to="/addCategory">Add New Category</Link>
-          </button>
           <div className="aCategory">
             {categories.map(category => (
               <div key={category.id}>
+                <br />
+
                   <CategoryItem category={category} />
               </div>
             ))}
+          <br />
           </div>
+          <button>
+            <Link to="/addCategory">Add New Category</Link>
+          </button>
         </div>
+      
       </div>
       )}
 }

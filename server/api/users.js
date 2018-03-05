@@ -18,20 +18,12 @@ router.get('/:id', (req, res, next) => {
     .catch(next)
 })
 
-
-router.put('/delete-admin/:id', (req, res, next) => {
-  User.findById(req.params.id)
-    .then(foundUser => foundUser.update({ isAdmin: false }))
-    .then(madeAdmin => res.json(madeAdmin))
-    .catch(next)
-})
-
-
-router.put('/make-admin/:id', (req, res, next) => {
-  User.findById(req.params.id)
-    .then(foundUser => foundUser.update({ isAdmin: true }))
-    .then(madeAdmin => res.json(madeAdmin))
-    .catch(next)
+router.put("/:id",(req,res,next) => {
+  User.update(req.body,{ where : {id : req.params.id},
+          returning : true
+      }).then(([num, updatedUser]) => {
+          num ?  res.json(updatedUser[0]) :  res.status(404).send()
+  }).catch(next)
 })
 
 

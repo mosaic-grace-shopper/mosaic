@@ -14,17 +14,21 @@ class UserItem extends Component {
   render() {
     const { user } = this.props;
     return (
-      <div className="userItem">
-        <p> {this.props.user.email}</p>
-        <button onClick={() => this.handleRemove(user)}>
+      <div>
+      <p> {this.props.user.email}</p>
+      <div>
+        <button className="btn btn-outline-danger btn-sm" onClick={() => this.handleRemove(user)}>
           Delete
-          <span />
         </button>
-        { user.isAdmin ? <button onClick={() => this.props.makeUserAdmin(user,true)} name="removeAdmin"> Remove Admin</button> : <button onClick={() => this.props.makeUserAdmin(user,false)} name="makeAdmin"> Make Admin</button> }
+        { user.isAdmin ? 
+        <button className="btn btn-outline-primary btn-sm" onClick={() => this.props.makeUserAdmin(user,false)} name="removeAdmin"> Remove Admin</button> 
+        : 
+        <button className="btn btn-outline-primary btn-sm" onClick={() => this.props.makeUserAdmin(user,true)} name="makeAdmin"> Make Admin</button> }
+      </div>
+      <br />
       </div>
     );
   }
-
 }
 
 const mapDispatch = dispatch => ({
@@ -32,8 +36,8 @@ const mapDispatch = dispatch => ({
     dispatch(deleteUserThunk(userID));
   },
   makeUserAdmin : (user, isAdmin) => {
-    console.log("user ====", user , isAdmin)
-    //dispatch(editUserThunk(user,userID))
+    user.isAdmin = isAdmin
+    dispatch(editUserThunk(user,user.id))
   }
 });
 

@@ -15,7 +15,7 @@ const currentUsers = []
 
 const getUsers = users => ({ type: GET_USERS, users });
 const deleteUser = id => ({ type: DELETE_USER, id});
-const editUser = id => ({type : EDIT_USER, id});
+const editUser = user => ({type : EDIT_USER, user});
 
 
 /**
@@ -38,9 +38,11 @@ export const allUsersThunk = () => dispatch => {
 
 
   export const editUserThunk = (user,id) => dispatch => {
-    axios
+    return axios
     .put(`/api/users/${id}`,user)
-    .then(res => dispatch(editUser(res.data)))
+    .then(res => {
+      dispatch(editUser(res.data))
+    })
     .catch(err => console.error(`Updating User: ${id} unsuccessful.`))
   }
 
