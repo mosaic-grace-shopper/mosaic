@@ -72,14 +72,16 @@ const mapDispatch = (dispatch) => {
         // linePrice: 500,
         lineTotal: 1000,
         orderId: 1,
-        productId: 2,
-
+        productId: 2
       }
 
       dispatch(auth(email, password, formName))
       console.log('Ordering?');
-      dispatch(createOrderThunk(order))
+      Promise.resolve(dispatch(createOrderThunk(order)))
+      .then(results => console.log('results are: ', results));
+      // console.log(dispatch(createOrderThunk(order)))
       dispatch(createOrderLineThunk(orderLine))
+      // .then(res => console.log('returns: ', res))
       //dispatch cart to order thunk here
     }
   }

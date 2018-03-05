@@ -28,9 +28,8 @@ export const allOrdersThunk = () => dispatch => {
     .catch(err => console.log(err));
 }
 
-export const createOrderThunk = order =>
-  dispatch => {
-    axios.post('/api/orders', order)
+export const createOrderThunk = order => dispatch => {
+    return axios.post('/api/orders', order)
       .then(res => {
         dispatch(createOrder(res.data))
       })

@@ -28,8 +28,7 @@ export const allOrderLineThunk = () => dispatch => {
     .catch(err => console.log(err));
 }
 
-export const createOrderLineThunk = orderLine =>
-  dispatch => {
+export const createOrderLineThunk = orderLine => dispatch => {
     axios.post('/api/orderLine', orderLine)
       .then(res => {
         dispatch(createOrderLine(res.data))
