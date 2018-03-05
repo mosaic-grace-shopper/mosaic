@@ -20,7 +20,7 @@ const currentOrders = [];
 export const getOrders = orders => ({ type: GET_ORDERS, orders });
 export const createOrder = order => ({ type: CREATE_ORDER, order });
 export const deleteOrder = id => ({ type: DELETE_ORDER, id });
-export const updateOrder = (order) => ({ type: UPDATE_ORDER, order })
+export const updateOrder = order => ({ type: UPDATE_ORDER, order });
 
 /**
  * THUNK CREATORS
@@ -65,10 +65,10 @@ export default function (state = currentOrders, action) {
     case CREATE_ORDER:
       return [...state, action.order]
     case UPDATE_ORDER:
-      let index = state.findIndex(order => order.id === action.orderId)
+      let index = state.findIndex(order => order.id === action.id)
       let ordersCopy = state.slice(0)
       ordersCopy[index] = action.order
-      console.log(ordersCopy, "HIIIII")
+      console.log(ordersCopy[index], "UPDATED ORDER")
       return ordersCopy
     case DELETE_ORDER:
       return state.filter(order => order.id !== action.id);
