@@ -23,7 +23,7 @@ class ProductsByCategory extends Component {
             <div className="aProduct">
               {filteredProducts.map(product => (
                 <Link
-                  to={`products/${product.id}`}
+                  to={`../../products/${product.id}`}
                   key={product.id}
                   className="productCard"
                 >
