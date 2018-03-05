@@ -18,7 +18,7 @@ function OrderItem(props) {
             <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
                 Delete
                 </button>
-            <select name="orderStatus" key={order.id} defaultValue={order.status} onChange={() => props.handleChange(order.id, order.status)}>
+            <select name="orderStatus" key={order.id} defaultValue={order.status} onChange={props.handleChange}>
                 <option value="Saved">Saved</option>
                 <option value="Submitted">Submitted</option>
                 <option value="Processing">Processing</option>
@@ -52,8 +52,9 @@ const mapDispatch = dispatch => ({
     handleDeleteOrder: (orderId) => {
         dispatch(deleteOrderThunk(orderId));
     },
-    handleChange: (evt, orderId) => {
-        const orderStatus = evt.target.value
+    handleChange: (evt) => {
+        const orderStatus = evt.target.orderStatus.value
+        console.log(orderStatus, "heeeey")
         dispatch(updateOrderThunk(orderId, orderStatus))
     }
 });
