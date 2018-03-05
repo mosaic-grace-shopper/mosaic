@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
     include: [OrderLine]
   })
     .then(createdOrder => {
-      console.log(createdOrder)
+      console.log('trying to create order')
       res.status(201).json(createdOrder)
     })
     .catch(next)
