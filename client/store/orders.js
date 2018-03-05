@@ -29,6 +29,7 @@ export const allOrdersThunk = () => dispatch => {
 }
 
 export const createOrderThunk = order => dispatch => {
+  console.log('creating order');
     return axios.post('/api/orders', order)
       .then(res => {
         dispatch(createOrder(res.data))

@@ -86,8 +86,10 @@ const mapDispatch = (dispatch) => {
       //something something redux-thunk?
       console.log('Ordering?');
       Promise.resolve(dispatch(createOrderThunk(order)))
-      .then(results => console.log('results are: ', results));
-      dispatch(createOrderLineThunk(orderLine))
+      .then(results => {
+        console.log('results are: ', results)
+        dispatch(createOrderLineThunk(orderLine))
+      })
     }
   }
 }
