@@ -16,9 +16,9 @@ const currentCart = {};
 /**
  * ACTION CREATORS
  */
-const getCart = cart => ({ type: GET_CART, cart });
-const updateCart = cartItems => ({ type: UPDATE_CART, cartItems });
-const deleteCart = cart => ({type: DELETE_CART, cart});
+export const getCart = cart => ({ type: GET_CART, cart });
+export const updateCart = cartItems => ({ type: UPDATE_CART, cartItems });
+export const deleteCart = cart => ({type: DELETE_CART, cart});
 
 /**
  * THUNK CREATORS

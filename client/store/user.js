@@ -1,5 +1,6 @@
 import axios from "axios";
 import history from "../history";
+import {deleteCartThunk} from "./cart";
 
 /**
  * ACTION TYPES
@@ -44,6 +45,7 @@ export const logout = () => dispatch =>
   axios
     .post("/auth/logout")
     .then(_ => {
+      dispatch(deleteCartThunk());
       dispatch(removeUser());
       history.push("/login");
     })
