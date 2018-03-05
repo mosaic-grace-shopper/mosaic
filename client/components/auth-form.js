@@ -1,18 +1,33 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth, createOrderThunk, createOrderLineThunk} from '../store'
+import {auth} from '../store'
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error, cart} = props
-  console.log(cart);
+
+  const orderLineArray = [];
+  for (var key in cart) {
+    const newObj = {
+      quantity: cart[key],
+      productId: key
+    }
+    orderLineArray.push(newObj)
+  }
+
+  const order = {
+    status: 'Created',
+    total: 10000000,
+    orderlines: orderLineArray
+  };
+
 
   return (
     <div>
-      <form onSubmit={() => handleSubmit(cart)} name={name}>
+      <form onSubmit={(evt) => handleSubmit(evt, order)} name={name}>
         <div>
           <label htmlFor="email"><small>Email</small></label>
           <input name="email" type="text" />
@@ -40,6 +55,7 @@ const AuthForm = (props) => {
  */
 export const mapLogin = (state) => {
   return {
+    cart: state.cart,
     name: 'login',
     displayName: 'Login',
     error: state.user.error
@@ -56,51 +72,11 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit (evt, cart) {
-      evt.preventDefault()
+    handleSubmit (evt, order) {
+      evt.preventDefault();
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-
-      //gonna pull these off cart later
-      //will have to think about how we get line totals and order total
-
-      //create objects that represent each key value pair as an order line
-      //push orderlines to an array that becomes part of
-
-      console.log('Is this the cart? ', cart);
-      // for (product in cart) {
-        // console.log(cart, product);
-      // }
-      // for key in cart
-        // create object {
-          // quantity: cart[key]
-          // productId: key
-          // array.push(obj)
-        // }
-
-        //create order {
-          // status: 'Created',
-          // total: 10000000,
-          // orderlines: [orderLine1, orderLine2]
-        // }
-
-      const orderLine1 = {
-        quantity: 1,
-        productId: 2
-      }
-
-      const orderLine2 = {
-        quantity: 3,
-        productId: 4
-      }
-
-      const order = {
-        status: 'Created',
-        total: 10000000,
-        orderlines: [orderLine1, orderLine2]
-      };
-
       dispatch(auth(email, password, formName, order))
     }
   }

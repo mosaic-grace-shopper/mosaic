@@ -16,7 +16,7 @@ const currentOrders = [];
  * ACTION CREATORS
  */
 export const getOrders = orders => ({ type: GET_ORDERS, orders });
-export const createOrder = order => ({type: CREATE_ORDER, order});
+export const createOrder = order => ({ type: CREATE_ORDER, order });
 export const deleteOrder = id => ({ type: DELETE_ORDER, id });
 
 /**
@@ -29,20 +29,18 @@ export const allOrdersThunk = () => dispatch => {
 }
 
 export const createOrderThunk = order => dispatch => {
-  console.log('creating order');
-    return axios.post('/api/orders', order)
-      .then(res => {
-        dispatch(createOrder(res.data))
-      })
-      .catch(err => console.log(err));
-  }
+  return axios.post('/api/orders', order)
+    .then(res => {
+      dispatch(createOrder(res.data))
+    })
+    .catch(err => console.log(err));
+}
 
 export const deleteOrderThunk = id => dispatch => {
   axios.delete(`/api/orders/${id}`)
     .then(() => dispatch(deleteOrder(id)))
     .catch(err => console.err(`Removing Order: ${id} unsuccessful.`));
 }
-
 
 /**
  * REDUCER
