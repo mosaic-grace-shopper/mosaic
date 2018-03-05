@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { allOrdersThunk } from '../store';
 import OrderItem from './orderItem'
 
@@ -14,7 +14,11 @@ class OrderList extends Component {
     const { orders, user, products, shipmentDetail } = this.props;
     // if (!user.isAdmin) return <h1> Only admins have access to this page </h1>
     if (!orders.length) return <div>No orders found</div>
+<<<<<<< HEAD
     const myOrders = user.isAdmin ? orders : orders.filter(order => order.userId === user.id) 
+=======
+    console.log(orders, "NEW ORDERS!")
+>>>>>>> master
     return (
       <div className="orderList">
         <h1>Manage Orders</h1>
@@ -42,4 +46,4 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(OrderList);
+export default withRouter(connect(mapState, mapDispatch)(OrderList));

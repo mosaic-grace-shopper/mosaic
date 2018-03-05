@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { allProducts } from '../store';
-import ProductItem from './productItem';
-import NewProductForm from './newProduct';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { allProducts } from '../store'
+import ProductItem from './productItem'
+import NewProductForm from './newProduct'
 
-class ProductList extends Component {
+class ProductsByCategory extends Component {
   componentDidMount() {
     this.props.getAllProducts();
   }
 
   render() {
-    const { products, currentUser } = this.props;
-
+    const { products, currentUser, filteredProducts } = this.props;
     const isAdmin = !!currentUser.isAdmin;
 
     if (!products.length) return <div>No products found</div>;
@@ -22,9 +21,9 @@ class ProductList extends Component {
         <div className="row">
 
             <div className="aProduct">
-              {products.map(product => (
+              {filteredProducts.map(product => (
                 <Link
-                  to={`products/${product.id}`}
+                  to={`../../products/${product.id}`}
                   key={product.id}
                   className="productCard"
                 >
@@ -40,11 +39,12 @@ class ProductList extends Component {
   }
 }
 
-
-
-const mapState = state => ({
+const mapState = (state, ownProps) => ({
   currentUser: state.user,
-  products: state.products
+  products: state.products,
+  filteredProducts: state.products.filter(
+    products => products.categoryId === +ownProps.match.params.id
+  )
 });
 
 const mapDispatch = dispatch => ({
@@ -53,4 +53,4 @@ const mapDispatch = dispatch => ({
   }
 });
 
-export default connect(mapState, mapDispatch)(ProductList);
+export default connect(mapState, mapDispatch)(ProductsByCategory);

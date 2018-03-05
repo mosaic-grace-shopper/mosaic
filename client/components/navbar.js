@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { logout } from '../store'
 import categories from '../store/categories';
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, categories}) => (
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories }) => (
   <div>
     <h1>Mosaic</h1>
     <nav>
@@ -14,12 +14,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, categories}) => (
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <div className="dropdown">
-              <Link to="/products">All Products</Link>
+            <Link to="/products">All Products</Link>
             <div className="dropdown-content">
-             { 
-               categories.map(category => 
-                  <Link key= {category.id} to={`/products`}>{category.name}</Link>)
-              }          
+             {
+               allCategories.map(category =>
+                  <Link key={category.id} to={`/products/categories/${category.id}`}>{category.name}</Link>)
+              }
             </div>
           </div>
           <Link to="/cart">Cart</Link>
@@ -35,10 +35,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, categories}) => (
           <div>
             {/* The navbar will show these links before you log in */}
             <div className="dropdown">
-                <Link to="/products">All Products</Link>
+              <Link to="/products">All Products</Link>
               <div className="dropdown-content">
-                <Link to="/products">Paintings</Link>
-                <Link to="/products">Scluptures</Link>
+              {
+                allCategories.map(category =>
+                  <Link key={category.id} to={`/products/categories/${category.id}`}>{category.name}</Link>)
+                }
               </div>
             </div>
             <Link to="/login">Login</Link>
@@ -56,10 +58,12 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, categories}) => (
  * CONTAINER
  */
 const mapState = state => {
+  console.log()
   return {
     isLoggedIn: !!state.user.id,
     isAdmin: !!state.user.isAdmin,
-    categories : state.categories,
+    // categories : state.categories,
+    allCategories: state.categories
   }
 }
 
@@ -78,5 +82,6 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 }
+
