@@ -12,9 +12,9 @@ function OrderItem(props) {
             <ul><li><b>Order Id:</b> #{order.id}</li>
                 <li><b>Status:</b> {order.status}</li>
                 <li><b>Total:</b> ${order.total}</li>
-                <li><b>Email:</b> {order.shipmentDetail.confirmationEmail}</li>
-                <li><b>Recipient Name:</b> {order.shipmentDetail.recipientName}</li>
-                <li><b>Shipping Address:</b> {order.shipmentDetail.shippingAddress}</li>
+                <li><b>Email:</b> {order.shipmentDetail && order.shipmentDetail.confirmationEmail}</li>
+                <li><b>Recipient Name:</b> {order.shipmentDetail && order.shipmentDetail.recipientName}</li>
+                <li><b>Shipping Address:</b> {order.shipmentDetail && order.shipmentDetail.shippingAddress}</li>
             </ul>
             <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
                 Delete
