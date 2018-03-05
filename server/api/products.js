@@ -14,6 +14,16 @@ router.post('/', isAdmin, (req, res, next) => {
         .catch(next)
 })
 
+router.get('/categories/:id', (req, res, next) => {
+    Product.findAll({
+        where: {
+            categoryId: req.params.id
+        }
+    })
+    .then(prods => res.json(prods))
+    .catch(next)
+})
+
 router.get('/:id', (req, res, next) => {
     Product.findById(req.params.id)
         .then(product => res.json(product))
@@ -39,12 +49,12 @@ router.put('/:id', isAdmin, (req, res, next) => {
 
   router.delete('/:id', isAdmin, (req, res, next) => {
     let isAdmin = req.user !== undefined ? req.user.isAdmin : false ;
-    let query = isAdmin ? {where: { id: req.params.id } } : {} 
+    let query = isAdmin ? {where: { id: req.params.id } } : {}
     Product.destroy(query)
       .then(() => res.sendStatus(202))
       .catch(next)
   })
-  
-  
+
+
 
 module.exports = router
