@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Order } = require('../db/models')
+const { Order , OrderLine ,Product } = require('../db/models')
 const { isAdmin, isLoggedIn } = require('./utils')
 
 module.exports = router
@@ -7,8 +7,10 @@ module.exports = router
 router.get('/', isAdmin, (req, res, next) => {
   let isAdmin = req.user !== undefined ? req.user.isAdmin : false;
   if (isAdmin) {
-    Order.findAll()
-      .then(orders => { res.json(orders) })
+    Order.findAll({
+        include : [{ all: true }]
+      })
+      .then(orders => res.json(orders))
       .catch(next)
   } else {
     res.json({ message: "Not Admin User" })

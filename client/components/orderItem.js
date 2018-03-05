@@ -10,19 +10,34 @@ class OrderItem extends Component {
     render() {
         const { order } = this.props;
         return (
-            <div className="userItem">
-                <p> {this.props.order.id}
+            <div className="list-group-item , btn-toolbar">
+                <p> Order Id = {this.props.order.id}
                     &nbsp;&nbsp;&nbsp;
-         {this.props.order.status}
+                   Status = {this.props.order.status}
+                    &nbsp;&nbsp;&nbsp;
+                   Total = {this.props.order.total}
                 </p>
-                <button onClick={() => this.props.handleDeleteOrder(order.id)}>
+                <button className="btn btn-outline-danger btn-sm" onClick={() => this.props.handleDeleteOrder(order.id)}>
                     Delete
-          <span />
                 </button>
-                <button >
+                <button className="btn btn-outline-primary btn-sm">
                     Edit
-          <span />
                 </button>
+
+                {
+                    this.props.order.orderlines.map(orderline => {
+                        return <ul key={orderline.id}> 
+                            <li> 
+                            Line Id = {orderline.id} 
+                            &nbsp;&nbsp;&nbsp;
+                            Line Price = {orderline.linePrice} 
+                            &nbsp;&nbsp;&nbsp;
+                            Line Quantity = {orderline.quantity} 
+                            &nbsp;&nbsp;&nbsp;
+                             </li>
+                        </ul>
+                    })
+                }
             </div>
         );
     }
