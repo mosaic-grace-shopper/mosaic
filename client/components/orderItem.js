@@ -8,12 +8,10 @@ function OrderItem(props) {
 
     return (
         <div className="list-group-item , btn-toolbar">
-            <p> Order Id: {order.id}
-                &nbsp;&nbsp;&nbsp;
-                   Status: {order.status}
-                &nbsp;&nbsp;&nbsp;
-                   Total: ${order.total}
-            </p>
+            <ul><li>Order Id: {order.id}</li>
+                <li>Status: {order.status}</li>
+                <li> Total: ${order.total}</li>
+            </ul>
             <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
                 Delete
                 </button>
@@ -23,9 +21,8 @@ function OrderItem(props) {
                     return (<ul key={orderline.id}>
                         <li>
                             &nbsp;&nbsp;&nbsp;
-                            Line Item Id: {orderline.id}
-                            &nbsp;&nbsp;&nbsp;
-                            Line Item Name: <h1> {/*products && products.find(product => product.id === orderline.id).title*/}</h1>
+                            <h3> {products && products.find(product => product.id === orderline.productId).title}</h3>
+                            Line Item Id: {orderline.productId}
                             &nbsp;&nbsp;&nbsp;
                             Line Item Price: ${orderline.linePrice}
                             &nbsp;&nbsp;&nbsp;
