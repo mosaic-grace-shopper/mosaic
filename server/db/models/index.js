@@ -20,6 +20,9 @@ Review.belongsTo(Product)
 Product.hasMany(Review)
 Product.belongsTo(Category)
 
+User.hasMany(Order)
+Order.belongsTo(User)
+
 Category.hasMany(Product, {
   foreignKey: {
     allowNull: false
