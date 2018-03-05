@@ -11,7 +11,7 @@ class OrderList extends Component {
   }
 
   render() {
-    const { orders, user, products } = this.props;
+    const { orders, user, products, shipmentDetail } = this.props;
     if (!user.isAdmin) return <h1> Only admins have access to this page </h1>
     if (!orders.length) return <div>No orders found</div>
     return (

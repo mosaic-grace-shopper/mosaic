@@ -10,7 +10,10 @@ function OrderItem(props) {
         <div className="list-group-item , btn-toolbar">
             <ul><li>Order Id: {order.id}</li>
                 <li>Status: {order.status}</li>
-                <li> Total: ${order.total}</li>
+                <li>Total: ${order.total}</li>
+                <li>Email: {order.shipmentDetail.confirmationEmail}</li>
+                <li>Recipient Name: {order.shipmentDetail.recipientName}</li>
+                <li>Shipping Address: {order.shipmentDetail.shippingAddress}</li>
             </ul>
             <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
                 Delete
@@ -19,7 +22,7 @@ function OrderItem(props) {
             {
                 order.orderlines.map(orderline => {
                     return (<ul key={orderline.id}>
-                        <li>
+                        <span>
                             &nbsp;&nbsp;&nbsp;
                             <h3> {products && products.find(product => product.id === orderline.productId).title}</h3>
                             Line Item Id: {orderline.productId}
@@ -28,7 +31,8 @@ function OrderItem(props) {
                             &nbsp;&nbsp;&nbsp;
                             Line Item Quantity: {orderline.quantity}
                             &nbsp;&nbsp;&nbsp;
-                             </li>
+                             </span>
+
                     </ul>
                     )
                 })
@@ -36,12 +40,6 @@ function OrderItem(props) {
         </div>
     );
 }
-
-// const mapState = state => {
-//     return {
-//         product: state.products
-//     }
-// }
 
 const mapDispatch = dispatch => ({
     handleDeleteOrder: (orderId) => {
