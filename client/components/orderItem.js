@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { deleteOrderThunk } from '../store/orders'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteOrderThunk, updateOrderThunk } from '../store/orders'
 
 function OrderItem(props) {
 
@@ -18,10 +18,13 @@ function OrderItem(props) {
             <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
                 Delete
                 </button>
-                <select name="orderStatus">
-                    <option>hi</option>
-                    <option>hello</option>
-                </select>
+            <select name="orderStatus" key={order.id} defaultValue={order.status} onChange={() => props.handleChange(order.id, order.status)}>
+                <option value="Saved">Saved</option>
+                <option value="Submitted">Submitted</option>
+                <option value="Processing">Processing</option>
+                <option value="Cancelled">Cancelled</option>
+                <option value="Completed">Completed</option>
+            </select>
 
             {
                 order.orderlines.map(orderline => {
@@ -48,6 +51,10 @@ function OrderItem(props) {
 const mapDispatch = dispatch => ({
     handleDeleteOrder: (orderId) => {
         dispatch(deleteOrderThunk(orderId));
+    },
+    handleChange: (evt, orderId) => {
+        const orderStatus = evt.target.value
+        dispatch(updateOrderThunk(orderId, orderStatus))
     }
 });
 

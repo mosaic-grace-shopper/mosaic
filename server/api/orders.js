@@ -20,6 +20,12 @@ router.get('/', isAdmin, (req, res, next) => {
   }
 })
 
+router.get('/:id', (req, res, next) => {
+  Order.findById(req.params.id, {include: [{ all: true }, {model: ShipmentDetails}]})
+  .then(order => res.json(order))
+  .catch(next)
+})
+
 router.post('/', (req, res, next) => {
   Order.create(req.body, {
     include: [OrderLine]
@@ -29,6 +35,13 @@ router.post('/', (req, res, next) => {
       res.status(201).json(createdOrder)
     })
     .catch(next)
+})
+
+router.put('/update-status/:id', (req, res, next) => {
+  Order.findById(req.params.id)
+  .then(order => order.update(req.body))
+  .then(updatedOrder => res.json(updatedOrder))
+  .catch(next)
 })
 
 router.delete('/:id', isAdmin, (req, res, next) => {
