@@ -45,7 +45,7 @@ export const addProductThunk = (newProduct) => dispatch => {
   axios.post('/api/products', newProduct)
   .then(res => {
     dispatch(addProduct(res.data))
-    history.push('/products')
+    // history.push('/products')
   })
   .catch(err => console.log(err))
 }
