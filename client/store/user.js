@@ -23,7 +23,7 @@ const removeUser = () => ({ type: REMOVE_USER });
  */
 export const me = () => dispatch =>
   axios
-    .get("/auth/me")
+    .get('/auth/me')
     .then(res => dispatch(getUser(res.data || defaultUser)))
     .catch(err => console.log(err));
 
@@ -32,10 +32,11 @@ export const auth = (email, password, method, order) => dispatch =>
     .post(`/auth/${method}`, { email, password })
     .then(
       res => {
-        dispatch(getUser(res.data));
+        const theUser = dispatch(getUser(res.data))
+        order.userId = theUser.user.id;
         dispatch(createOrderThunk(order));
         dispatch(deleteCartThunk());
-        history.push("/home");
+        history.push('/home');
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler
@@ -46,11 +47,11 @@ export const auth = (email, password, method, order) => dispatch =>
 
 export const logout = () => dispatch =>
   axios
-    .post("/auth/logout")
+    .post('/auth/logout')
     .then(_ => {
       dispatch(deleteCartThunk());
       dispatch(removeUser());
-      history.push("/login");
+      history.push('/login');
     })
     .catch(err => console.log(err));
 
