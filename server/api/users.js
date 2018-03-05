@@ -35,9 +35,7 @@ router.get('/:id', (req, res, next) => {
 
 
 router.delete('/:id', isAdmin, (req, res, next) => {
-  let isAdmin = req.user !== undefined ? req.user.isAdmin : false ;
-  let query = isAdmin ? {where: { id: req.params.id } } : {} 
-  User.destroy(query)
+  User.destroy(req.params.id)
     .then(() => res.sendStatus(202))
     .catch(next)
 })

@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { updateCartThunk } from "../store/cart";
-import  EditProductForm   from "./editProduct";
-
+import EditProductForm from "./editProduct";
 
 // probably needs to be a stateful component?
 class SingleProduct extends Component {
@@ -19,13 +18,12 @@ class SingleProduct extends Component {
     };
   }
   render() {
-
-    console.log("SingleProduct props", this.props)
+    console.log("SingleProduct props", this.props);
     const { currentUser } = this.props;
     const product = this.props.singleProduct;
 
     if (!product) return <div />;
-    const isAdmin = !!currentUser.isAdmin
+    const isAdmin = !!currentUser.isAdmin;
 
     return (
       <div>
@@ -51,8 +49,9 @@ class SingleProduct extends Component {
         <button>
           <Link to="/products">Back to Products</Link>
         </button>
-         {isAdmin && <EditProductForm history={this.props.history} product={product}/>}
-        
+        {isAdmin && (
+          <EditProductForm history={this.props.history} product={product} />
+        )}
       </div>
     );
   }
@@ -66,7 +65,6 @@ const mapState = function(state, ownProps) {
     currentUser: state.user
   };
 };
-
 
 const mapDispatch = function(dispatch, ownProps) {
   return {

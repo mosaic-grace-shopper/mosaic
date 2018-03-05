@@ -27,7 +27,8 @@ async function seed() {
     User.create({ email: 'roxie@roxie.com', password: '123', isAdmin: true }),
     User.create({ email: 'john@john.com', password: '123' }),
     User.create({ email: 'kate@kate.com', password: '123' }),
-    User.create({ email: 'emily@emily.com', password: '123' })
+    User.create({ email: 'emily@emily.com', password: '123' }),
+    User.create({ email: 'jo@jo.com', password: 'starwars', isAdmin: true })
   ])
 
   const categories = await Promise.all([
@@ -57,11 +58,11 @@ async function seed() {
   ])
 
   const orders = await Promise.all([
-    Order.create({ status: 'Saved', total: 6500, shipmentDetailId: 1 }),
-    Order.create({ status: 'Cancelled', total: 6500, shipmentDetailId: 2 }),
-    Order.create({ status: 'Completed', total: 32500, shipmentDetailId: 3 }),
-    Order.create({ status: 'Processing', total: 850, shipmentDetailId: 4 }),
-    Order.create({ status: 'Submitted', total: 1000, shipmentDetailId: 1 })
+    Order.create({ status: 'Saved', total: 6500, userId: 2, shipmentDetailId: 1 }),
+    Order.create({ status: 'Cancelled', total: 6500, userId: 2, shipmentDetailId: 2 }),
+    Order.create({ status: 'Completed', total: 32500, userId: 3, shipmentDetailId: 3 }),
+    Order.create({ status: 'Processing', total: 850, userId: 3, shipmentDetailId: 4 }),
+    Order.create({ status: 'Submitted', total: 1000, userId: 1, shipmentDetailId: 1 })
   ])
 
   const orderLines = await Promise.all([

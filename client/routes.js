@@ -15,7 +15,8 @@ import {
   Checkout,
   CategoryList,
   AddCategory,
-  ConfirmPage
+  ConfirmPage,
+  UserOrder
 } from './components'
 import {me, allProducts, getCartThunk , getCategoriesThunk} from './store'
 
@@ -39,7 +40,8 @@ class Routes extends Component {
         <Route path="/cart" component={Cart} />
         <Route path="/checkout" component={Checkout} />
         <Route path="/order-placed" component={ConfirmPage} />
-
+        <Route path="/orders/users/:id" component={UserOrder} />
+        
         {
           isLoggedIn &&
             <Switch>
