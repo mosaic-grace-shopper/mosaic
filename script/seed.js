@@ -49,18 +49,18 @@ async function seed() {
     Product.create({  artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
   ])
 
-  const orders = await Promise.all([
-    Order.create({ status: 'Created', total: 6500 }),
-    Order.create({ status: 'Cancelled', total: 10000 }),
-    Order.create({ status: 'Completed', total: 32500 }),
-    Order.create({ status: 'Processing', total: 850 }),
-  ])
-
   const shipmentDetails = await Promise.all([
     ShipmentDetails.create({ confirmationEmail: 'annabel@annabel.com', recipientName: 'Annabel Lau', shippingAddress: '5 Hanover Square, Floor 25, New York, NY 10004' }),
     ShipmentDetails.create({ confirmationEmail: 'roxie@roxie.com', recipientName: 'Roxie Turner', shippingAddress: '6 Hanover Square, Floor 25, New York, NY 10004' }),
     ShipmentDetails.create({ confirmationEmail: 'johanna@johanna.com', recipientName: 'Johanna Fulghum', shippingAddress: '7 Hanover Square, Floor 25, New York, NY 10004' }),
     ShipmentDetails.create({ confirmationEmail: 'dhara@dhara.com', recipientName: 'Dhara Naik', shippingAddress: '8 Hanover Square, Floor 25, New York, NY 10004' }),
+  ])
+
+  const orders = await Promise.all([
+    Order.create({ status: 'Created', total: 6500, shipmentDetailId: 1 }),
+    Order.create({ status: 'Cancelled', total: 10000, shipmentDetailId: 2 }),
+    Order.create({ status: 'Completed', total: 32500, shipmentDetailId: 3 }),
+    Order.create({ status: 'Processing', total: 850, shipmentDetailId: 4 }),
   ])
 
   const orderLines = await Promise.all([

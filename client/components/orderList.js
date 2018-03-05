@@ -11,18 +11,16 @@ class OrderList extends Component {
   }
 
   render() {
-    const { orders, user } = this.props;
-    if (!user.isAdmin) return <h1> Only Admin has access to this Page </h1>
-    if (!orders.length) return <div>No Orders found</div>
+    const { orders, user, products, shipmentDetail } = this.props;
+    if (!user.isAdmin) return <h1> Only admins have access to this page </h1>
+    if (!orders.length) return <div>No orders found</div>
     return (
       <div className="orderList">
         <h1>Manage Orders</h1>
         <div className="aOrder">
           {orders.map(order => (
             <div key={order.id}>
-              <Link to={`orders/${order.id}`} className="orderCard">
-                <OrderItem order={order} />
-              </Link>
+                <OrderItem order={order} products={products} />
             </div>
           ))}
         </div>
@@ -35,7 +33,7 @@ class OrderList extends Component {
 /**
  * CONTAINER
  */
-const mapState = ({ orders, user }) => ({ orders, user })
+const mapState = ({ orders, user, products }) => ({ orders, user, products })
 
 const mapDispatch = dispatch => ({
   getAllOrders: () => {

@@ -6,6 +6,7 @@ import productItem from "./productItem";
 class EditProductForm extends Component {
   constructor(props) {
     super(props);
+    console.log('this.props', this.props)
     this.state = {
       artist: this.props.product.artist,
       description: this.props.product.description,
@@ -21,9 +22,10 @@ class EditProductForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleRemove = (productId) => {
-    this.props.removeTheProduct(productId);
-  }
+  // handleRemove = (productId) => {
+  //   this.props.removeTheProduct(productId);
+
+  // }
 
   render() {
     const product = this.props.product
@@ -113,7 +115,7 @@ class EditProductForm extends Component {
           <button type="submit">Edit Product</button>
         </form>
 
-         <button onClick={() => this.handleRemove(productId)}>
+         <button onClick={() => this.props.removeTheProduct(productId)}>
           Delete Product
           </button>
       </div>
@@ -137,8 +139,9 @@ const mapDispatch = (dispatch, ownProps) => ({
     };
     dispatch(updateProductThunk(editedProduct, productId));
   },
-  removeTheProduct: (productId) => {
-    dispatch(deleteProductThunk(productId));
+  removeTheProduct(productId){
+ 
+    dispatch(deleteProductThunk(productId, ownProps.history))
   }
 });
 
