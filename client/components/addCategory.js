@@ -45,6 +45,7 @@ const mapDispatch = (dispatch, ownProps) => {
     return {
         handleFormSubmit: event => {
             event.preventDefault();
+            console.log('these are the category own props', ownProps)
             const newCategory = {
                 name: event.target.name.value,
                 imageURL: event.target.image.value,

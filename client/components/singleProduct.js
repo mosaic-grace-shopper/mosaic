@@ -19,6 +19,8 @@ class SingleProduct extends Component {
     };
   }
   render() {
+
+    console.log("SingleProduct props", this.props)
     const { currentUser } = this.props;
     const product = this.props.singleProduct;
 
@@ -49,7 +51,7 @@ class SingleProduct extends Component {
         <button>
           <Link to="/products">Back to Products</Link>
         </button>
-         {isAdmin && <EditProductForm product={product}/>}
+         {isAdmin && <EditProductForm history={this.props.history} product={product}/>}
         
       </div>
     );
