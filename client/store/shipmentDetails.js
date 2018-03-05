@@ -1,4 +1,5 @@
 import axios from 'axios'
+import history from '../history';
 
 const ADD_SHIPMENT_DETAILS = 'ADD_SHIPMENT_DETAILS'
 
@@ -9,7 +10,11 @@ export const addShipmentDetails = shipmentDetails => ({ type: ADD_SHIPMENT_DETAI
 
 export const addNewShipmentDetailsThunk = (orderDetails) => dispatch => {
     axios.post('/api/shipment-details', orderDetails)
-        .then(res => dispatch(addShipmentDetails(res.data)))
+        .then(res => {
+            dispatch(addShipmentDetails(res.data))
+            history.push('/order-placed')
+
+        })
         .catch(err => console.log(err))
 }
 
