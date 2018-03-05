@@ -26,14 +26,8 @@ class EditProductForm extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    const { product } = this.props;
-    const productId  = this.props.product.id;
-
-=======
     const product = this.props.product
     const productId = this.props.product.id;
->>>>>>> master
     return (
       <div>
         <form className="form-group" onSubmit={this.props.handleClick}>

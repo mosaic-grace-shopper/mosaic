@@ -11,18 +11,6 @@ class ProductItem extends Component {
   render() {
     const { theProduct, currentUser } = this.props;
     return (
-<<<<<<< HEAD
-      <div className="col-md-4">
-        <div className="productItem">
-          <h3>
-            <b>{theProduct.title}</b> by {theProduct.artist}
-          </h3>
-          <h5>
-            ${theProduct.price} - <i>{theProduct.quantity} available</i>
-          </h5>
-          <img src={theProduct.imgUrl} />
-        </div>
-=======
       <div className="productItem">
         <h3>
           <b>{theProduct.title}</b> by {theProduct.artist}
@@ -34,7 +22,6 @@ class ProductItem extends Component {
           ${theProduct.price} - <i>{theProduct.quantity} available</i>
         </h5>
         <img src={theProduct.imgUrl} />
->>>>>>> master
       </div>
     );
   }

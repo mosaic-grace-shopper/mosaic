@@ -52,7 +52,10 @@ export const addProductThunk = (newProduct) => dispatch => {
 
 export const deleteProductThunk = (id) => dispatch => {
   axios.delete(`/api/products/${id}`)
-  .then(() => dispatch(deleteProduct(id)))
+  .then(() => {
+    dispatch(deleteProduct(id))
+    // history.push('/products')
+  })
   .catch(err=> console.error(`Removing product: ${id} unsuccessful.`))
 }
 
