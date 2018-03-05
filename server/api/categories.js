@@ -17,12 +17,12 @@ router.get('/:id', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
     Category.create(req.body)
         .then(newCategory => res.status(201).json(newCategory))
 })
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isAdmin, (req, res, next) => {
     Category.update(req.body, {
         where: {
             id: req.params.id
