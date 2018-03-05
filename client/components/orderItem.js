@@ -2,30 +2,43 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteOrderThunk } from '../store/orders'
 
-class OrderItem extends Component {
-    constructor(props) {
-        super(props);
-    }
+function OrderItem(props) {
 
-    render() {
-        const { order } = this.props;
-        return (
-            <div className="userItem">
-                <p> {this.props.order.id}
-                    &nbsp;&nbsp;&nbsp;
-         {this.props.order.status}
-                </p>
-                <button onClick={() => this.props.handleDeleteOrder(order.id)}>
-                    Delete
-          <span />
+    const { order, products } = props
+
+    return (
+        <div className="list-group-item , btn-toolbar">
+            <ul><li><b>Order Id:</b> #{order.id}</li>
+                <li><b>Status:</b> {order.status}</li>
+                <li><b>Total:</b> ${order.total}</li>
+                <li><b>Email:</b> {order.shipmentDetail.confirmationEmail}</li>
+                <li><b>Recipient Name:</b> {order.shipmentDetail.recipientName}</li>
+                <li><b>Shipping Address:</b> {order.shipmentDetail.shippingAddress}</li>
+            </ul>
+            <button className="btn btn-outline-danger btn-sm" onClick={() => props.handleDeleteOrder(order.id)}>
+                Delete
                 </button>
-                <button >
-                    Edit
-          <span />
-                </button>
-            </div>
-        );
-    }
+
+            {
+                order.orderlines.map(orderline => {
+                    return (<ul key={orderline.id}>
+                        <span>
+                            &nbsp;&nbsp;&nbsp;
+                            <h3> {products && products.find(product => product.id === orderline.productId).title}</h3>
+                            Line Item Id: {orderline.productId}
+                            &nbsp;&nbsp;&nbsp;
+                            Line Item Price: ${orderline.linePrice}
+                            &nbsp;&nbsp;&nbsp;
+                            Line Item Quantity: {orderline.quantity}
+                            &nbsp;&nbsp;&nbsp;
+                             </span>
+
+                    </ul>
+                    )
+                })
+            }
+        </div>
+    );
 }
 
 const mapDispatch = dispatch => ({
