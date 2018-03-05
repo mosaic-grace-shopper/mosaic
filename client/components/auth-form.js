@@ -76,13 +76,17 @@ const mapDispatch = (dispatch) => {
       }
 
       dispatch(auth(email, password, formName))
+
+      //dispatch cart to order thunks here
+      //trying to chain thunks, take return values from createOrderThunk
+      //then send that into orderLineThunk to properly associate orderLine with Order
+      //might need to all go inside a dispatch? that threw some weird errors but... seems to be the pattern from my research
+      //currently results from the promise.resolve are undefined, but both thunks are being dispatched.
+      //finally we'll grab values from the cart instead of hardcoded objects created for testing purposes above ^
       console.log('Ordering?');
       Promise.resolve(dispatch(createOrderThunk(order)))
       .then(results => console.log('results are: ', results));
-      // console.log(dispatch(createOrderThunk(order)))
       dispatch(createOrderLineThunk(orderLine))
-      // .then(res => console.log('returns: ', res))
-      //dispatch cart to order thunk here
     }
   }
 }
