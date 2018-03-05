@@ -23,10 +23,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, categories}) => (
             </div>
           </div>
           <Link to="/cart">Cart</Link>
-          {isAdmin ? <Link to="/orders"> Orders </Link> : <span />}
+          {isAdmin ? <Link to="/orders"> Orders </Link> : <span /> }
           {isAdmin ? <Link to="/users"> Users </Link> : <span />}
           {isAdmin ? <Link to="/categories"> Categories </Link> : <span />}
-
+       
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -44,6 +44,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, categories}) => (
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/cart">Cart</Link>
+            <Link to="/orders"> My Orders</Link>
           </div>
         )}
     </nav>
