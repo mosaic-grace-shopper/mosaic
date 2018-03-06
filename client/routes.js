@@ -80,7 +80,6 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
-      // dispatch(allUsersThunk()) //this will cause an error b/c you must be an admin to see this
       dispatch(allProducts())
       dispatch(getCartThunk())
       dispatch(getCategoriesThunk())

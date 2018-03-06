@@ -9,7 +9,7 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories }) => (
   <div>
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <a className="navbar-brand" href="#">
-    Mosaic
+    <Link to="/" style={{ textDecoration: 'none' }}>Mosaic</Link>
   </a>
       {isLoggedIn ? (
         <div>

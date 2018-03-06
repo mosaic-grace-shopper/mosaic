@@ -2,8 +2,38 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { allProducts } from '../store';
+import RaisedButton from 'material-ui/RaisedButton';
+import FontIcon from 'material-ui/FontIcon'
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import ProductItem from './productItem';
 import NewProductForm from './newProduct';
+
+const styles = {
+  button: {
+    margin: 12,
+  },
+  card: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 200,
+  },
+  exampleImageInput: {
+    cursor: 'pointer',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    right: 0,
+    left: 0,
+    width: '100%',
+    opacity: 0,
+  },
+  container : {
+    flex : 1,
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  }
+};
 
 class ProductList extends Component {
   componentDidMount() {
@@ -17,7 +47,7 @@ class ProductList extends Component {
 
     if (!products.length) return <div>No products found</div>;
     return (
-      <div className="productList">
+      <div className="container">
         <h1>Featured Artists</h1>
         <div className="row">
 
