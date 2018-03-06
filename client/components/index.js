@@ -16,4 +16,6 @@ export {default as CategoryList} from './categoryList'
 export {default as AddCategory} from './addCategory'
 export {default as ConfirmPage} from './confirmPage'
 export {default as ProductsByCategory} from './productsByCategory'
+export {default as Reviews} from './reviews'
 export {default as SplashPage } from './splash'
+
