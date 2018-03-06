@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  height: 100%;
 }
 
 a {
@@ -19,6 +20,37 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+ .styleSection {
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('https://res.cloudinary.com/artwork-archive/image/upload/t_jpg_large/v1/user_4446/JillMcLean_BeyondAllDoubt_OilCanvas_43x36_2014_yxcbjr');
+}
+/* 
+.Splash {
+  flex: 1 0 auto;  
+} */
+
+/* .appComponent {
+  display: flex;
+} */
+
+
+.center-div
+{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 3px;
+}
+
 
 .dropbtn {
   background-color:#f9f9f9;
