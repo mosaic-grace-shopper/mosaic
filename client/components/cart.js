@@ -18,7 +18,7 @@ class Cart extends Component {
         const logged = this.props.isLoggedIn;
         const meUser = this.props.user;
         const orders = this.props.orders;
-        // console.log(meUser, orders);
+        console.log(meUser, orders);
         if (!cart) return <div>There are no items in your cart.</div>
 
         if (!logged) {
@@ -41,7 +41,7 @@ class Cart extends Component {
                                         <h4>Unit Price: ${filteredProduct.price} </h4>
 
                                         <h4>Price: $
-                        {filteredProduct.price * cart[filteredProduct.id]}
+                                            {filteredProduct.price * cart[filteredProduct.id]}
                                         </h4>
                                     </li>
                                 </ul>
@@ -49,6 +49,7 @@ class Cart extends Component {
                             )
                         }
                         <h1>Total: </h1>
+                        {/*gotta finish totals!*/}
                         <button onClick={this.props.handleClick}>Empty your cart</button>
                     </div>
                     <Link to="/products"><button>Back to Products</button></Link>
@@ -59,7 +60,10 @@ class Cart extends Component {
             return (
                 <div>
                     <h1>Get the cart from the DB PLZ.</h1>
-                    <h2>Hello, {meUser && meUser.name}</h2>
+                    <h2>Hello, {meUser && meUser.email}</h2>
+                    <h3>Your order is {orders && orders[0].status}</h3>
+                    <h4>Your total is {orders && orders[0].total}</h4>
+                    <h5>You are purchasing id#: {orders && orders[0].orderlines[0].productId}</h5>
                     {/* Get userID and get cart*/}
                 </div>
             )
