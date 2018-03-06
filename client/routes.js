@@ -16,7 +16,8 @@ import {
   CategoryList,
   AddCategory,
   ConfirmPage,
-  ProductsByCategory
+  ProductsByCategory,
+  SplashPage
 } from './components'
 import {me, allProducts, getCartThunk, getCategoriesThunk} from './store'
 
@@ -33,6 +34,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={SplashPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={ProductList} />
