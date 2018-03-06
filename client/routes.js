@@ -17,7 +17,9 @@ import {
   AddCategory,
   ConfirmPage,
   ProductsByCategory,
+  Reviews,
   SplashPage
+
 } from './components'
 import {me, allProducts, getCartThunk, getCategoriesThunk} from './store'
 
