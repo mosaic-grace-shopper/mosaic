@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { Order, OrderLine, ShipmentDetails } = require('../db/models')
+const { Order, OrderLine, ShipmentDetails , Product } = require('../db/models')
 
 const { isAdmin, isLoggedIn } = require('./utils')
 
@@ -8,7 +8,10 @@ module.exports = router
 
 router.get('/', (req, res, next) => {
   Order.findAll({
-    include: [{ all: true }, {model: ShipmentDetails}]
+    include: [ {model: ShipmentDetails},  {
+      model: OrderLine,
+      include: [Product]
+  },{ all: true }]
     })
     .then(orders => res.json(orders))
     .catch(next)

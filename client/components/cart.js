@@ -64,10 +64,10 @@ class Cart extends Component {
             return (
                 <div>
                 <h1>My Cart</h1>
-                    <div className="table">
+                    <div className="table" >
                     <thead>
                 <tr>
-                    <th scope="col"> Line # </th>
+                    <th scope="col" > Line # </th>
                     <th scope="col"> Product </th>
                     <th scope="col">Discription </th>
                     <th scope="col">Artist </th>
@@ -76,64 +76,32 @@ class Cart extends Component {
                     <th scope="col">Line Total</th>
                 </tr>
                 </thead>
+                <tbody>
                 {
-                    orders && orders[0] ? orders[0].orderlines.map(orderline => (
-                        <tr key={orderline.id}>
-                                <th scope="row">1</th>
-                                <td>{orderline.status}</td>
-                                <td>{orderline.total}</td>
-                                <td>{orderline.product.title}</td>
-                                <td>{orderline.product.description}</td>
-                                <td>{orderline.product.artist}</td>
-                                <td>{orderline.product.price}</td>
-                                <td>${orderline.price}</td>
-                        </tr>
-                    ))
-                    : <div> <h4>No Pending Orders for you</h4>
+                    orders ? orders.filter(order => order.userId === meUser.id).map(order => (order.orderlines.map(orderline => (
+                           <tr key={orderline.id}>
+                            <th scope="row">1</th>
+                            <td>{orderline.product.title}</td>
+                            <td>{orderline.product.description}</td>
+                            <td>{orderline.product.artist}</td>
+                            <td>${orderline.product.price}</td>
+                            <td > <form onSubmit={this.props.handleSubmit}>
+                            <input type="number" name="quantity" className="input-sm" step="1" defaultValue={orderline.quantity} min="0" max="100"/>
+                            <button>Update</button>
+                            <td> {orderline.lineTotal} </td>
+                            </form> </td>
+                         </tr>
+                    )))) 
+                   : <div> <h4>No Pending Orders for you</h4>
                     </div>
-                } 
-
-                  {/*
-                        <h1>Get the cart from the DB PLZ.</h1>
-                    <h2>Hello, {meUser && meUser.email}</h2>
-                    <h3>Your order is {orders && orders[0].status}</h3>
-                    <h4>Your total is {orders && orders[0].total}</h4>
-                    <h5>You are purchasing id#: {orders && orders[0].orderlines[0].productId}</h5>)
-                    
-                  */}
-                    
+                }
+                </tbody>
                 </div>
              </div>
             )
         }
     }
 }
-
-
-
-// (filteredProduct => (
-//     <ul key={filteredProduct.id}>
-//         <li key={filteredProduct.id}><h3><em>{filteredProduct.title}</em> by {filteredProduct.artist}</h3>
-//             <h4>
-//                 Quantity: {cart[filteredProduct.id]}
-//                 <form onSubmit={this.props.handleSubmit}>
-//                     <input type="hidden" name="id" value={filteredProduct.id} readOnly />
-//                     <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
-//                     <button>update quantity</button>
-//                 </form>
-//             </h4>
-//             <h4>Unit Price: ${filteredProduct.price} </h4>
-
-//             <h4>Price: $
-// {filteredProduct.price * cart[filteredProduct.id]}
-//             </h4>
-//         </li>
-//     </ul>
-// )
-// )
-// }
-
-
 
 const mapState = function (state) {
     return {
