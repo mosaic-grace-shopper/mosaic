@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-import { updateCartThunk } from "../store/cart";
-import  EditProductForm   from "./editProduct";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
+import { updateCartThunk } from '../store/cart';
+import  EditProductForm   from './editProduct';
 
 
 // probably needs to be a stateful component?
@@ -10,18 +10,19 @@ class SingleProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      artist: "",
-      title: "",
-      description: "",
+      artist: '',
+      title: '',
+      description: '',
       price: 0,
       quantity: 0,
-      imgUrl: ""
+      imgUrl: ''
     };
   }
   render() {
 
     const { currentUser } = this.props;
     const product = this.props.singleProduct;
+    console.log('it is ', currentUser);
 
     if (!product) return <div />;
     const isAdmin = !!currentUser.isAdmin
@@ -36,7 +37,7 @@ class SingleProduct extends Component {
         <h4>
           <em>{product.quantity} available</em>
         </h4>
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={this.props.handleAnonSubmit}>
           <input
             type="number"
             name="quantity"
@@ -59,6 +60,7 @@ class SingleProduct extends Component {
 
 const mapState = function(state, ownProps) {
   return {
+    isLoggedIn: !!state.user.id,
     singleProduct: state.products.find(
       product => product.id === +ownProps.match.params.id
     ),
@@ -69,13 +71,24 @@ const mapState = function(state, ownProps) {
 
 const mapDispatch = function(dispatch, ownProps) {
   return {
-    handleSubmit(evt) {
+    handleAnonSubmit(evt) {
       evt.preventDefault();
       const newId = ownProps.match.params.id;
       console.log(ownProps.match.params.id);
       const orderLine = {
         [newId]: +evt.target.quantity.value
       };
+      dispatch(updateCartThunk(orderLine));
+    },
+
+    handleLoggedInSubmit(evt) {
+      evt.preventDefault();
+
+      const newId = ownProps.match.params.id;
+      // console.log(ownProps.match.params.id);
+      // const orderLine = {
+      //   [newId]: +evt.target.quantity.value
+      // };
       dispatch(updateCartThunk(orderLine));
     }
   };
