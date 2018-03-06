@@ -48,6 +48,26 @@ class ProductList extends Component {
     if (!products.length) return <div>No products found</div>;
     return (
       <div className="container">
+      <Card>
+      <CardMedia
+                  overlay={<CardTitle title="All Campuses" subtitle="List of all campuses under YDS Academy" />} >
+                  <img src="images/campus2.jpg" alt="" />
+                </CardMedia>
+              <CardTitle title="Welcome to YDS Academy"/>
+              <CardText>
+                Welcome to YDS Academy. Get to know us.
+                  The YDS Academy is one of the top public research universities in the nation, with more than 30,000 students pursuing answers to critical questions in labs, lecture halls, and the community. Knowledge exploration throughout the Academy's network of campuses is united by a culture of innovation. 
+              </CardText>
+              <CardActions>
+              <RaisedButton 
+                  label="Add Campus"
+                  onClick={this.handleAddNewCampusClick} 
+                  secondary={true}
+                  style={styles.button}
+                  icon={<FontIcon className="muidocs-icon-custom-github" />}
+              />
+              </CardActions>
+            </Card>
         <h1>Featured Artists</h1>
         <div className="row">
 
@@ -61,7 +81,6 @@ class ProductList extends Component {
                   <ProductItem theProduct={product} />
                 </Link>
               ))}
-
           </div>
         </div>
         {isAdmin && <NewProductForm />}
