@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import RaisedButton from "material-ui/RaisedButton";
 import FontIcon from "material-ui/FontIcon";
+
 import {
   Card,
   CardActions,
@@ -22,18 +23,20 @@ const styles = {
   }
 };
 
-function ProductItem (props) {
-    console.log(props)
-    const { product } = props;
-    return (
-      <div className="container">
+function ProductItem(props) {
+  console.log(props);
+  const { product } = props;
+  return (
+    <div className="container">
+    <div>
         <Card>
           <h3>
-            <CardTitle title={product.title} /> by {product.artist}
+            <CardTitle title={product.title} /> 
+            
+
           </h3>
-          <h5>
-            ${product.price} - <i>{product.quantity} available</i>
-          </h5>
+          <img src={product.imgUrl} />
+        
           <CardActions>
             <RaisedButton
               label="View Details"
@@ -41,12 +44,18 @@ function ProductItem (props) {
               secondary={true}
               style={styles.button}
             />} />
-            <img src={product.imgUrl} />
-          </CardActions>
+            </CardActions>
+            <CardText>
+            Artist: {product.artist}
+            <br/>
+            ${product.price}
+            <br/>
+             <i>{product.quantity} available</i>
+            </CardText>
         </Card>
       </div>
-    )
-
+    </div>
+  );
 }
 
 const mapState = state => ({

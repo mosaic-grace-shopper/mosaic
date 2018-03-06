@@ -1,3 +1,4 @@
+
 body {
   font-family: 'Lato', sans-serif;
   height: 100%;
@@ -20,6 +21,12 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+@font-face {
+  font-family: 'Lato', sans-serif;
+  src: url('https://fonts.googleapis.com/css?family=Lato')
+}
+
 
  .styleSection {
   height: 100%;
