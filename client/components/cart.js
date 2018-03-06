@@ -18,30 +18,34 @@ class Cart extends Component {
 
         return (
             <div>
-                <div>
-                    <h1>My Cart</h1>
+            <h1>My Cart</h1>
+                <div className="table">
+                <thead>
+                <tr>
+                  <th scope="col"> Line # </th>
+                  <th scope="col"> Product </th>
+                  <th scope="col">Discription </th>
+                  <th scope="col">Artist </th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Line Total</th>
+                </tr>
+              </thead>
+              <tbody>
                     {
+                       { console.log(cart)}
                         products.filter(product => cartItems.includes(String(product.id))).map(filteredProduct => (
-                            <ul key={filteredProduct.id}>
-                                <li key={filteredProduct.id}><h3><em>{filteredProduct.title}</em> by {filteredProduct.artist}</h3>
-                                    <h4>
-                                        Quantity: {cart[filteredProduct.id]}
-                                        <form onSubmit={this.props.handleSubmit}>
-                                            <input type="hidden" name="id" value={filteredProduct.id} readOnly />
-                                            <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
-                                            <button>update quantity</button>
-                                        </form>
-                                    </h4>
-                                    <h4>Unit Price: ${filteredProduct.price} </h4>
-
-                                    <h4>Price: $
-                    {filteredProduct.price * cart[filteredProduct.id]}
-                                    </h4>
-                                </li>
-                            </ul>
-                        )
-                        )
-                    }
+                                    <tr key={filteredProduct.id}>
+                                    <th scope="row">1</th>
+                                    <td>{filteredProduct.title}</td>
+                                    <td>{filteredProduct.description}</td>
+                                    <td>{filteredProduct.artist}</td>
+                                    <td>${filteredProduct.price}</td>
+                                    <td> {cart[filteredProduct.id].quantity}</td>
+                                    <td> {filteredProduct.price * cart[filteredProduct.id]}</td>
+                                  </tr> ))
+                        }
+                    </tbody>
                     <h1>Total: </h1>
                     <button onClick={this.props.handleClick}>Empty your cart</button>
                 </div>
