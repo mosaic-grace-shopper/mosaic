@@ -16,7 +16,8 @@ import {
   CategoryList,
   AddCategory,
   ConfirmPage,
-  ProductsByCategory
+  ProductsByCategory,
+  Reviews
 } from './components'
 import {me, allProducts, getCartThunk, getCategoriesThunk} from './store'
 
