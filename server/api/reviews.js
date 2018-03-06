@@ -20,8 +20,8 @@ router.get('/:id', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/', isLoggedIn, (req, res, next) => {
-    Review.post(req.body)
+router.post('/', (req, res, next) => {
+    Review.create(req.body)
         .then(review => res.json(review)
         .catch(next))
 })
