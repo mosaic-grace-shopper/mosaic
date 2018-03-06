@@ -17,13 +17,22 @@ class Reviews extends Component {
                 <h1>Reviews</h1>
                 <br />
                 <ul>
-                    {reviewsToDisplay.map(review => <li key={review.id}>{review.title}</li>)
+                    {reviewsToDisplay && reviewsToDisplay.map(review => {
+                        return (
+                            <span key={review.id}><h3>{review.title}</h3>
+                                <p />
+                                <h5>Rating: {review.stars}</h5>
+                                <p />
+                                <p>{review.text}</p></span>
+                        )
+
+                    })
                 }
                 </ul>
-                {reviewsToDisplay.map(review => <h5 key={review.id}>Rating: {review.stars}</h5>)}
-                {reviewsToDisplay.map(review => <p key={review.id}>{review.text}</p>)}
+
                 <br />
                 <hr />
+                <h1>Write a Review</h1>
                 <form onSubmit={(evt) => this.props.handleSubmit(evt, product)} >
                     <div>
                         <label htmlFor="title">
@@ -77,7 +86,7 @@ const mapDispatch = function (dispatch) {
         handleFetchReviews() {
             dispatch(fetchReviews())
         },
-        handleSubmit(evt, product){
+        handleSubmit(evt, product) {
             evt.preventDefault()
             const newReview = {
                 title: evt.target.title.value,
