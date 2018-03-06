@@ -80,6 +80,26 @@ async function seed() {
     Review.create({ title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1 }),
     Review.create({ title: 'Awesome', text: 'This photo is so artsy!', stars: 4, userId: 2, productId: 2 }),
     Review.create({ title: 'Huggable', text: 'I want to take a nap on this bear.', stars: 5, userId: 3, productId: 6 }),
+    Review.create({ title: 'Eh', text: 'It\'s pretty but kind of boring.', stars: 3, userId: 1, productId: 4 }),
+    Review.create({ title: 'I love it!', text: 'So original! The artist is so talented.', stars: 5, userId: 3, productId: 5 }),
+    Review.create({ title: 'Absolutely amazing', text: 'I wish I could buy it again and again.', stars: 5, userId: 2, productId: 3 }),
+    Review.create({ title: 'It\'s okay', text: 'It\'s pretty but too expensive. Not worth it', stars: 3, userId: 3, productId: 7 }),
+    Review.create({ title: 'BEST ARTWORK EVER', text: 'I love this so much!!! Everyone always gives me compliments when they come over. So happy!', stars: 5, userId: 1, productId: 8 }),
+    Review.create({ title: 'Perfect collector\'s piece', text: 'This is a masterpiece. So worth it.', stars: 5, userId: 3, productId: 9 }),
+    Review.create({ title: 'I don\'t love it', text: 'I bought this on a whim but I kind of regret it now. Not much wow factor.', stars: 2, userId: 5, productId: 10 }),
+
+
+
+    Review.create({ title: 'NOW THIS IS ART', text: 'If you don\'t buy this piece, you\'ll regret it.', stars: 5, userId: 1, productId: 1 }),
+    Review.create({ title: 'Sooooo awesome', text: 'All my friends rave about it!', stars: 5, userId: 2, productId: 2 }),
+    Review.create({ title: 'Meh', text: 'This is so ugly. Why did I buy it? Are there returns?', stars: 1, userId: 3, productId: 3 }),
+    Review.create({ title: 'So colorful and pretty', text: 'I loooove it', stars: 5, userId: 1, productId: 4 }),
+    Review.create({ title: 'Very nice', text: 'I\'m an art collector and I\'m so glad I bought this piece.', stars: 5, userId: 3, productId: 5 }),
+    Review.create({ title: 'SO CUTEEEE', text: 'I bought this piece for my daughter\'s room and she loves it!', stars: 5, userId: 2, productId: 6 }),
+    Review.create({ title: 'Perfect', text: 'Perfect in every way. So glad Mosaic exists', stars: 5, userId: 3, productId: 7 }),
+    Review.create({ title: 'I don\'t love it', text: 'It\'s all right', stars: 3, userId: 1, productId: 8 }),
+    Review.create({ title: 'Beautiful', text: 'Simply beautiful. It looks so gorgeous on my white walls.', stars: 5, userId: 3, productId: 9 }),
+    Review.create({ title: 'Excellent Buy!', text: 'One of the best decisions I ever made! I put it in my office and it brightens my day!!', stars: 2, userId: 5, productId: 10 }),
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
