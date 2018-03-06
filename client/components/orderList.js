@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { allOrdersThunk } from '../store';
-import OrderItem from './orderItem'
+import OrderItem from './orderItem';
+import OrderUser from './orderUser';
 
 class OrderList extends Component {
 
@@ -12,14 +13,13 @@ class OrderList extends Component {
 
   render() {
     const { orders, user, products, shipmentDetail } = this.props;
-    if (!user.isAdmin) return <h1> Only admins have access to this page </h1>
     if (!orders.length) return <div>No orders found</div>
-    console.log(orders, "NEW ORDERS!")
+    const myOrders = user.isAdmin ? orders : orders.filter(order => order.userId === user.id) 
     return (
       <div className="orderList">
         <h1>Manage Orders</h1>
         <div className="aOrder">
-          {orders.map(order => (
+        { myOrders.map(order => (
             <div key={order.id}>
               <OrderItem order={order} products={products} />
             </div>
