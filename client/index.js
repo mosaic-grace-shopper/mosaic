@@ -5,6 +5,7 @@ import {Router} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 
@@ -12,10 +13,12 @@ import App from './app'
 import './socket'
 
 ReactDOM.render(
-  <Provider store={store}>
+  <MuiThemeProvider >
+  <Provider store = {store}>
     <Router history={history}>
       <App />
     </Router>
-  </Provider>,
+    </Provider>
+  </MuiThemeProvider>,
   document.getElementById('app')
 )
