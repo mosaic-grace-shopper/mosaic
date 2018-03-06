@@ -20,10 +20,6 @@ class SingleProduct extends Component {
     };
   }
 
-  componentDidMount() {
-
-  }
-
   render() {
     const { currentUser } = this.props;
     const product = this.props.singleProduct;
@@ -141,7 +137,7 @@ const mapDispatch = function(dispatch, ownProps) {
 
       console.log(updatedOrderLine);
 
-      updateOrderLineThunk(updatedOrderLine);
+      dispatch(updateOrderLineThunk(updatedOrderLine));
 
       //update orderline array on orders....
       //call updateOrderThunk with --- maybe not

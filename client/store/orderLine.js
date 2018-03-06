@@ -39,7 +39,6 @@ export const createOrderLineThunk = orderLine => dispatch => {
 }
 
 export const updateOrderLineThunk = orderLine => dispatch => {
-  console.log('updating orderLine ?')
   axios.put(`/api/orderLine/${orderLine.id}`, orderLine)
     .then(res => {
       dispatch(updateOrderLine(res.data))
@@ -66,7 +65,6 @@ export default function (state = currentOrderLines, action) {
       let index = state.findIndex(orderLine => orderLine.id === action.id)
       let orderLineCopy = state.slice(0)
       orderLineCopy[index] = action.orderLine
-      console.log('UPDATING ORDER LINE')
       return orderLineCopy
     case DELETE_ORDER_LINE:
       console.log(action)
