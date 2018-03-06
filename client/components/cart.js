@@ -16,6 +16,9 @@ class Cart extends Component {
         const products = this.props.products
         const cartItems = Object.getOwnPropertyNames(cart)
         const logged = this.props.isLoggedIn;
+        const meUser = this.props.user;
+        const orders = this.props.orders;
+        // console.log(meUser, orders);
         if (!cart) return <div>There are no items in your cart.</div>
 
         if (!logged) {
@@ -56,6 +59,8 @@ class Cart extends Component {
             return (
                 <div>
                     <h1>Get the cart from the DB PLZ.</h1>
+                    <h2>Hello, {meUser && meUser.name}</h2>
+                    {/* Get userID and get cart*/}
                 </div>
             )
         }
@@ -64,6 +69,8 @@ class Cart extends Component {
 
 const mapState = function (state) {
     return {
+        orders: state.orders,
+        user: state.user,
         cart: state.cart,
         products: state.products,
         isLoggedIn: !!state.user.id,
