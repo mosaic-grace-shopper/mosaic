@@ -95,6 +95,9 @@ const mapDispatch = function (dispatch) {
                 productId: product.id
             }
             dispatch(addReviewThunk(newReview))
+            evt.target.title.value = ''
+            evt.target.text.value = ''
+            evt.target.stars.value = ''
         }
     }
 }
