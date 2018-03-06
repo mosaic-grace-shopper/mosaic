@@ -33,7 +33,6 @@ class Cart extends Component {
               </thead>
               <tbody>
                     {
-                       { console.log(cart)}
                         products.filter(product => cartItems.includes(String(product.id))).map(filteredProduct => (
                                     <tr key={filteredProduct.id}>
                                     <th scope="row">1</th>
@@ -41,7 +40,11 @@ class Cart extends Component {
                                     <td>{filteredProduct.description}</td>
                                     <td>{filteredProduct.artist}</td>
                                     <td>${filteredProduct.price}</td>
-                                    <td> {cart[filteredProduct.id].quantity}</td>
+                                    <td> <form onSubmit={this.props.handleSubmit}>
+                                    <input type="hidden" name="id" value={filteredProduct.id} readOnly />
+                                    <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
+                                    <button>update quantity</button>
+                                    </form> </td>
                                     <td> {filteredProduct.price * cart[filteredProduct.id]}</td>
                                   </tr> ))
                         }
@@ -54,6 +57,32 @@ class Cart extends Component {
         )
     }
 }
+
+
+
+// (filteredProduct => (
+//     <ul key={filteredProduct.id}>
+//         <li key={filteredProduct.id}><h3><em>{filteredProduct.title}</em> by {filteredProduct.artist}</h3>
+//             <h4>
+//                 Quantity: {cart[filteredProduct.id]}
+//                 <form onSubmit={this.props.handleSubmit}>
+//                     <input type="hidden" name="id" value={filteredProduct.id} readOnly />
+//                     <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
+//                     <button>update quantity</button>
+//                 </form>
+//             </h4>
+//             <h4>Unit Price: ${filteredProduct.price} </h4>
+
+//             <h4>Price: $
+// {filteredProduct.price * cart[filteredProduct.id]}
+//             </h4>
+//         </li>
+//     </ul>
+// )
+// )
+// }
+
+
 
 const mapState = function (state) {
     return {
