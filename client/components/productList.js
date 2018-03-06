@@ -20,19 +20,22 @@ class ProductList extends Component {
       <div className="productList">
         <h1>Featured Artists</h1>
         <div className="row">
-
-            <div className="aProduct">
+      
               {products.map(product => (
+
+                <div className="col-sm-4" key={product.id}>
                 <Link
                   to={`products/${product.id}`}
                   key={product.id}
                   className="productCard"
                 >
-                  <ProductItem theProduct={product} />
+                  <ProductItem product={product} />
                 </Link>
+                </div>
+
               ))}
 
-          </div>
+  
         </div>
         {isAdmin && <NewProductForm />}
       </div>
