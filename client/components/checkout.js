@@ -83,6 +83,7 @@ const mapDispatch = function(dispatch){
                 confirmationEmail: evt.target.confirmationEmail.value
             }
             dispatch(addNewShipmentDetailsThunk(newShipment))
+            //update product thunk for each thing in prodsAfter();
         }
     }
 }
