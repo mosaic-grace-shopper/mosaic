@@ -61,7 +61,7 @@ class SingleProduct extends Component {
             <Link to="/products">Back to Products</Link>
           </button>
           {isAdmin && <EditProductForm history={this.props.history} product={product} />}
-
+          {<Reviews product={product} />}
         </div>
       );
     } else if (this.props.isLoggedIn) {
