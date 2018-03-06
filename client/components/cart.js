@@ -56,16 +56,20 @@ class Cart extends Component {
                 </div>
             )
         }
-        else {
+        else if (orders[0]) {
             return (
                 <div>
-                    <h1>Get the cart from the DB PLZ.</h1>
+                    <h1>Your cart</h1>
                     <h2>Hello, {meUser && meUser.email}</h2>
-                    <h3>Your order is {orders && orders[0].status}</h3>
-                    <h4>Your total is {orders && orders[0].total}</h4>
-                    <h5>You are purchasing id#: {orders && orders[0].orderlines[0].productId}</h5>
+                    <h3>Your order is {orders[0].status}</h3>
+                    <h4>Your total is {orders[0].total}</h4>
+                    <h5>You are purchasing id#: {orders[0].orderlines[0] && orders[0].orderlines[0].productId}</h5>
                     {/* Get userID and get cart*/}
                 </div>
+            )
+        } else {
+            return (
+                <div><h1>Go buy some things lunkhead.</h1></div>
             )
         }
     }
