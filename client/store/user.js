@@ -36,7 +36,7 @@ export const auth = (email, password, method, order) => dispatch =>
         order.userId = theUser.user.id;
         dispatch(createOrderThunk(order));
         dispatch(deleteCartThunk());
-        history.push('/home');
+        history.push('/home')
       },
       authError => {
         // rare example: a good use case for parallel (non-catch) error handler

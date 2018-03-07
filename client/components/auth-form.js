@@ -2,13 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import history from '../history';
+
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error, cart} = props
-
   const orderLineArray = [];
   for (var key in cart) {
     const newObj = {
@@ -82,7 +83,6 @@ const mapDispatch = (dispatch) => {
     }
   }
 }
-
 export const Login = connect(mapLogin, mapDispatch)(AuthForm)
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 
