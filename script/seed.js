@@ -37,16 +37,16 @@ async function seed() {
   ])
 
   const products = await Promise.all([
-    Product.create({ artist: 'Bob', title: 'Painting in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3 }),
-    Product.create({ artist: 'Sam', title: 'Prince and the Swan', description: 'A photo', price: 1500, quantity: 8, categoryId: 1 }),
-    Product.create({artist: 'Wanda', title: 'The fish with her name', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2 }),
-    Product.create({ artist: 'Janet', title: 'Painting in Red', description: 'A painting', price: 250, quantity: 10, categoryId: 3 }),
-    Product.create({ artist: 'Hito', title: 'Landscape of Stuff', description: 'A photo', price: 50, quantity: 40, categoryId: 1 }),
-    Product.create({  artist: 'Mike', title: 'Humongous Teddy Bear', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2 }),
-    Product.create({artist: 'Borna', title: 'T-shirt Canvas', description: 'A painting', price: 30000, quantity: 2, categoryId: 3 }),
-    Product.create({ artist: 'Jasmine', title: 'Five Leaves', description: 'Acrylic Cup', price: 4300, quantity: 1, categoryId: 2 }),
-    Product.create({  artist: 'Juliana', title: 'Self Portrait', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
-    Product.create({  artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
+    Product.create({ artist: 'Mark Rothko', title: 'No. 14 White and Greens in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3, imgUrl: 'http://www.artexpress.ws/UploadPic/Mark%20Rothko/big/No%2014%20White%20and%20Greens%20in%20Blue.jpg' }),
+    Product.create({ artist: 'Sam McKinniss', title: 'Obama (Bubble)', description: 'A painting', price: 1500, quantity: 8, categoryId: 3, imgUrl: 'http://1vze7o2h8a2b2tyahl3i0t68.wpengine.netdna-cdn.com/wp-content/uploads/2016/10/10-16_w-qa_Sam-McKinnis_2.jpg' }),
+    Product.create({artist: 'John Chamberlain', title: 'Glossalia Adagio', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2, imgUrl: 'http://web.guggenheim.org/exhibitions/chamberlain/images/1984_x.2011.127_chamberlain_a.jpg' }),
+    Product.create({ artist: 'Frida Khalo', title: 'Self-Portrait with Thorn Necklace and Hummingbird', description: 'A painting', price: 250, quantity: 10, categoryId: 3, imgUrl: 'https://www.fridakahlo.org/images/paintings/self-portrait-with-necklace-of-thorns.jpg' }),
+    Product.create({ artist: 'Cindy Sherman', title: 'Still from an Untitled Film', description: 'A photo', price: 50, quantity: 40, categoryId: 1, imgUrl: 'https://d2jv9003bew7ag.cloudfront.net/uploads/Cindy-Sherman-Untitled-Film-Still-21-1978-865x577-1.jpg' }),
+    Product.create({  artist: 'Louise Bourgeois', title: 'Spider', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2, imgUrl: 'https://image.invaluable.com/housePhotos/sothebys/87/109787/H0046-L03310398.jpg' }),
+    Product.create({artist: 'Borna Sammak', title: 'Untitled Video Painting', description: 'A painting', price: 30000, quantity: 2, categoryId: 3, imgUrl: 'http://voxpopuligallery.org/wp-content/uploads/2012/07/borna-sammak-untitled-video-painting-620x346.png' }),
+    Product.create({ artist: 'Yoko Ono', title: 'Painting to Hammer a Nail ', description: 'A sculpture', price: 4300, quantity: 1, categoryId: 2, imgUrl: 'https://i.pinimg.com/originals/78/5e/d2/785ed2dc155cc0c17f290cbc3d146a72.jpg' }),
+    Product.create({  artist: 'Juliana Huxtable', title: 'Untitled in the Rage (Nibiru Cataclysm)', description: 'A photo', price: 500, quantity: 4, categoryId: 1, imgUrl: 'https://d32dm0rphc51dk.cloudfront.net/fyoe-XV7qXTiYhLApTL70A/larger.jpg' }),
+    Product.create({  artist: 'Vincent Van Gogh', description: 'Starry Night', price: 500, quantity: 4, categoryId: 1 }),
   ])
 
   const shipmentDetails = await Promise.all([
