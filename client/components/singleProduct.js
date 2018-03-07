@@ -1,12 +1,9 @@
-
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-import { updateCartThunk } from "../store/cart";
-import  EditProductForm   from "./editProduct";
-import Reviews from "./reviews"
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
+import { updateCartThunk } from '../store/cart';
+import  EditProductForm   from './editProduct';
 import { updateOrderLineThunk } from '../store/orderLine';
-
 
 
 // probably needs to be a stateful component?
@@ -27,11 +24,6 @@ class SingleProduct extends Component {
     const { currentUser } = this.props;
     const product = this.props.singleProduct;
 
-    // console.log('it is ', currentUser.id);
-    // console.log('is logged in?', this.props.isLoggedIn);
-    // console.log('theOrder is: ', theOrder);
-
-    // if (this.props.isLoggedIn) {const theOrder = this.props.orders.id;}
     if (!product) return <div />;
     const isAdmin = !!currentUser.isAdmin
 
@@ -61,9 +53,7 @@ class SingleProduct extends Component {
             <Link to="/products">Back to Products</Link>
           </button>
           {isAdmin && <EditProductForm history={this.props.history} product={product} />}
-          {<Reviews product={product} />}
-        </div>
-      );
+        </div>)
     } else if (this.props.isLoggedIn) {
       return (
         <div>
@@ -75,7 +65,7 @@ class SingleProduct extends Component {
           <h4>
             <em>{product.quantity} available</em>
           </h4>
-          {this.props.orders &&
+          {this.props.orders && this.props.orders.orderlines > 0 ?
             <form onSubmit={this.props.handleLoggedInSubmit}>
               <input type="number" name="orderLineId" value={this.props.orders.orderlines[0].id} readOnly />
               <input type="number" name="orderId" value={this.props.orders.id} readOnly />
@@ -88,13 +78,23 @@ class SingleProduct extends Component {
                 max={product.quantity}
               />
               <button>Buy this Item</button>
-              </form>
+            </form>
+            : <form onSubmit={this.props.handleAnonSubmit}>
+            <input
+              type="number"
+              name="quantity"
+              step="1"
+              defaultValue="1"
+              min="1"
+              max={product.quantity}
+            />
+            <button>Buy this Item</button>
+          </form>
           }
           <button>
             <Link to="/products">Back to Products</Link>
           </button>
           {isAdmin && <EditProductForm history={this.props.history} product={product} />}
-             {<Reviews product={product} />}
         </div>
       );
     }
@@ -108,7 +108,7 @@ const mapState = function(state, ownProps) {
       product => product.id === +ownProps.match.params.id
     ),
     currentUser: state.user,
-    orders: state.orders[0]
+    orders: state.orders.filter(order => order.status === 'Saved')
   };
 };
 
@@ -116,6 +116,7 @@ const mapState = function(state, ownProps) {
 const mapDispatch = function(dispatch, ownProps) {
   return {
     handleAnonSubmit(evt) {
+
       evt.preventDefault();
       const newId = ownProps.match.params.id;
       const orderLine = {
@@ -129,7 +130,6 @@ const mapDispatch = function(dispatch, ownProps) {
       const productId = +ownProps.match.params.id;
       const orderId = +evt.target.orderId.value;
       const orderLineId = +evt.target.orderLineId.value;
-      // console.log(orderId, ' and ', productId);
 
       const updatedOrderLine = {
         id: orderLineId,

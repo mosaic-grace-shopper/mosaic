@@ -78,9 +78,8 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName, order))
-      console.log(order);
+    
       if(order.orderlines.length > 0){
-        console.log("In Checkout", order.orderlines.length)
         history.push('/checkout')
       }
       else{ 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Checkout } from './checkout'
-import { getCartThunk, updateCartThunk, deleteCartThunk } from '../store'
+import { getCartThunk, updateCartThunk, deleteCartThunk, allOrdersThunk } from '../store'
 import { Login } from '.';
 
 
@@ -20,7 +20,6 @@ class Cart extends Component {
         const logged = this.props.isLoggedIn;
         const meUser = this.props.user;
         const orders = this.props.orders;
-        console.log(meUser, orders);
         if (!cart) return <div>There are no items in your cart.</div>
         if (!logged) {  
             return (
@@ -47,8 +46,7 @@ class Cart extends Component {
                                     </li>
                                 </ul>
                             )
-                            )
-                        }
+                            )}
                         <h1>Total: </h1>
                         {/*gotta finish totals!*/}
                         <button onClick={this.props.handleClick}>Empty your cart</button>
@@ -58,17 +56,14 @@ class Cart extends Component {
                 </div>
             )
         }
-        else if (orders[0]) {
+        else if (orders.length) {
             return (
-                // <div>
-                //     <h1>Get the cart from the DB PLZ.</h1>
-                //     <h2>Hello, {meUser && meUser.email}</h2>
-                //     <h3>Your order is {orders && orders[0].status}</h3>
-                //     <h4>Your total is {orders && orders[0].total}</h4>
-                //     <h5>You are purchasing id#: {orders && orders[0].orderlines[0].productId}</h5>
-                //     {/* Get userID and get cart*/}
-                // </div>
-                <div> Hello </div>
+                <div>
+                    <h2>Hello, {meUser && meUser.email}</h2>
+                    <h4>Your total is {orders && orders[0].total}</h4>
+                    <h4> Your Order Status is {orders && orders[0].status} </h4>
+                    {/* Get userID and get cart*/}
+                </div>
             )
         } else {
             return (
@@ -88,10 +83,11 @@ const mapState = function (state) {
     }
 }
 
-const mapDispatch = function (dispatch , ownProps) {
+const mapDispatch = function (dispatch, ownProps) {
     return {
         handleFetchCart() {
             dispatch(getCartThunk())
+            dispatch(allOrdersThunk())
         },
 
         handleSubmit(evt) {

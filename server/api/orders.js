@@ -9,7 +9,7 @@ module.exports = router
 router.get('/', (req, res, next) => {
   Order.findAll({
     include: [{ all: true }, {model: ShipmentDetails} ],
-    order: [['id','DESC']]
+    order: [['id', 'DESC']]
     })
     .then(orders => res.json(orders))
     .catch(next)
@@ -37,7 +37,9 @@ router.get('/', isLoggedIn, (req, res, next) => {
 
 router.put('/:id', (req, res, next) => {
   Order.findById(req.params.id)
-  .then(order => order.update(req.body))
+  .then(order => {
+    order.update(req.body)
+  })
   .then(updatedOrder => res.json(updatedOrder))
   .catch(next)
 })
@@ -48,6 +50,7 @@ router.post('/', (req, res, next) => {
   })
     .then(createdOrder => {
       console.log('trying to create order')
+      
       res.status(201).json(createdOrder)
     })
     .catch(next)

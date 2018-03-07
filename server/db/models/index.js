@@ -31,9 +31,10 @@ Category.hasMany(Product, {
 })
 Product.belongsTo(Category)
 
-Order.hasMany(OrderLine)
+Order.hasMany(OrderLine, { hooks: true })
 OrderLine.belongsTo(Order, {
-  onDelete: 'cascade'
+  onDelete: 'cascade',
+  hooks: true
 })
 
 Product.hasMany(OrderLine, {
@@ -41,8 +42,6 @@ Product.hasMany(OrderLine, {
 })
 OrderLine.belongsTo(Product)
 Order.belongsTo(ShipmentDetails)
-
-
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
