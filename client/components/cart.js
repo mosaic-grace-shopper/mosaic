@@ -106,7 +106,7 @@ const mapDispatch = function (dispatch , ownProps) {
             if(isLoggedIn) {
                 ownProps.history.push('/checkout')
             } else {
-                alert('Continue As Guest');
+                alert('Plese login to checkout');
                 ownProps.history.push('/login')
             }
         },
