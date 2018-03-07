@@ -37,10 +37,11 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories, email }) => (
           {isAdmin ? <Link to="/users"> Users </Link> : <span />}
           {isAdmin ? <Link to="/categories"> Categories </Link> : <span />}
           
-          <span className="flex-right"><h8>Welcome, {email}!</h8></span>
+         
           <a href="#" className="flex-right" onClick={handleClick}>
           Logout
           </a>
+          <span className="flex-right"><h8>Welcome, {email}!</h8></span>
         </div>
       ) : (
         <div>
