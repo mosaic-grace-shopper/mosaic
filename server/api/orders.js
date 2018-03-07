@@ -11,7 +11,8 @@ router.get('/', (req, res, next) => {
     include: [ {model: ShipmentDetails},  {
       model: OrderLine,
       include: [Product]
-  },{ all: true }]
+  }, { all: true }],
+    order: [['id', 'DESC']]
     })
     .then(orders => res.json(orders))
     .catch(next)

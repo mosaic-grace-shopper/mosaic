@@ -16,7 +16,10 @@ import {
   CategoryList,
   AddCategory,
   ConfirmPage,
-  ProductsByCategory
+  ProductsByCategory,
+  Reviews,
+  SplashPage
+
 } from './components'
 import {me, allProducts, getCartThunk, getCategoriesThunk} from './store'
 
@@ -33,6 +36,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={SplashPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={ProductList} />
@@ -78,7 +82,6 @@ const mapDispatch = (dispatch) => {
   return {
     loadInitialData () {
       dispatch(me())
-      // dispatch(allUsersThunk()) //this will cause an error b/c you must be an admin to see this
       dispatch(allProducts())
       dispatch(getCartThunk())
       dispatch(getCategoriesThunk())

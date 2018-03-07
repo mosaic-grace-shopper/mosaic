@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Checkout } from './checkout'
 import { getCartThunk, updateCartThunk, deleteCartThunk } from '../store'
+import { Login } from '.';
+
 
 
 class Cart extends Component {
@@ -55,12 +57,13 @@ class Cart extends Component {
                         <h1>Total: </h1>
                         {/*gotta finish totals!*/}
                         <button onClick={this.props.handleClick}>Empty your cart</button>
+                        <button onClick={() => this.props.handleCheckout(logged)}>Checkout</button>
                     </div>
                     <Link to="/products"><button>Back to Products</button></Link>
                 </div>
             )
         }
-        else {
+        else if (orders[0]) {
             return (
                 <div>
                 <h1>My Cart</h1>
@@ -79,7 +82,7 @@ class Cart extends Component {
                 <tbody>
                 {
                     orders ? orders.filter(order => order.userId === meUser.id).map(order => (order.orderlines.map(orderline => (
-                           <tr key={orderline.id}>
+                        <tr key={orderline.id}>
                             <th scope="row">1</th>
                             <td>{orderline.product.title}</td>
                             <td>{orderline.product.description}</td>
@@ -90,8 +93,7 @@ class Cart extends Component {
                             <button>Update</button>
                             <td> {orderline.lineTotal} </td>
                             </form> </td>
-                         </tr>
-                    )))) 
+                         </tr> ))))
                    : <div> <h4>No Pending Orders for you</h4>
                     </div>
                 }
@@ -113,7 +115,7 @@ const mapState = function (state) {
     }
 }
 
-const mapDispatch = function (dispatch) {
+const mapDispatch = function (dispatch , ownProps) {
     return {
         handleFetchCart() {
             dispatch(getCartThunk())
@@ -126,6 +128,14 @@ const mapDispatch = function (dispatch) {
                 [newId]: +evt.target.quantity.value
             }
             dispatch(updateCartThunk(orderLine))
+        },
+        handleCheckout(isLoggedIn) {
+            if(isLoggedIn) {
+                ownProps.history.push('/checkout')
+            } else {
+                alert('Plese login to checkout');
+                ownProps.history.push('/login')
+            }
         },
         handleClick(evt) {
             evt.preventDefault();

@@ -37,16 +37,18 @@ async function seed() {
   ])
 
   const products = await Promise.all([
-    Product.create({ artist: 'Bob', title: 'Painting in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3 }),
-    Product.create({ artist: 'Sam', title: 'Prince and the Swan', description: 'A photo', price: 1500, quantity: 8, categoryId: 1 }),
-    Product.create({artist: 'Wanda', title: 'The fish with her name', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2 }),
-    Product.create({ artist: 'Janet', title: 'Painting in Red', description: 'A painting', price: 250, quantity: 10, categoryId: 3 }),
-    Product.create({ artist: 'Hito', title: 'Landscape of Stuff', description: 'A photo', price: 50, quantity: 40, categoryId: 1 }),
-    Product.create({  artist: 'Mike', title: 'Humongous Teddy Bear', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2 }),
-    Product.create({artist: 'Borna', title: 'T-shirt Canvas', description: 'A painting', price: 30000, quantity: 2, categoryId: 3 }),
-    Product.create({ artist: 'Jasmine', title: 'Five Leaves', description: 'Acrylic Cup', price: 4300, quantity: 1, categoryId: 2 }),
-    Product.create({  artist: 'Juliana', title: 'Self Portrait', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
-    Product.create({  artist: 'Riley', description: 'A painting', price: 500, quantity: 4, categoryId: 1 }),
+    Product.create({ artist: 'Mark Rothko', title: 'No. 14 White and Greens in Blue', description: 'A painting', price: 500, quantity: 4, categoryId: 3, imgUrl: 'http://www.artexpress.ws/UploadPic/Mark%20Rothko/big/No%2014%20White%20and%20Greens%20in%20Blue.jpg' }),
+    Product.create({ artist: 'Sam McKinniss', title: 'Obama (Bubble)', description: 'A painting', price: 1500, quantity: 8, categoryId: 3, imgUrl: 'http://1vze7o2h8a2b2tyahl3i0t68.wpengine.netdna-cdn.com/wp-content/uploads/2016/10/10-16_w-qa_Sam-McKinnis_2.jpg' }),
+    Product.create({artist: 'John Chamberlain', title: 'Glossalia Adagio', description: 'A sculpture', price: 1000, quantity: 2, categoryId: 2, imgUrl: 'http://web.guggenheim.org/exhibitions/chamberlain/images/1984_x.2011.127_chamberlain_a.jpg' }),
+    Product.create({ artist: 'Frida Khalo', title: 'Self-Portrait with Thorn Necklace and Hummingbird', description: 'A painting', price: 250, quantity: 10, categoryId: 3, imgUrl: 'https://www.fridakahlo.org/images/paintings/self-portrait-with-necklace-of-thorns.jpg' }),
+    Product.create({ artist: 'Cindy Sherman', title: 'Still from an Untitled Film', description: 'A photo', price: 50, quantity: 40, categoryId: 1, imgUrl: 'https://d2jv9003bew7ag.cloudfront.net/uploads/Cindy-Sherman-Untitled-Film-Still-21-1978-865x577-1.jpg' }),
+    Product.create({  artist: 'Louise Bourgeois', title: 'Spider', description: 'A sculpture', price: 5000, quantity: 1, categoryId: 2, imgUrl: 'https://image.invaluable.com/housePhotos/sothebys/87/109787/H0046-L03310398.jpg' }),
+    Product.create({artist: 'Borna Sammak', title: 'Untitled Video Painting', description: 'A painting', price: 30000, quantity: 2, categoryId: 3, imgUrl: 'http://voxpopuligallery.org/wp-content/uploads/2012/07/borna-sammak-untitled-video-painting-620x346.png' }),
+    Product.create({ artist: 'Yoko Ono', title: 'Painting to Hammer a Nail ', description: 'A sculpture', price: 4300, quantity: 1, categoryId: 2, imgUrl: 'https://i.pinimg.com/originals/78/5e/d2/785ed2dc155cc0c17f290cbc3d146a72.jpg' }),
+    Product.create({  artist: 'Juliana Huxtable', title: 'Untitled in the Rage (Nibiru Cataclysm)', description: 'A photo', price: 500, quantity: 4, categoryId: 1, imgUrl: 'https://d32dm0rphc51dk.cloudfront.net/fyoe-XV7qXTiYhLApTL70A/larger.jpg' }),
+    Product.create({  artist: 'Vincent Van Gogh', description: 'Starry Night', price: 500, quantity: 4, categoryId: 1 }),
+    Product.create({  artist: 'Catherine Opie', title: 'Chicken', description: 'A photo', price: 100, quantity: 4, categoryId: 1, imgUrl: 'https://i.pinimg.com/564x/0e/c2/16/0ec216c5ae3797a08aae486b135e8c1a--abject-catherine-ohara.jpg' }),
+    Product.create({  artist: 'Judy Chicago', title: ' Georgia O\'Keeffe Plate #1', description: 'A sculpture', price: 7500, quantity: 4, categoryId: 2, imgUrl: 'https://i.pinimg.com/736x/f9/e9/18/f9e918a8603b311070b6275751dcccff--judy-chicago-georgia-o-keeffe.jpg' }),
   ])
 
   const shipmentDetails = await Promise.all([
@@ -80,6 +82,28 @@ async function seed() {
     Review.create({ title: 'Gorgeous', text: 'This painting is so beautiful.', stars: 5, userId: 1, productId: 1 }),
     Review.create({ title: 'Awesome', text: 'This photo is so artsy!', stars: 4, userId: 2, productId: 2 }),
     Review.create({ title: 'Huggable', text: 'I want to take a nap on this bear.', stars: 5, userId: 3, productId: 6 }),
+    Review.create({ title: 'Eh', text: 'It\'s pretty but kind of boring.', stars: 3, userId: 1, productId: 4 }),
+    Review.create({ title: 'I love it!', text: 'So original! The artist is so talented.', stars: 5, userId: 3, productId: 5 }),
+    Review.create({ title: 'Absolutely amazing', text: 'I wish I could buy it again and again.', stars: 5, userId: 2, productId: 3 }),
+    Review.create({ title: 'It\'s okay', text: 'It\'s pretty but too expensive. Not worth it', stars: 3, userId: 3, productId: 7 }),
+    Review.create({ title: 'BEST ARTWORK EVER', text: 'I love this so much!!! Everyone always gives me compliments when they come over. So happy!', stars: 5, userId: 1, productId: 8 }),
+    Review.create({ title: 'Perfect collector\'s piece', text: 'This is a masterpiece. So worth it.', stars: 5, userId: 3, productId: 9 }),
+    Review.create({ title: 'I don\'t love it', text: 'I bought this on a whim but I kind of regret it now. Not much wow factor.', stars: 2, userId: 5, productId: 10 }),
+
+
+
+    Review.create({ title: 'NOW THIS IS ART', text: 'If you don\'t buy this piece, you\'ll regret it.', stars: 5, userId: 1, productId: 1 }),
+    Review.create({ title: 'Sooooo awesome', text: 'All my friends rave about it!', stars: 5, userId: 2, productId: 2 }),
+    Review.create({ title: 'Meh', text: 'This is so ugly. Why did I buy it? Are there returns?', stars: 1, userId: 3, productId: 3 }),
+    Review.create({ title: 'So colorful and pretty', text: 'I loooove it', stars: 5, userId: 1, productId: 4 }),
+    Review.create({ title: 'Very nice', text: 'I\'m an art collector and I\'m so glad I bought this piece.', stars: 5, userId: 3, productId: 5 }),
+    Review.create({ title: 'SO CUTEEEE', text: 'I bought this piece for my daughter\'s room and she loves it!', stars: 5, userId: 2, productId: 6 }),
+    Review.create({ title: 'Perfect', text: 'Perfect in every way. So glad Mosaic exists', stars: 5, userId: 3, productId: 7 }),
+    Review.create({ title: 'I don\'t love it', text: 'It\'s all right', stars: 3, userId: 1, productId: 8 }),
+    Review.create({ title: 'Beautiful', text: 'Simply beautiful. It looks so gorgeous on my white walls.', stars: 5, userId: 3, productId: 9 }),
+    Review.create({ title: 'Excellent Buy!', text: 'One of the best decisions I ever made! I put it in my office and it brightens my day!!', stars: 2, userId: 5, productId: 10 }),
+    Review.create({ title: 'Curiouser and Curiouser!', text: 'Jenny draws you in with her eyes, but rejects you with her stache!', stars: 5, userId: 3, productId: 11 }),
+    Review.create({ title: 'Unhappy', text: 'I thought I was purchasing a ticket to a cullinary event, but instead recieved this peculiar object.', stars: 2, userId: 3, productId: 12 }),
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator

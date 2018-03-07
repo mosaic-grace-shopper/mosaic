@@ -5,6 +5,7 @@ import axios from 'axios';
  */
 const GET_ORDER_LINES = 'GET_ORDER_LINE';
 const CREATE_ORDER_LINE = 'CREATE_ORDER_LINE';
+const UPDATE_ORDER_LINE = 'UPDATE_ORDER_LINE';
 const DELETE_ORDER_LINE = 'DELETE_ORDER_LINE';
 
 /**
@@ -17,6 +18,7 @@ const currentOrderLines = [];
  */
 export const getOrderLines = orderLines => ({ type: GET_ORDER_LINES, orderLines });
 export const createOrderLine = orderLine => ({type: CREATE_ORDER_LINE, orderLine});
+export const updateOrderLine = orderLine => ({type: UPDATE_ORDER_LINE, orderLine});
 export const deleteOrderLine = id => ({ type: DELETE_ORDER_LINE, id });
 
 /**
@@ -29,13 +31,20 @@ export const allOrderLineThunk = () => dispatch => {
 }
 
 export const createOrderLineThunk = orderLine => dispatch => {
-    console.log('creating orderLine');
     return axios.post('/api/orderLine', orderLine)
       .then(res => {
         dispatch(createOrderLine(res.data))
       })
       .catch(err => console.log(err));
-  }
+}
+
+export const updateOrderLineThunk = orderLine => dispatch => {
+  axios.put(`/api/orderLine/${orderLine.id}`, orderLine)
+    .then(res => {
+      dispatch(updateOrderLine(res.data))
+    })
+    .catch(err => console.log(err))
+}
 
 export const deleteOrderLineThunk = id => dispatch => {
   axios.delete(`/api/orderLine/${id}`)
@@ -52,6 +61,12 @@ export default function (state = currentOrderLines, action) {
       return action.orderLines
     case CREATE_ORDER_LINE:
       return [...state, action.orderLine]
+    case UPDATE_ORDER_LINE:
+      return state.map(orderLine => (orderLine.id === action.id ? action.orderLine : orderLine))
+      // let index = state.findIndex(orderLine => orderLine.id === action.id)
+      // let orderLineCopy = state.slice(0)
+      // orderLineCopy[index] = action.orderLine
+      // return orderLineCopy
     case DELETE_ORDER_LINE:
       console.log(action)
       return state.filter(orderLine => orderLine.id !== action.id);

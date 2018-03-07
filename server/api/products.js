@@ -51,7 +51,7 @@ router.put('/:id', isAdmin, (req, res, next) => {
     let isAdmin = req.user !== undefined ? req.user.isAdmin : false ;
     let query = isAdmin ? {where: { id: req.params.id } } : {}
     Product.destroy(query)
-      .then(() => res.sendStatus(202))
+      .then(() => res.sendStatus(204))
       .catch(next)
   })
 

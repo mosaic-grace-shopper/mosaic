@@ -12,27 +12,24 @@ class ProductList extends Component {
 
   render() {
     const { products, currentUser } = this.props;
-
     const isAdmin = !!currentUser.isAdmin;
+
+    const layoutStyles = {
+      padding: '5px'
+    }
 
     if (!products.length) return <div>No products found</div>;
     return (
       <div className="container is-fluid">
         <h1>Featured Artists</h1>
-        <div className="rows">
-
-            <div className="row">
-              {products.map(product => (
-                <Link
-                  to={`products/${product.id}`}
-                  key={product.id}
-                  className=""
-                >
-                  <ProductItem theProduct={product} />
-                </Link>
-              ))}
-
-          </div>
+        <div className="row">
+          {products.map(product => (
+            <div className="col-sm-4" key={product.id} style={layoutStyles}>
+              <Link to={`products/${product.id}`} key={product.id} className="productCard">
+                <ProductItem product={product} />
+              </Link>
+            </div>
+          ))}
         </div>
         {isAdmin && <NewProductForm />}
       </div>
@@ -40,14 +37,12 @@ class ProductList extends Component {
   }
 }
 
-
-
-const mapState = state => ({
+export const mapState = state => ({
   currentUser: state.user,
   products: state.products
 });
 
-const mapDispatch = dispatch => ({
+export const mapDispatch = dispatch => ({
   getAllProducts: () => {
     dispatch(allProducts());
   }
