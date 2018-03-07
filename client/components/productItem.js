@@ -25,16 +25,15 @@ const styles = {
 
 function ProductItem(props) {
   const { product } = props;
+
   const backgroundStyle = {
-    backgroundImage: `url(${product.imgUrl})`
+    backgroundImage: `url(${product.imgUrl})`,
+    backgroundSize: 'cover',
+    overflow: 'hidden',
   }
-  const cardStyle = {
-    backgroundColor: 'rgba(52, 52, 52, 0.8)'
-  }
-  // const
+
   return (
-    // <div className="container" style={`background-image:url(${product.imgUrl})`}>
-    // <div className="container" style={ cardStyle }>
+
     <div className="container">
     <div>
         <Card style = { backgroundStyle }>

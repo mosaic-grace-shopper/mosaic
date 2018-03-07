@@ -47,6 +47,8 @@ async function seed() {
     Product.create({ artist: 'Yoko Ono', title: 'Painting to Hammer a Nail ', description: 'A sculpture', price: 4300, quantity: 1, categoryId: 2, imgUrl: 'https://i.pinimg.com/originals/78/5e/d2/785ed2dc155cc0c17f290cbc3d146a72.jpg' }),
     Product.create({  artist: 'Juliana Huxtable', title: 'Untitled in the Rage (Nibiru Cataclysm)', description: 'A photo', price: 500, quantity: 4, categoryId: 1, imgUrl: 'https://d32dm0rphc51dk.cloudfront.net/fyoe-XV7qXTiYhLApTL70A/larger.jpg' }),
     Product.create({  artist: 'Vincent Van Gogh', description: 'Starry Night', price: 500, quantity: 4, categoryId: 1 }),
+    Product.create({  artist: 'Catherine Opie', title: 'Chicken', description: 'A photo', price: 100, quantity: 4, categoryId: 1, imgUrl: 'https://i.pinimg.com/564x/0e/c2/16/0ec216c5ae3797a08aae486b135e8c1a--abject-catherine-ohara.jpg' }),
+    Product.create({  artist: 'Judy Chicago', title: ' Georgia O\'Keeffe Plate #1', description: 'A sculpture', price: 7500, quantity: 4, categoryId: 2, imgUrl: 'https://i.pinimg.com/736x/f9/e9/18/f9e918a8603b311070b6275751dcccff--judy-chicago-georgia-o-keeffe.jpg' }),
   ])
 
   const shipmentDetails = await Promise.all([
@@ -100,6 +102,8 @@ async function seed() {
     Review.create({ title: 'I don\'t love it', text: 'It\'s all right', stars: 3, userId: 1, productId: 8 }),
     Review.create({ title: 'Beautiful', text: 'Simply beautiful. It looks so gorgeous on my white walls.', stars: 5, userId: 3, productId: 9 }),
     Review.create({ title: 'Excellent Buy!', text: 'One of the best decisions I ever made! I put it in my office and it brightens my day!!', stars: 2, userId: 5, productId: 10 }),
+    Review.create({ title: 'Curiouser and Curiouser!', text: 'Jenny draws you in with her eyes, but rejects you with her stache!', stars: 5, userId: 3, productId: 11 }),
+    Review.create({ title: 'Unhappy', text: 'I thought I was purchasing a ticket to a cullinary event, but instead recieved this peculiar object.', stars: 2, userId: 3, productId: 12 }),
   ])
 
   // Wowzers! We can even `await` on the right-hand side of the assignment operator
