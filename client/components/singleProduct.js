@@ -4,6 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { updateCartThunk } from '../store/cart';
 import  EditProductForm   from './editProduct';
 import { updateOrderLineThunk } from '../store/orderLine';
+import Reviews from "./reviews"
 
 
 // probably needs to be a stateful component?
@@ -53,6 +54,7 @@ class SingleProduct extends Component {
             <Link to="/products">Back to Products</Link>
           </button>
           {isAdmin && <EditProductForm history={this.props.history} product={product} />}
+          {<Reviews product={product} />}
         </div>)
     } else if (this.props.isLoggedIn) {
       return (
@@ -95,6 +97,7 @@ class SingleProduct extends Component {
             <Link to="/products">Back to Products</Link>
           </button>
           {isAdmin && <EditProductForm history={this.props.history} product={product} />}
+          {<Reviews product={product} />}
         </div>
       );
     }
