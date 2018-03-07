@@ -5,7 +5,6 @@ const makeError = (status, message) => {
 }
 const isAdmin = (req, res, next) => {
     let isAdmin = req.user ? req.user.isAdmin : false ;
-    console.log(isAdmin);
     if (!isAdmin) return next(makeError(403, 'Forbidden'))
     next()
 }
