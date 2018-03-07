@@ -22,10 +22,8 @@ const AuthForm = (props) => {
   const order = {
     status: 'Saved',
     //Deal with total in hook
-    total: 10000000,
     orderlines: orderLineArray
   };
-
 
   return (
     <div>
@@ -80,6 +78,12 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName, order))
+      if(order.orderlines){
+        console.log("go to Checkout page")
+      }
+      else{ 
+        console.log("Go to Home Page")
+      }
     }
   }
 }

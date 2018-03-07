@@ -107,7 +107,7 @@ const mapDispatch = function (dispatch , ownProps) {
                 ownProps.history.push('/checkout')
             } else {
                 alert('Continue As Guest');
-                ownProps.history.push('/checkout')
+                ownProps.history.push('/login')
             }
         },
         handleClick(evt) {
