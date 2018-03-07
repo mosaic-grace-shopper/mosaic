@@ -61,6 +61,7 @@ class Cart extends Component {
                 <div>
                     <h2>Hello, {meUser && meUser.email}</h2>
                     <h4>Your total is {orders && orders[0].total}</h4>
+                    <h4> Your Order Status is {orders && orders[0].status} </h4>
                     {/* Get userID and get cart*/}
                 </div>
             )
@@ -86,7 +87,7 @@ const mapDispatch = function (dispatch, ownProps) {
     return {
         handleFetchCart() {
             dispatch(getCartThunk())
-            dispatch(allOrdersThunk ())
+            dispatch(allOrdersThunk())
         },
 
         handleSubmit(evt) {
