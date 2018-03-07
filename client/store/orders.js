@@ -76,7 +76,6 @@ export default function (state = currentOrders, action) {
       let index = state.findIndex(order => order.id === action.id)
       let ordersCopy = state.slice(0)
       ordersCopy[index] = action.order
-      console.log(ordersCopy[index], "UPDATED ORDER")
       return ordersCopy
     case DELETE_ORDER:
       return state.filter(order => order.id !== action.id);
