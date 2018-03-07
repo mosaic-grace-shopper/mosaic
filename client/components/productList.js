@@ -12,36 +12,30 @@ class ProductList extends Component {
 
   render() {
     const { products, currentUser } = this.props;
-    console.log(this.props, "PROPSSSS")
     const isAdmin = !!currentUser.isAdmin;
+
+    const layoutStyles = {
+      padding: '5px'
+    }
 
     if (!products.length) return <div>No products found</div>;
     return (
       <div className="productList">
         <h1>Featured Artists</h1>
         <div className="row">
-      
-              {products.map(product => (
-
-                <div className="col-sm-4" key={product.id}>
-                <Link
-                  to={`products/${product.id}`}
-                  key={product.id}
-                  className="productCard"
-                >
-                  <ProductItem product={product} />
-                </Link>
-                </div>
-
-              ))}
+          {products.map(product => (
+            <div className="col-sm-4" key={product.id} style={layoutStyles}>
+              <Link to={`products/${product.id}`} key={product.id} className="productCard">
+                <ProductItem product={product} />
+              </Link>
+            </div>
+          ))}
         </div>
         {isAdmin && <NewProductForm />}
       </div>
     );
   }
 }
-
-
 
 export const mapState = state => ({
   currentUser: state.user,
