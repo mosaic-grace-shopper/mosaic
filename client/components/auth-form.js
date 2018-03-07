@@ -2,13 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import history from '../history';
+
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error, cart} = props
-
   const orderLineArray = [];
   for (var key in cart) {
     const newObj = {
@@ -21,10 +22,8 @@ const AuthForm = (props) => {
   const order = {
     status: 'Saved',
     //Deal with total in hook
-    total: 10000000,
     orderlines: orderLineArray
   };
-
 
   return (
     <div>
@@ -79,10 +78,18 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName, order))
+      console.log(order);
+      if(order.orderlines.length > 0){
+        console.log("In Checkout", order.orderlines.length)
+        history.push('/checkout')
+      }
+      else{ 
+        console.log("In Home")
+       history.push('/home')
+      }
     }
   }
 }
-
 export const Login = connect(mapLogin, mapDispatch)(AuthForm)
 export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
 

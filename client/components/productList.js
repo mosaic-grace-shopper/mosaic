@@ -34,8 +34,6 @@ class ProductList extends Component {
                 </div>
 
               ))}
-
-  
         </div>
         {isAdmin && <NewProductForm />}
       </div>

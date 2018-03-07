@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Checkout } from './checkout'
 import { getCartThunk, updateCartThunk, deleteCartThunk } from '../store'
+import { Login } from '.';
+
 
 
 class Cart extends Component {
@@ -20,8 +22,7 @@ class Cart extends Component {
         const orders = this.props.orders;
         console.log(meUser, orders);
         if (!cart) return <div>There are no items in your cart.</div>
-
-        if (!logged) {
+        if (!logged) {  
             return (
                 <div>
                     <div>
@@ -51,6 +52,7 @@ class Cart extends Component {
                         <h1>Total: </h1>
                         {/*gotta finish totals!*/}
                         <button onClick={this.props.handleClick}>Empty your cart</button>
+                        <button onClick={() => this.props.handleCheckout(logged)}>Checkout</button>
                     </div>
                     <Link to="/products"><button>Back to Products</button></Link>
                 </div>
@@ -58,14 +60,15 @@ class Cart extends Component {
         }
         else if (orders[0]) {
             return (
-                <div>
-                    <h1>Your cart</h1>
-                    <h2>Hello, {meUser && meUser.email}</h2>
-                    <h3>Your order is {orders[0].status}</h3>
-                    <h4>Your total is {orders[0].total}</h4>
-                    <h5>You are purchasing id#: {orders[0].orderlines[0] && orders[0].orderlines[0].productId}</h5>
-                    {/* Get userID and get cart*/}
-                </div>
+                // <div>
+                //     <h1>Get the cart from the DB PLZ.</h1>
+                //     <h2>Hello, {meUser && meUser.email}</h2>
+                //     <h3>Your order is {orders && orders[0].status}</h3>
+                //     <h4>Your total is {orders && orders[0].total}</h4>
+                //     <h5>You are purchasing id#: {orders && orders[0].orderlines[0].productId}</h5>
+                //     {/* Get userID and get cart*/}
+                // </div>
+                <div> Hello </div>
             )
         } else {
             return (
@@ -85,7 +88,7 @@ const mapState = function (state) {
     }
 }
 
-const mapDispatch = function (dispatch) {
+const mapDispatch = function (dispatch , ownProps) {
     return {
         handleFetchCart() {
             dispatch(getCartThunk())
@@ -98,6 +101,14 @@ const mapDispatch = function (dispatch) {
                 [newId]: +evt.target.quantity.value
             }
             dispatch(updateCartThunk(orderLine))
+        },
+        handleCheckout(isLoggedIn) {
+            if(isLoggedIn) {
+                ownProps.history.push('/checkout')
+            } else {
+                alert('Plese login to checkout');
+                ownProps.history.push('/login')
+            }
         },
         handleClick(evt) {
             evt.preventDefault();
