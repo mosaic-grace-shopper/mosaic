@@ -78,11 +78,14 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       dispatch(auth(email, password, formName, order))
-      if(order.orderlines){
-        console.log("go to Checkout page")
+      console.log(order);
+      if(order.orderlines.length > 0){
+        console.log("In Checkout", order.orderlines.length)
+        history.push('/checkout')
       }
       else{ 
-        console.log("Go to Home Page")
+        console.log("In Home")
+       history.push('/home')
       }
     }
   }

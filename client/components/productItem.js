@@ -24,7 +24,6 @@ const styles = {
 };
 
 function ProductItem(props) {
-  console.log(props);
   const { product } = props;
   return (
     <div className="container">
