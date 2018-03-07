@@ -31,9 +31,10 @@ Category.hasMany(Product, {
 })
 Product.belongsTo(Category)
 
-Order.hasMany(OrderLine)
+Order.hasMany(OrderLine, { hooks: true })
 OrderLine.belongsTo(Order, {
-  onDelete: 'cascade'
+  onDelete: 'cascade',
+  hooks: true
 })
 
 Product.hasMany(OrderLine, {

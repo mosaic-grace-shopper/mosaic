@@ -13,7 +13,7 @@ const OrderLine = db.define('orderline', {
     },
 
     linePrice: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DECIMAL,
         validate: {
             min: 0
         }
@@ -32,7 +32,18 @@ OrderLine.beforeCreate((orderLineInstance) => {
         .then(product => {
             orderLineInstance.linePrice = product.price
             orderLineInstance.save()
-        })
+        });
+})
+
+OrderLine.afterCreate(orderLineInstance => {
+    orderLineInstance.getOrder()
+    .then(order => {
+        console.log("Total Before == ",order.total)
+        order.total += orderLineInstance.lineTotal;
+        console.log("Total == After",order.total , orderLineInstance.lineTotal  )
+        order.save()
+        orderLineInstance.save();
+    })
 })
 
 

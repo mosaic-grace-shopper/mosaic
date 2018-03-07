@@ -9,7 +9,7 @@ const Order = db.define('order', {
 
 //can we make the total a getter of all totals from orderline? might be relatively similar to our orderLine.beforeCreate getter -rxet
     total: {
-        type: Sequelize.DOUBLE,
+        type: Sequelize.DECIMAL,
         defaultValue: 0,
         validate: {
             min: 0

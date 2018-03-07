@@ -9,7 +9,7 @@ module.exports = router
 router.get('/', (req, res, next) => {
   Order.findAll({
     include: [{ all: true }, {model: ShipmentDetails} ],
-    order: [['id','DESC']]
+    order: [['id', 'DESC']]
     })
     .then(orders => res.json(orders))
     .catch(next)
