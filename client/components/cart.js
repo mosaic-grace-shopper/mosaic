@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 import { Checkout } from './checkout'
-import { getCartThunk, updateCartThunk, deleteCartThunk } from '../store'
+import { getCartThunk, updateCartThunk, deleteCartThunk, allOrdersThunk } from '../store'
 import { Login } from '.';
 
 
@@ -63,7 +63,7 @@ class Cart extends Component {
                 </div>
             )
         }
-        else if (orders[0]) {
+        else if (orders.length) {
             return (
                 <div>
                 <h1>My Cart</h1>
@@ -104,7 +104,6 @@ class Cart extends Component {
         }
     }
 }
-
 const mapState = function (state) {
     return {
         orders: state.orders,
@@ -115,10 +114,11 @@ const mapState = function (state) {
     }
 }
 
-const mapDispatch = function (dispatch , ownProps) {
+const mapDispatch = function (dispatch, ownProps) {
     return {
         handleFetchCart() {
             dispatch(getCartThunk())
+            dispatch(allOrdersThunk())
         },
 
         handleSubmit(evt) {
