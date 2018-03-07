@@ -12,7 +12,7 @@ class ProductList extends Component {
 
   render() {
     const { products, currentUser } = this.props;
-    console.log(products, "PRODUCTSSSSS")
+    console.log(this.props, "PROPSSSS")
     const isAdmin = !!currentUser.isAdmin;
 
     if (!products.length) return <div>No products found</div>;
