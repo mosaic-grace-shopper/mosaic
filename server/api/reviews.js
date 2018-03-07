@@ -22,8 +22,8 @@ router.get('/:id', (req, res, next) => {
 
 router.post('/', (req, res, next) => {
     Review.create(req.body)
-        .then(review => res.json(review)
-        .catch(next))
+        .then(review => res.json(review))
+        .catch(next)
 })
 
 router.delete('/:id', (req, res, next) => {
