@@ -17,8 +17,8 @@ const currentOrderLines = [];
  * ACTION CREATORS
  */
 export const getOrderLines = orderLines => ({ type: GET_ORDER_LINES, orderLines });
-export const createOrderLine = orderLine => ({type: CREATE_ORDER_LINE, orderLine});
-export const updateOrderLine = orderLine => ({type: UPDATE_ORDER_LINE, orderLine});
+export const createOrderLine = orderLine => ({ type: CREATE_ORDER_LINE, orderLine });
+export const updateOrderLine = orderLine => ({ type: UPDATE_ORDER_LINE, orderLine });
 export const deleteOrderLine = id => ({ type: DELETE_ORDER_LINE, id });
 
 /**
@@ -31,11 +31,11 @@ export const allOrderLineThunk = () => dispatch => {
 }
 
 export const createOrderLineThunk = orderLine => dispatch => {
-    return axios.post('/api/orderLine', orderLine)
-      .then(res => {
-        dispatch(createOrderLine(res.data))
-      })
-      .catch(err => console.log(err));
+  return axios.post('/api/orderLine', orderLine)
+    .then(res => {
+      dispatch(createOrderLine(res.data))
+    })
+    .catch(err => console.log(err));
 }
 
 export const updateOrderLineThunk = orderLine => dispatch => {
@@ -63,12 +63,7 @@ export default function (state = currentOrderLines, action) {
       return [...state, action.orderLine]
     case UPDATE_ORDER_LINE:
       return state.map(orderLine => (orderLine.id === action.id ? action.orderLine : orderLine))
-      // let index = state.findIndex(orderLine => orderLine.id === action.id)
-      // let orderLineCopy = state.slice(0)
-      // orderLineCopy[index] = action.orderLine
-      // return orderLineCopy
     case DELETE_ORDER_LINE:
-      console.log(action)
       return state.filter(orderLine => orderLine.id !== action.id);
     default:
       return state
