@@ -1,29 +1,65 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import RaisedButton from "material-ui/RaisedButton";
+import FontIcon from "material-ui/FontIcon";
 
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from "material-ui/Card";
 
-class ProductItem extends Component {
-
-
-  render() {
-    const { theProduct, currentUser } = this.props;
-    return (
-      <div className="productItem">
-        <h3>
-          <b>{theProduct.title}</b> by {theProduct.artist}
-        </h3>
-        <h5>
-          ${theProduct.price} - <i>{theProduct.quantity} available</i>
-        </h5>
-        <img src={theProduct.imgUrl} />
-      </div>
-    );
+const styles = {
+  button: {
+    margin: 12
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-around"
   }
+};
+
+function ProductItem(props) {
+  console.log(props);
+  const { product } = props;
+  return (
+    <div className="container">
+    <div>
+        <Card>
+          <h3>
+            <CardTitle title={product.title} /> 
+            
+
+          </h3>
+          <img src={product.imgUrl} />
+        
+          <CardActions>
+            <RaisedButton
+              label="View Details"
+              onClick={() => props.history.push(`/products/${product.id}`)}
+              secondary={true}
+              style={styles.button}
+            />} />
+            </CardActions>
+            <CardText>
+            Artist: {product.artist}
+            <br/>
+            ${product.price}
+            <br/>
+             <i>{product.quantity} available</i>
+            </CardText>
+        </Card>
+      </div>
+    </div>
+  );
 }
 
 const mapState = state => ({
   currentUser: state.user
 });
-
 
 export default connect(mapState)(ProductItem);

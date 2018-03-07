@@ -62,10 +62,11 @@ export default function (state = currentOrderLines, action) {
     case CREATE_ORDER_LINE:
       return [...state, action.orderLine]
     case UPDATE_ORDER_LINE:
-      let index = state.findIndex(orderLine => orderLine.id === action.id)
-      let orderLineCopy = state.slice(0)
-      orderLineCopy[index] = action.orderLine
-      return orderLineCopy
+      return state.map(orderLine => (orderLine.id === action.id ? action.orderLine : orderLine))
+      // let index = state.findIndex(orderLine => orderLine.id === action.id)
+      // let orderLineCopy = state.slice(0)
+      // orderLineCopy[index] = action.orderLine
+      // return orderLineCopy
     case DELETE_ORDER_LINE:
       console.log(action)
       return state.filter(orderLine => orderLine.id !== action.id);

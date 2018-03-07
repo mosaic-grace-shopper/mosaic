@@ -58,7 +58,7 @@ class Cart extends Component {
                 </div>
             )
         }
-        else {
+        else if (orders[0]) {
             return (
                 // <div>
                 //     <h1>Get the cart from the DB PLZ.</h1>
@@ -69,6 +69,10 @@ class Cart extends Component {
                 //     {/* Get userID and get cart*/}
                 // </div>
                 <div> Hello </div>
+            )
+        } else {
+            return (
+                <div><h1>Go buy some things lunkhead.</h1></div>
             )
         }
     }
