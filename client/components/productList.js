@@ -20,7 +20,7 @@ class ProductList extends Component {
 
     if (!products.length) return <div>No products found</div>;
     return (
-      <div className="productList">
+      <div className="container is-fluid">
         <h1>Featured Artists</h1>
         <div className="row">
           {products.map(product => (

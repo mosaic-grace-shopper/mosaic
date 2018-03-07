@@ -21,32 +21,39 @@ class Cart extends Component {
         const meUser = this.props.user;
         const orders = this.props.orders;
         if (!cart) return <div>There are no items in your cart.</div>
-        if (!logged) {  
+        if (!logged) {
             return (
                 <div>
-                    <div>
-                        <h1>My Cart</h1>
+                    <h1>My Cart</h1>
+                        <div className="table">
+                        <thead>
+                        <tr>
+                            <th scope="col"> Line # </th>
+                            <th scope="col"> Product </th>
+                            <th scope="col">Description </th>
+                            <th scope="col">Artist </th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Line Total</th>
+                        </tr>
+                        </thead>
                         {
                             products.filter(product => cartItems.includes(String(product.id))).map(filteredProduct => (
-                                <ul key={filteredProduct.id}>
-                                    <li key={filteredProduct.id}><h3><em>{filteredProduct.title}</em> by {filteredProduct.artist}</h3>
-                                        <h4>
-                                            Quantity: {cart[filteredProduct.id]}
-                                            <form onSubmit={this.props.handleSubmit}>
-                                                <input type="hidden" name="id" value={filteredProduct.id} readOnly />
-                                                <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
-                                                <button>update quantity</button>
-                                            </form>
-                                        </h4>
-                                        <h4>Unit Price: ${filteredProduct.price} </h4>
-
-                                        <h4>Price: $
-                                            {filteredProduct.price * cart[filteredProduct.id]}
-                                        </h4>
-                                    </li>
-                                </ul>
-                            )
-                            )}
+        
+                                <tr key={filteredProduct.id}>
+                                <th scope="row">1</th>
+                                <td>{filteredProduct.title}</td>
+                                <td>{filteredProduct.description}</td>
+                                <td>{filteredProduct.artist}</td>
+                                <td>${filteredProduct.price}</td>
+                                <td> <form onSubmit={this.props.handleSubmit}>
+                                <input type="hidden" name="id" value={filteredProduct.id} readOnly />
+                                <input type="number" name="quantity" step="1" defaultValue={cart[filteredProduct.id]} min="0" />
+                                <button>update quantity</button>
+                                </form> </td>
+                                <td> {filteredProduct.price * cart[filteredProduct.id]}</td>
+                              </tr> ))
+                        }
                         <h1>Total: </h1>
                         {/*gotta finish totals!*/}
                         <button onClick={this.props.handleClick}>Empty your cart</button>
@@ -59,20 +66,49 @@ class Cart extends Component {
         else if (orders.length) {
             return (
                 <div>
-                    <h2>Hello, {meUser && meUser.email}</h2>
-                    <h4>Your total is {orders && orders[0].total}</h4>
-                    <h4> Your Order Status is {orders && orders[0].status} </h4>
-                    {/* Get userID and get cart*/}
+                <h1>My Cart</h1>
+                    <div className="table" >
+                    <thead>
+                <tr>
+                    <th scope="col" > Line # </th>
+                    <th scope="col"> Product </th>
+                    <th scope="col">Description </th>
+                    <th scope="col">Artist </th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Line Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                    orders ? orders.filter(order => order.userId === meUser.id).map(order => (order.orderlines.map(orderline => (
+                        <div key={orderline.id}>
+                        <tr >
+                            <th scope="row">1</th>
+                            <td>{orderline.product.title}</td>
+                            <td>{orderline.product.description}</td>
+                            <td>{orderline.product.artist}</td>
+                            <td>${orderline.product.price}</td>
+                            <td > <form onSubmit={this.props.handleSubmit}>
+                            <input type="number" name="quantity" className="input-sm" step="1" defaultValue={orderline.quantity} min="0" max="100"/>
+                            <button>Update</button>
+                            <td> {orderline.lineTotal} </td>
+                            </form> </td>
+                         </tr> 
+                             <button onClick={this.props.handleClick}>Empty your cart</button>
+                         <button onClick={() => this.props.handleCheckout(logged)}>Checkout</button>
+                        </div> 
+                    ))))
+                   : <div> <h4>You have no pending orders.</h4>
+                    </div>
+                }
+                </tbody>
                 </div>
-            )
-        } else {
-            return (
-                <div><h1>Go buy some things lunkhead.</h1></div>
+             </div>
             )
         }
     }
 }
-
 const mapState = function (state) {
     return {
         orders: state.orders,

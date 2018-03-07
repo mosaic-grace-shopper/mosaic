@@ -4,7 +4,9 @@ const { OrderLine } = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  OrderLine.findAll()
+  OrderLine.findAll({
+    include: [{ all: true }]
+    })
   .then(orderLine => { res.json(orderLine) })
   .catch(next)
 })
