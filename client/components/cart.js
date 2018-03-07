@@ -30,7 +30,7 @@ class Cart extends Component {
                         <tr>
                             <th scope="col"> Line # </th>
                             <th scope="col"> Product </th>
-                            <th scope="col">Discription </th>
+                            <th scope="col">Description </th>
                             <th scope="col">Artist </th>
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
@@ -72,7 +72,7 @@ class Cart extends Component {
                 <tr>
                     <th scope="col" > Line # </th>
                     <th scope="col"> Product </th>
-                    <th scope="col">Discription </th>
+                    <th scope="col">Description </th>
                     <th scope="col">Artist </th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
@@ -99,7 +99,7 @@ class Cart extends Component {
                          <button onClick={() => this.props.handleCheckout(logged)}>Checkout</button>
                         </div> 
                     ))))
-                   : <div> <h4>No Pending Orders for you</h4>
+                   : <div> <h4>You have no pending orders.</h4>
                     </div>
                 }
                 </tbody>
