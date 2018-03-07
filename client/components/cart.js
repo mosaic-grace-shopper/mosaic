@@ -66,7 +66,7 @@ class Cart extends Component {
             )
         }
 
-        else if (logged) {
+        else if (logged && orders.length) {
             return (
                 <div>
                 <h1>My Cart</h1>
@@ -110,6 +110,9 @@ class Cart extends Component {
                 </div>
              </div>
             )
+        }
+        else {
+            return (<div><h3>Cart is sad</h3></div>)
         }
     }
 }
