@@ -26,25 +26,26 @@ function OrderItem(props) {
                 <option value="Cancelled">Cancelled</option>
                 <option value="Completed">Completed</option>
             </select>
-
-            {
-                order.orderlines.map(orderline => {
-                    return (<ul key={orderline.id}>
-                        <span>
-                            &nbsp;&nbsp;&nbsp;
+            <div>
+                {
+                    order.orderlines.map(orderline => {
+                        return (<span key={orderline.id}>
+                            <span>
+                                &nbsp;&nbsp;&nbsp;
                             <h3> {products && products.find(product => product.id === orderline.productId).title}</h3>
-                            Line Item Id: {orderline.productId}
-                            &nbsp;&nbsp;&nbsp;
+                                Line Item Id: {orderline.productId}
+                                &nbsp;&nbsp;&nbsp;
                             Line Item Price: ${orderline.linePrice}
-                            &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;
                             Line Item Quantity: {orderline.quantity}
-                            &nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;
                              </span>
 
-                    </ul>
-                    )
-                })
-            }
+                        </span>
+                        )
+                    })
+                }
+            </div>
         </div>
     );
 }
@@ -55,7 +56,6 @@ const mapDispatch = dispatch => ({
     },
     handleChange: (evt, order) => {
         evt.preventDefault()
-        console.log(order, "ORDER")
         order.status = evt.target.value
         dispatch(updateOrderThunk(order))
     }
