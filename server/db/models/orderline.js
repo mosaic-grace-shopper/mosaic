@@ -26,7 +26,6 @@ const OrderLine = db.define('orderline', {
     }
 })
 
-
 OrderLine.beforeCreate((orderLineInstance) => {
     orderLineInstance.getProduct()
         .then(product => {
@@ -35,12 +34,11 @@ OrderLine.beforeCreate((orderLineInstance) => {
         });
 })
 
-OrderLine.afterCreate(orderLineInstance => {
+
+OrderLine.afterCreate(orderLineInstance => { 
     orderLineInstance.getOrder()
-    .then(order => {
-        console.log("Total Before == ",order.total)
+    .then( order => {
         order.total += orderLineInstance.lineTotal;
-        console.log("Total == After",order.total , orderLineInstance.lineTotal  )
         order.save()
         orderLineInstance.save();
     })
