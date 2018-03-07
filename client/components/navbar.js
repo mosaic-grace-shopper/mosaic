@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../store";
 import categories from "../store/categories";
 
-const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories }) => (
+const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories, email }) => (
   <div>
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
   <a className="navbar-brand" href="#">
@@ -14,7 +14,6 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-            <Link to="/home">Home</Link>
 
           <div className="dropdown">
             <Link to="/products">All Products</Link>
@@ -37,9 +36,10 @@ const Navbar = ({ handleClick, isLoggedIn, isAdmin, allCategories }) => (
           )}
           {isAdmin ? <Link to="/users"> Users </Link> : <span />}
           {isAdmin ? <Link to="/categories"> Categories </Link> : <span />}
-
-          <a href="#" onClick={handleClick}>
-            Logout
+          
+          <span className="flex-right"><h8>Welcome, {email}!</h8></span>
+          <a href="#" className="flex-right" onClick={handleClick}>
+          Logout
           </a>
         </div>
       ) : (
@@ -79,7 +79,8 @@ const mapState = state => {
     isLoggedIn: !!state.user.id,
     isAdmin: !!state.user.isAdmin,
     // categories : state.categories,
-    allCategories: state.categories
+    allCategories: state.categories,
+    email: state.user.email
   };
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
-import {addNewShipmentDetailsThunk} from '../store'
+import {addNewShipmentDetailsThunk, updateOrderThunk} from '../store'
 
 function Checkout(props) {
 
