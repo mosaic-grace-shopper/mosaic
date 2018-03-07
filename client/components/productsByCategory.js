@@ -27,7 +27,7 @@ class ProductsByCategory extends Component {
                   key={product.id}
                   className="productCard"
                 >
-                  <ProductItem theProduct={product} />
+                  <ProductItem product={product} />
                 </Link>
               ))}
 
