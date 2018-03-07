@@ -12,7 +12,7 @@ class ProductList extends Component {
 
   render() {
     const { products, currentUser } = this.props;
-
+    console.log(products, "PRODUCTSSSSS")
     const isAdmin = !!currentUser.isAdmin;
 
     if (!products.length) return <div>No products found</div>;
@@ -45,12 +45,12 @@ class ProductList extends Component {
 
 
 
-const mapState = state => ({
+export const mapState = state => ({
   currentUser: state.user,
   products: state.products
 });
 
-const mapDispatch = dispatch => ({
+export const mapDispatch = dispatch => ({
   getAllProducts: () => {
     dispatch(allProducts());
   }
