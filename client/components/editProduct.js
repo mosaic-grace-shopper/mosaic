@@ -123,6 +123,15 @@ const mapDispatch = (dispatch, ownProps) => ({
   handleSubmit(event) {
     event.preventDefault();
     const productId = ownProps.product.id
+    const title = event.target.title.value;
+    const imgUrl = event.target.imgUrl.value;
+    console.log(imgUrl);
+    if (title === '') {
+      console.log('empty title')
+    }
+    if (imgUrl === '') {
+      console.log('empty image')
+    }
     const editedProduct = {
       id: productId,
       artist: event.target.artist.value,

@@ -78,8 +78,8 @@ class NewProductForm extends Component {
                 type="text"
               />
             </div>
-  
-  
+
+
             <div>
               <label htmlFor="title">
                 <small>Product Title</small>
@@ -110,19 +110,23 @@ class NewProductForm extends Component {
 }
 }
 
-  
+
 
 const mapDispatch = (dispatch) => ({
   handleClick: (event) => {
     event.preventDefault()
     const newProduct = {
       artist: event.target.artist.value,
-      title: event.target.title.value,
       description: event.target.description.value,
       price: +event.target.price.value,
       quantity: +event.target.quantity.value,
-      imgUrl: event.target.imgUrl.value,
       categoryId: +event.target.categoryId.value
+    }
+    if (event.target.title.value !== '') {
+      newProduct.title = event.target.title.value
+    }
+    if (event.target.imgUrl.value !== '') {
+      newProduct.imgUrl = event.target.imgUrl.value;
     }
     dispatch(addProductThunk(newProduct))
   }
