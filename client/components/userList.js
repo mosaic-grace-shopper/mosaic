@@ -25,9 +25,7 @@ class UserList extends Component {
       <h1>Manage Users</h1>
       <div className="aUser">
         { users.map(user => (
-          <Link to={`users/${user.id}`} key={user.id} className="userCard">
-            <UserItem user={user} />
-          </Link>
+            <UserItem key={user.id} user={user} />
         ))}
       </div>
     </div>
