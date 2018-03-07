@@ -82,7 +82,8 @@ class Cart extends Component {
                 <tbody>
                 {
                     orders ? orders.filter(order => order.userId === meUser.id).map(order => (order.orderlines.map(orderline => (
-                        <tr key={orderline.id}>
+                        <div key={orderline.id}>
+                        <tr >
                             <th scope="row">1</th>
                             <td>{orderline.product.title}</td>
                             <td>{orderline.product.description}</td>
@@ -93,7 +94,11 @@ class Cart extends Component {
                             <button>Update</button>
                             <td> {orderline.lineTotal} </td>
                             </form> </td>
-                         </tr> ))))
+                         </tr> 
+                             <button onClick={this.props.handleClick}>Empty your cart</button>
+                         <button onClick={() => this.props.handleCheckout(logged)}>Checkout</button>
+                        </div> 
+                    ))))
                    : <div> <h4>No Pending Orders for you</h4>
                     </div>
                 }
