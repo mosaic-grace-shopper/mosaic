@@ -27,7 +27,7 @@ To execute the unit tests:
 npm run test
 ```
 ## Deployed App
-(https://mosaic-shopper.herokuapp.com)
+https://mosaic-shopper.herokuapp.com
 ## Technologies Used
 * [Node.js](https://nodejs.org/en/)
 * [Express](http://expressjs.com/)
