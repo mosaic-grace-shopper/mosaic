@@ -1,6 +1,9 @@
+![Products Page](.(./))
+![ScreenShot](./screenshot.png?raw=true "Products Page")
+
 # MOSAIC
 
-Mosaic is an art e-commerce website built in 10 days for the Grace Hopper Program at Fullstack Academy. 
+Mosaic is an art e-commerce website built in 10 days for the Grace Hopper Program at Fullstack Academy.
 
 ## Getting Started
 Follow the instructions to run Mosaic on your local machine for development and testing purposes.
