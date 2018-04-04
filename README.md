@@ -1,4 +1,4 @@
-![Products Page](.(./))
+
 ![ScreenShot](./screenshot.png?raw=true "Products Page")
 
 # MOSAIC
